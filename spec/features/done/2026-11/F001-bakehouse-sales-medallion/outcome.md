@@ -9,7 +9,7 @@ Metric View, `workspace.gold.sales_metrics`, was created from the YAML and retur
 numbers through `MEASURE()`. The C4, ontology, and semantic-model docs name the same terms
 as the code. Merge commit `4040a7a` (final of four F001 commits from `29f4322`).
 
-Next reader notes: the source is bakehouse, not TPC-DS — Free Edition shares no
-`tpcds_sf1`. The Metric View uses no joins because `using`-key joins hit a Free Edition
-engine error; the fact is pre-widened in `sales_enriched` instead. Card numbers stop at
-bronze; email and phone stop at silver.
+Next reader notes: the source is the public `samples.bakehouse` sample. The Metric View
+uses no joins because `using`-key joins hit a Free Edition engine error; the fact is
+pre-widened in `sales_enriched` instead. Card numbers stop at bronze; email and phone stop
+at silver.

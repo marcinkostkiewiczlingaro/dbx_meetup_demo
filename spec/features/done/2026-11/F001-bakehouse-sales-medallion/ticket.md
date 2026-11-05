@@ -40,6 +40,6 @@ and Part 2 (analysts) consume one foundation.
 
 ## Notes
 
-- Free Edition shares no `tpcds_sf1`; the sample catalog holds `bakehouse`, `nyctaxi`, and `tpch` only. The demo uses `bakehouse` because it is a real retail store-sales model.
+- The demo uses the public `samples.bakehouse` sample because it is a real retail store-sales model available in Free Edition.
 - `cardNumber` stays in bronze and is never published; `email_address` and `phone_number` stop at silver. A governance talking point.
 - Catalog is `workspace` (the one writable catalog in Free Edition), set once in `databricks.yml`.

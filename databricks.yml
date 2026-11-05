@@ -1,6 +1,6 @@
-# Databricks Asset Bundle for the TPC-DS store-sales demo.
+# Databricks Asset Bundle for the bakery-sales demo on the bakehouse sample.
 # Deploy: databricks bundle deploy --target dev
-# Run:    databricks bundle run tpcds_store_sales
+# Run:    databricks bundle run bakehouse_sales
 bundle:
   name: dbx_meetup_demo
 
