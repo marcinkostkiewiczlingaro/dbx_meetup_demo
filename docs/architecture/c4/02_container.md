@@ -15,6 +15,7 @@ C4Container
     ContainerDb(silver, "Silver schema", "Delta / Unity Catalog", "Cleansed, business-named, quality-checked.")
     ContainerDb(gold, "Gold schema", "Delta / Unity Catalog", "Conformed star schema.")
     Container(metric, "Metric View", "YAML on Unity Catalog", "Governed bakery-sales metrics on gold.sales_enriched. metrics/.")
+    Container(page, "AI/BI Page", "Lakeview dashboard", "Headline numbers and charts for business users. dashboards/.")
   }
 
   System_Ext(genie, "Databricks Genie", "Reads the Metric View")
@@ -24,6 +25,7 @@ C4Container
   Rel(bronze, silver, "Transform")
   Rel(silver, gold, "Conform")
   Rel(gold, metric, "Source of measures")
+  Rel(metric, page, "Tiles via MEASURE()")
   Rel(metric, genie, "Named metrics")
 ```
 

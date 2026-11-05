@@ -1,0 +1,8 @@
+# AI/BI dashboard (a Page) over the governed Metric View.
+# The dashboard JSON lives under dashboards/ and version-controls with the repo.
+resources:
+  dashboards:
+    bakery_sales_overview:
+      display_name: Bakery Sales Overview
+      file_path: ../dashboards/bakery_sales_overview.lvdash.json
+      warehouse_id: 8c378844e8d9cadf

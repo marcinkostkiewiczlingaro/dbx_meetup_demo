@@ -1,0 +1,298 @@
+{
+  "datasets": [
+    {
+      "name": "kpis",
+      "displayName": "Headline metrics",
+      "queryLines": [
+        "SELECT MEASURE(`Total Revenue`) AS total_revenue, MEASURE(`Transaction Count`) AS transactions, MEASURE(`Average Transaction Value`) AS avg_txn FROM workspace.gold.sales_metrics"
+      ]
+    },
+    {
+      "name": "by_product",
+      "displayName": "Revenue by product",
+      "queryLines": [
+        "SELECT `Product` AS product, MEASURE(`Total Revenue`) AS revenue FROM workspace.gold.sales_metrics GROUP BY `Product`"
+      ]
+    },
+    {
+      "name": "by_country",
+      "displayName": "Revenue by franchise country",
+      "queryLines": [
+        "SELECT `Franchise Country` AS country, MEASURE(`Total Revenue`) AS revenue FROM workspace.gold.sales_metrics GROUP BY `Franchise Country`"
+      ]
+    },
+    {
+      "name": "by_day",
+      "displayName": "Revenue by day",
+      "queryLines": [
+        "SELECT `Sold Date` AS sold_date, MEASURE(`Total Revenue`) AS revenue FROM workspace.gold.sales_metrics GROUP BY `Sold Date`"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "overview",
+      "displayName": "Bakery Sales Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "c_rev",
+            "queries": [
+              {
+                "name": "main",
+                "query": {
+                  "datasetName": "kpis",
+                  "fields": [
+                    {
+                      "name": "sum(total_revenue)",
+                      "expression": "SUM(`total_revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_revenue)",
+                  "displayName": "Total Revenue"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 2,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "c_txn",
+            "queries": [
+              {
+                "name": "main",
+                "query": {
+                  "datasetName": "kpis",
+                  "fields": [
+                    {
+                      "name": "sum(transactions)",
+                      "expression": "SUM(`transactions`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(transactions)",
+                  "displayName": "Transactions"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 0,
+            "width": 2,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "c_avg",
+            "queries": [
+              {
+                "name": "main",
+                "query": {
+                  "datasetName": "kpis",
+                  "fields": [
+                    {
+                      "name": "sum(avg_txn)",
+                      "expression": "SUM(`avg_txn`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(avg_txn)",
+                  "displayName": "Avg Transaction Value"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 0,
+            "width": 2,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "bar_product",
+            "queries": [
+              {
+                "name": "main",
+                "query": {
+                  "datasetName": "by_product",
+                  "fields": [
+                    {
+                      "name": "product",
+                      "expression": "`product`"
+                    },
+                    {
+                      "name": "sum(revenue)",
+                      "expression": "SUM(`revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "product",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Product"
+                },
+                "y": {
+                  "fieldName": "sum(revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Total Revenue"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "bar_country",
+            "queries": [
+              {
+                "name": "main",
+                "query": {
+                  "datasetName": "by_country",
+                  "fields": [
+                    {
+                      "name": "country",
+                      "expression": "`country`"
+                    },
+                    {
+                      "name": "sum(revenue)",
+                      "expression": "SUM(`revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "country",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Country"
+                },
+                "y": {
+                  "fieldName": "sum(revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Total Revenue"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 3,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "line_day",
+            "queries": [
+              {
+                "name": "main",
+                "query": {
+                  "datasetName": "by_day",
+                  "fields": [
+                    {
+                      "name": "sold_date",
+                      "expression": "`sold_date`"
+                    },
+                    {
+                      "name": "sum(revenue)",
+                      "expression": "SUM(`revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "sold_date",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "Sold Date"
+                },
+                "y": {
+                  "fieldName": "sum(revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Total Revenue"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 9,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ]
+    }
+  ]
+}
