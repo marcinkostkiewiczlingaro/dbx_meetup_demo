@@ -1,5 +1,6 @@
 ---
 opened: 2026-11-05
+landed: 2026-11-05
 ---
 
 # F003 · Analysts ask bakery sales questions in natural language through Genie
