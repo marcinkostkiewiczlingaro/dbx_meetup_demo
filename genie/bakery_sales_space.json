@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "data_sources": {
+    "tables": [
+      { "identifier": "workspace.gold.sales_enriched" }
+    ]
+  },
+  "instructions": {
+    "text_instructions": [
+      {
+        "content": [
+          "This space answers questions about bakery sales. The data is workspace.gold.sales_enriched, one row per sales transaction. It is the governed gold table that the sales_metrics Metric View also uses, so answers match the dashboards.",
+          "Revenue means SUM(sales_amount). Quantity sold means SUM(quantity). Transaction count means COUNT(DISTINCT sales_transaction_id). Average transaction value means SUM(sales_amount) / COUNT(DISTINCT sales_transaction_id). Never use unit_price alone for revenue.",
+          "A franchise is a bakery store. Slice sales by product (product_name), franchise (franchise_name), franchise country (franchise_country), customer country (customer_country), payment method (payment_method), or day (sold_date). month_name gives the month.",
+          "The products are Golden Gate Ginger, Austin Almond Biscotti, Pearly Pies, Tokyo Tidbits, Outback Oatmeal, and Orchard Oasis. Payment methods are amex, mastercard, and visa."
+        ]
+      }
+    ]
+  }
+}

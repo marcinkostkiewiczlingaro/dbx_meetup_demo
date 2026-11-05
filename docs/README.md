@@ -28,5 +28,6 @@ star schema, the ontology, the semantic model, and the Metric View.
 - `src/bronze`, `src/silver`, `src/gold` — one SQL file per table, by medallion layer.
 - `metrics/` — the governed Metric View.
 - `dashboards/` — the AI/BI Page (`.lvdash.json`), deployed by the bundle.
+- `genie/` — the Genie space definition and recreate guide.
 - `docs/` — these three views.
 - `spec/` — vision, styleguide, and feature tickets for the agent workflow.
