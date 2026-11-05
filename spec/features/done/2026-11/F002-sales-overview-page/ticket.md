@@ -1,5 +1,6 @@
 ---
 opened: 2026-11-05
+landed: 2026-11-05
 ---
 
 # F002 · Analysts see bakery sales on a published AI/BI page
