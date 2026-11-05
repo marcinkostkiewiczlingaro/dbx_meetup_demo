@@ -1,0 +1,18 @@
+# Lakeflow Declarative Pipeline (DLT) for the store-sales medallion.
+# Direct publishing mode: each SQL file names its own bronze/silver/gold schema
+# under the catalog below. Schemas are created by the pipeline on first run.
+resources:
+  pipelines:
+    tpcds_store_sales:
+      name: tpcds_store_sales_medallion
+      catalog: ${var.catalog}
+      serverless: true
+      development: true
+      continuous: false
+      libraries:
+        - glob:
+            include: ../src/bronze/*.sql
+        - glob:
+            include: ../src/silver/*.sql
+        - glob:
+            include: ../src/gold/*.sql

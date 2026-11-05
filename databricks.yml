@@ -1,0 +1,19 @@
+# Databricks Asset Bundle for the TPC-DS store-sales demo.
+# Deploy: databricks bundle deploy --target dev
+# Run:    databricks bundle run tpcds_store_sales
+bundle:
+  name: dbx_meetup_demo
+
+variables:
+  catalog:
+    description: Unity Catalog catalog that holds the bronze, silver, and gold schemas.
+    default: tpcds_demo
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    # workspace.host is read from your Databricks CLI profile; set it there, not here.

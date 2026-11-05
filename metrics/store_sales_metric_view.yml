@@ -1,0 +1,47 @@
+# Databricks Metric View: governed store-sales metrics defined once.
+# Create in Unity Catalog on top of the gold fact. Genie and BI read these names.
+# Each measure name is the one business term; the ontology and semantic model match it.
+version: 0.1
+
+source: tpcds_demo.gold.fct_store_sales
+
+joins:
+  - name: product
+    source: tpcds_demo.gold.dim_item
+    on: source.product_key = product.product_key
+  - name: store
+    source: tpcds_demo.gold.dim_store
+    on: source.store_key = store.store_key
+  - name: date
+    source: tpcds_demo.gold.dim_date
+    on: source.date_key = date.date_key
+
+dimensions:
+  - name: Calendar Date
+    expr: date.calendar_date
+  - name: Calendar Year
+    expr: date.calendar_year
+  - name: Product Category
+    expr: product.category
+  - name: Brand
+    expr: product.brand
+  - name: Store Name
+    expr: store.store_name
+  - name: State
+    expr: store.state
+
+measures:
+  - name: Net Sales Amount
+    expr: SUM(net_sales_amount)
+  - name: Net Profit Amount
+    expr: SUM(net_profit_amount)
+  - name: Gross Sales Amount
+    expr: SUM(gross_sales_amount)
+  - name: Discount Amount
+    expr: SUM(discount_amount)
+  - name: Quantity Sold
+    expr: SUM(quantity)
+  - name: Order Count
+    expr: COUNT(DISTINCT sales_ticket_number)
+  - name: Average Order Value
+    expr: SUM(net_sales_amount) / COUNT(DISTINCT sales_ticket_number)
