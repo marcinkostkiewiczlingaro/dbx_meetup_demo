@@ -1,6 +1,6 @@
 # Ontology
 
-A Palantir-style ontology names the business objects in the store-sales domain, their
+A Palantir-style ontology names the business objects in the bakery-sales domain, their
 properties, and the links between them. It is the shared vocabulary: every property
 maps to one gold column, and every metric in the semantic model stands on these terms.
 
@@ -14,7 +14,8 @@ differently, the ontology is where we unify it.
 
 | Object type | Backed by | Business meaning |
 |---|---|---|
-| Customer | `gold.dim_customer` | A person who buys in a store. |
-| Product | `gold.dim_item` | An item offered for sale. |
-| Store | `gold.dim_store` | A physical retail location. |
-| Sales Transaction | `gold.fct_store_sales` | One sold line: a product sold on a ticket. |
+| Customer | `gold.dim_customer` | A person who buys from a bakery. |
+| Product | `gold.dim_product` | A bakery item offered for sale. |
+| Franchise | `gold.dim_franchise` | A bakery store location. |
+| Supplier | within `gold.dim_franchise` | A business that supplies a franchise's ingredient. |
+| Sales Transaction | `gold.fct_sales` | One sale: a product bought at a franchise. |

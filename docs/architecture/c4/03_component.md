@@ -1,23 +1,24 @@
 # C4 Level 3 — Components (Gold star schema)
 
 Inside the gold schema the components form a classic star: one fact surrounded by
-four conformed dimensions. The Metric View reads the fact and joins the dimensions.
+conformed dimensions. The Metric View reads the fact and joins the dimensions.
 
 ```mermaid
 C4Component
   title Gold Star Schema — Components
 
-  ContainerDb(fct, "gold.fct_store_sales", "Fact", "One row per sold line. Measures: net sales, net profit, quantity, discount.")
+  ContainerDb(fct, "gold.fct_sales", "Fact", "One row per transaction. Measures: revenue, quantity, transaction count.")
   ContainerDb(dimc, "gold.dim_customer", "Dimension", "One row per customer.")
-  ContainerDb(dimi, "gold.dim_item", "Dimension", "One row per product.")
-  ContainerDb(dims, "gold.dim_store", "Dimension", "One row per store.")
-  ContainerDb(dimd, "gold.dim_date", "Dimension", "One row per calendar day.")
+  ContainerDb(dimp, "gold.dim_product", "Dimension", "One row per product (derived from the fact).")
+  ContainerDb(dimf, "gold.dim_franchise", "Dimension", "One row per franchise (store), with its supplier.")
+  ContainerDb(dimd, "gold.dim_date", "Dimension", "One row per sales day (derived from the fact).")
 
   Rel(fct, dimc, "customer_key")
-  Rel(fct, dimi, "product_key")
-  Rel(fct, dims, "store_key")
-  Rel(fct, dimd, "date_key")
+  Rel(fct, dimp, "product_name")
+  Rel(fct, dimf, "franchise_key")
+  Rel(fct, dimd, "sold_date")
 ```
 
-Each component is one SQL file in `src/gold/`. The foreign keys here are the same
-links the ontology names (`docs/ontology/link-types.md`).
+Each component is one SQL file in `src/gold/`. Product and date have no source table in
+the sample, so the pipeline derives them from the fact. The foreign keys here are the
+same links the ontology names (`docs/ontology/link-types.md`).

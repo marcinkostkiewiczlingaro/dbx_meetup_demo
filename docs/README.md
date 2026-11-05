@@ -1,6 +1,6 @@
 # Documentation
 
-Three linked views of the same store-sales slice. They describe one foundation, so an
+Three linked views of the same bakery-sales slice. They describe one foundation, so an
 AI agent or a reader reaches code, data, and business meaning from any entry point.
 
 | View | Question it answers | Location |
@@ -12,7 +12,7 @@ AI agent or a reader reaches code, data, and business meaning from any entry poi
 ## How they connect
 
 ```
-TPC-DS sample  ─▶  src/ pipeline  ─▶  bronze ▸ silver ▸ gold (Unity Catalog)
+bakehouse sample  ─▶  src/ pipeline  ─▶  bronze ▸ silver ▸ gold (Unity Catalog)
                                                    │
                       ontology (objects, links) ◀──┤
                       semantic model (metrics)  ◀──┤

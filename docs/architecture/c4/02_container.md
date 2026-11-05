@@ -5,9 +5,9 @@ this repository and an object in Unity Catalog.
 
 ```mermaid
 C4Container
-  title Store-Sales Analytics — Containers
+  title Bakery-Sales Analytics — Containers
 
-  System_Ext(tpcds, "TPC-DS Sample", "samples.tpcds_sf1")
+  System_Ext(bakehouse, "Bakehouse Sample", "samples.bakehouse")
 
   Container_Boundary(ws, "Databricks Workspace") {
     Container(pipeline, "Lakeflow Pipeline", "SQL (DLT)", "Builds bronze, silver, gold. src/bronze, src/silver, src/gold.")
@@ -19,7 +19,7 @@ C4Container
 
   System_Ext(genie, "Databricks Genie", "Reads the Metric View")
 
-  Rel(tpcds, pipeline, "Read")
+  Rel(bakehouse, pipeline, "Read")
   Rel(pipeline, bronze, "Write")
   Rel(bronze, silver, "Transform")
   Rel(silver, gold, "Conform")

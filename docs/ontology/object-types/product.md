@@ -1,23 +1,23 @@
 # Object Type: Product
 
-An item offered for sale in a store.
+A bakery item offered for sale.
 
-- **Backed by:** `gold.dim_item`
-- **Primary key:** `product_key`
-- **Source of truth:** `samples.tpcds_sf1.item`
+- **Backed by:** `gold.dim_product` (derived from the fact)
+- **Primary key:** `product_name`
+- **Source of truth:** `samples.bakehouse.sales_transactions` (the `product` column)
+
+The bakehouse sample has no product table. The product list is derived from the distinct
+products actually sold, so `product_name` is the natural business key.
 
 ## Properties
 
 | Property | Gold column | Source column | Meaning |
 |---|---|---|---|
-| product_key | `product_key` | `i_item_sk` | Business key, one per product version. |
-| product_id | `product_id` | `i_item_id` | Stable public identifier. |
-| product_name | `product_name` | `i_product_name` | Display name. |
-| brand | `brand` | `i_brand` | Brand label. |
-| category | `category` | `i_category` | Top-level merchandise category. |
-| product_class | `product_class` | `i_class` | Sub-category within a category. |
-| list_price | `list_price` | `i_current_price` | Current list price. |
+| product_name | `product_name` | `product` | Product name and business key. |
+
+Known products: Golden Gate Ginger, Austin Almond Biscotti, Pearly Pies, Tokyo Tidbits,
+Outback Oatmeal, Orchard Oasis.
 
 ## Links
 
-- Appears in many **Sales Transaction** (`product_key`). See `../link-types.md`.
+- Appears in many **Sales Transaction** (`product_name`). See `../link-types.md`.

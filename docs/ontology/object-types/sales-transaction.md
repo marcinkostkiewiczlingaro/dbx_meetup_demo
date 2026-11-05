@@ -1,29 +1,29 @@
 # Object Type: Sales Transaction
 
-One sold line: a single product sold on a sales ticket at a store on a day. This is the
+One sale: a single product bought by a customer at a franchise on a day. This is the
 measurable event the metrics count.
 
-- **Backed by:** `gold.fct_store_sales`
-- **Grain:** one row per sold line (ticket + product)
-- **Source of truth:** `samples.tpcds_sf1.store_sales`
+- **Backed by:** `gold.fct_sales`
+- **Grain:** one row per transaction (a single product purchase)
+- **Source of truth:** `samples.bakehouse.sales_transactions`
 
 ## Properties
 
 | Property | Gold column | Source column | Meaning |
 |---|---|---|---|
-| sales_ticket_number | `sales_ticket_number` | `ss_ticket_number` | Groups lines bought together (an order). |
-| quantity | `quantity` | `ss_quantity` | Units sold on the line. |
-| unit_sales_price | `unit_sales_price` | `ss_sales_price` | Price per unit sold. |
-| gross_sales_amount | `gross_sales_amount` | `ss_ext_sales_price` | Line value before discount. |
-| discount_amount | `discount_amount` | `ss_ext_discount_amt` | Discount on the line. |
-| net_sales_amount | `net_sales_amount` | `ss_net_paid` | Amount the customer paid. |
-| net_profit_amount | `net_profit_amount` | `ss_net_profit` | Profit on the line. |
+| sales_transaction_id | `sales_transaction_id` | `transactionID` | Business key, one per sale. |
+| product_name | `product_name` | `product` | Product sold. |
+| sold_date | `sold_date` | `dateTime` (cast to date) | Day of the sale. |
+| payment_method | `payment_method` | `paymentMethod` | Card used: amex, mastercard, or visa. |
+| quantity | `quantity` | `quantity` | Units sold. |
+| unit_price | `unit_price` | `unitPrice` | Price per unit. |
+| sales_amount | `sales_amount` | `totalPrice` | Revenue of the sale (quantity x unit price). |
 
 ## Links
 
 - Made by one **Customer** (`customer_key`).
-- For one **Product** (`product_key`).
-- At one **Store** (`store_key`).
-- On one calendar day (`date_key`).
+- For one **Product** (`product_name`).
+- At one **Franchise** (`franchise_key`).
+- On one calendar day (`sold_date`).
 
 See `../link-types.md`.

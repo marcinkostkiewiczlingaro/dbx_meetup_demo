@@ -1,47 +1,45 @@
-# Databricks Metric View: governed store-sales metrics defined once.
+# Databricks Metric View: governed bakery-sales metrics defined once.
 # Create in Unity Catalog on top of the gold fact. Genie and BI read these names.
 # Each measure name is the one business term; the ontology and semantic model match it.
 version: 0.1
 
-source: tpcds_demo.gold.fct_store_sales
+source: workspace.gold.fct_sales
 
 joins:
-  - name: product
-    source: tpcds_demo.gold.dim_item
-    on: source.product_key = product.product_key
-  - name: store
-    source: tpcds_demo.gold.dim_store
-    on: source.store_key = store.store_key
+  - name: customer
+    source: workspace.gold.dim_customer
+    on: source.customer_key = customer.customer_key
+  - name: franchise
+    source: workspace.gold.dim_franchise
+    on: source.franchise_key = franchise.franchise_key
   - name: date
-    source: tpcds_demo.gold.dim_date
-    on: source.date_key = date.date_key
+    source: workspace.gold.dim_date
+    on: source.sold_date = date.sold_date
 
 dimensions:
-  - name: Calendar Date
-    expr: date.calendar_date
-  - name: Calendar Year
-    expr: date.calendar_year
-  - name: Product Category
-    expr: product.category
-  - name: Brand
-    expr: product.brand
-  - name: Store Name
-    expr: store.store_name
-  - name: State
-    expr: store.state
+  - name: Sold Date
+    expr: source.sold_date
+  - name: Month Name
+    expr: date.month_name
+  - name: Product
+    expr: source.product_name
+  - name: Payment Method
+    expr: source.payment_method
+  - name: Franchise
+    expr: franchise.franchise_name
+  - name: Franchise Country
+    expr: franchise.country
+  - name: Customer Country
+    expr: customer.country
 
 measures:
-  - name: Net Sales Amount
-    expr: SUM(net_sales_amount)
-  - name: Net Profit Amount
-    expr: SUM(net_profit_amount)
-  - name: Gross Sales Amount
-    expr: SUM(gross_sales_amount)
-  - name: Discount Amount
-    expr: SUM(discount_amount)
+  - name: Total Revenue
+    expr: SUM(sales_amount)
   - name: Quantity Sold
     expr: SUM(quantity)
-  - name: Order Count
-    expr: COUNT(DISTINCT sales_ticket_number)
-  - name: Average Order Value
-    expr: SUM(net_sales_amount) / COUNT(DISTINCT sales_ticket_number)
+  - name: Transaction Count
+    expr: COUNT(DISTINCT sales_transaction_id)
+  - name: Average Transaction Value
+    expr: SUM(sales_amount) / COUNT(DISTINCT sales_transaction_id)
+  - name: Units per Transaction
+    expr: SUM(quantity) / COUNT(DISTINCT sales_transaction_id)
