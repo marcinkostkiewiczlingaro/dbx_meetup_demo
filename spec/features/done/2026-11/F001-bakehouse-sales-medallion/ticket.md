@@ -1,5 +1,6 @@
 ---
 opened: 2026-11-05
+landed: 2026-11-05
 ---
 
 # F001 · Bakery sales runs end to end on the bakehouse sample, with one shared semantic foundation

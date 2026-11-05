@@ -14,7 +14,7 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 <!-- Generated from spec/features/active/ by limen land, limen ticket done and limen board --write. Edit the tickets, not these lines. -->
 
-- `F001-tpcds-store-sales-medallion` (🟠 ACTIVE): Store sales runs end to end on TPC-DS, with one shared semantic foundation
+- `F002-sales-overview-page` (🟠 ACTIVE): Analysts see bakery sales on a published AI/BI page
 
 ## NEXT
 
@@ -23,3 +23,6 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 ## PROVEN
 
 <!-- Generated from spec/features/done/ by limen land, limen ticket done and limen board --write. Edit the tickets, not these lines. -->
+
+- `F001-bakehouse-sales-medallion` (🟢 PROVEN): Bakery sales runs end to end on the bakehouse sample, with one shared semantic foundation; landed 2026-11-05
+- 2026-11: 1 landed. spec/features/done/2026-11/
