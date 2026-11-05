@@ -6,12 +6,11 @@ resources:
     bakehouse_sales:
       name: bakehouse_sales_medallion
       catalog: ${var.catalog}
+      # Default schema for unqualified datasets. Each SQL file still qualifies its own
+      # bronze/silver/gold schema, so tables land in the right layer.
+      schema: gold
       serverless: true
       continuous: false
       libraries:
         - glob:
-            include: ../src/bronze/*.sql
-        - glob:
-            include: ../src/silver/*.sql
-        - glob:
-            include: ../src/gold/*.sql
+            include: ../src/**

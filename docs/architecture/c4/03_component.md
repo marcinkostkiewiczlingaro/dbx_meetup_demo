@@ -22,3 +22,8 @@ C4Component
 Each component is one SQL file in `src/gold/`. Product and date have no source table in
 the sample, so the pipeline derives them from the fact. The foreign keys here are the
 same links the ontology names (`docs/ontology/link-types.md`).
+
+One more gold table, `gold.sales_enriched`, widens the fact with the descriptive
+dimension columns (franchise, country, month). The Metric View reads that one wide table,
+so it needs no joins. The star above stays the modeling source; `sales_enriched` is the
+consumption view built from it.

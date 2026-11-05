@@ -14,7 +14,7 @@ C4Container
     ContainerDb(bronze, "Bronze schema", "Delta / Unity Catalog", "Raw copies of source tables.")
     ContainerDb(silver, "Silver schema", "Delta / Unity Catalog", "Cleansed, business-named, quality-checked.")
     ContainerDb(gold, "Gold schema", "Delta / Unity Catalog", "Conformed star schema.")
-    Container(metric, "Metric View", "YAML on Unity Catalog", "Governed store-sales metrics. metrics/.")
+    Container(metric, "Metric View", "YAML on Unity Catalog", "Governed bakery-sales metrics on gold.sales_enriched. metrics/.")
   }
 
   System_Ext(genie, "Databricks Genie", "Reads the Metric View")

@@ -4,8 +4,10 @@ The semantic model defines each business metric once, in words, and binds it to 
 exact expression in the Metric View (`metrics/store_sales_metric_view.yml`). An analyst
 or Genie answer can trace any number back to this definition and its source.
 
-Every metric stands on the **Sales Transaction** object (`gold.fct_sales`). The
-dimensions below come from the linked Customer, Product, Franchise, and Date objects.
+Every metric stands on the **Sales Transaction** object. The Metric View reads
+`gold.sales_enriched` — the fact widened with descriptive columns — so every dimension
+below is one column on that table, drawn from the Customer, Product, Franchise, and Date
+objects.
 
 ## Metrics
 
@@ -19,13 +21,13 @@ dimensions below come from the linked Customer, Product, Franchise, and Date obj
 
 ## Dimensions (slice any metric by these)
 
-| Dimension | From object | Column |
+| Dimension | From object | Column in `gold.sales_enriched` |
 |---|---|---|
-| Sold Date, Month Name | Date | `gold.dim_date` |
-| Product | Product | `gold.fct_sales.product_name` |
-| Payment Method | Sales Transaction | `gold.fct_sales.payment_method` |
-| Franchise, Franchise Country | Franchise | `gold.dim_franchise` |
-| Customer Country | Customer | `gold.dim_customer` |
+| Sold Date, Month Name | Date | `sold_date`, `month_name` |
+| Product | Product | `product_name` |
+| Payment Method | Sales Transaction | `payment_method` |
+| Franchise, Franchise Country | Franchise | `franchise_name`, `franchise_country` |
+| Customer Country | Customer | `customer_country` |
 
 ## Traceability
 

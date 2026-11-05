@@ -1,36 +1,27 @@
 # Databricks Metric View: governed bakery-sales metrics defined once.
-# Create in Unity Catalog on top of the gold fact. Genie and BI read these names.
+# Create in Unity Catalog on top of the wide gold table. Genie and BI read these names.
 # Each measure name is the one business term; the ontology and semantic model match it.
+# Source is gold.sales_enriched (the fact widened with descriptive columns), so the
+# metric view needs no joins.
 version: 0.1
 
-source: workspace.gold.fct_sales
-
-joins:
-  - name: customer
-    source: workspace.gold.dim_customer
-    on: source.customer_key = customer.customer_key
-  - name: franchise
-    source: workspace.gold.dim_franchise
-    on: source.franchise_key = franchise.franchise_key
-  - name: date
-    source: workspace.gold.dim_date
-    on: source.sold_date = date.sold_date
+source: workspace.gold.sales_enriched
 
 dimensions:
   - name: Sold Date
-    expr: source.sold_date
+    expr: sold_date
   - name: Month Name
-    expr: date.month_name
+    expr: month_name
   - name: Product
-    expr: source.product_name
+    expr: product_name
   - name: Payment Method
-    expr: source.payment_method
+    expr: payment_method
   - name: Franchise
-    expr: franchise.franchise_name
+    expr: franchise_name
   - name: Franchise Country
-    expr: franchise.country
+    expr: franchise_country
   - name: Customer Country
-    expr: customer.country
+    expr: customer_country
 
 measures:
   - name: Total Revenue
