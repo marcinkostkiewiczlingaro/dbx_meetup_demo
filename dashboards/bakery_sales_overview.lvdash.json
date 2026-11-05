@@ -39,7 +39,7 @@
             "name": "c_rev",
             "queries": [
               {
-                "name": "main",
+                "name": "main_query",
                 "query": {
                   "datasetName": "kpis",
                   "fields": [
@@ -75,7 +75,7 @@
             "name": "c_txn",
             "queries": [
               {
-                "name": "main",
+                "name": "main_query",
                 "query": {
                   "datasetName": "kpis",
                   "fields": [
@@ -111,7 +111,7 @@
             "name": "c_avg",
             "queries": [
               {
-                "name": "main",
+                "name": "main_query",
                 "query": {
                   "datasetName": "kpis",
                   "fields": [
@@ -147,7 +147,7 @@
             "name": "bar_product",
             "queries": [
               {
-                "name": "main",
+                "name": "main_query",
                 "query": {
                   "datasetName": "by_product",
                   "fields": [
@@ -197,7 +197,7 @@
             "name": "bar_country",
             "queries": [
               {
-                "name": "main",
+                "name": "main_query",
                 "query": {
                   "datasetName": "by_country",
                   "fields": [
@@ -247,7 +247,7 @@
             "name": "line_day",
             "queries": [
               {
-                "name": "main",
+                "name": "main_query",
                 "query": {
                   "datasetName": "by_day",
                   "fields": [
