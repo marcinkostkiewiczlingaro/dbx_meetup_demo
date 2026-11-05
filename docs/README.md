@@ -16,7 +16,7 @@ bakehouse sample  ─▶  src/ pipeline  ─▶  bronze ▸ silver ▸ gold (Uni
                                                    │
                       ontology (objects, links) ◀──┤
                       semantic model (metrics)  ◀──┤
-                      Metric View (metrics/)    ◀──┘  ─▶  AI/BI Page, Genie
+                      Metric View (metrics/)    ◀──┘  ─▶  AI/BI Dashboard, Genie
 ```
 
 The through-line: one business term keeps one name across the silver columns, the gold
@@ -27,7 +27,7 @@ star schema, the ontology, the semantic model, and the Metric View.
 - `databricks.yml`, `resources/` — Databricks Asset Bundle and the Lakeflow pipeline.
 - `src/bronze`, `src/silver`, `src/gold` — one SQL file per table, by medallion layer.
 - `metrics/` — the governed Metric View.
-- `dashboards/` — the AI/BI Page (`.lvdash.json`), deployed by the bundle.
+- `dashboards/` — the AI/BI dashboard (`.lvdash.json`), deployed by the bundle.
 - `genie/` — the Genie space definition and recreate guide.
 - `docs/` — these three views.
 - `spec/` — vision, styleguide, and feature tickets for the agent workflow.

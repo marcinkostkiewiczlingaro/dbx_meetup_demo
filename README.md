@@ -30,20 +30,20 @@ Edition workspace.
 | Pipeline | Medallion (bronze, silver, gold) in declarative SQL, as a Lakeflow Declarative Pipeline | `src/bronze`, `src/silver`, `src/gold` |
 | Deployment | Databricks Asset Bundle that deploys the pipeline and the dashboard | `databricks.yml`, `resources/` |
 | Metrics | A governed Metric View; business metrics defined once | `metrics/` |
-| Page | An AI/BI dashboard over the Metric View, for business users | `dashboards/` |
+| Dashboard | An AI/BI dashboard over the Metric View, for business users | `dashboards/` |
 | Genie | A Genie space wired to the gold model, with the semantic model as instructions | `genie/` |
 | Documentation | C4 architecture, a Palantir-style ontology, and the semantic model | `docs/` |
 
 ### The through-line
 
 One business term keeps one name across every layer: the silver columns, the gold star
-schema, the Metric View, the ontology, the semantic model, the AI/BI Page, and Genie.
+schema, the Metric View, the ontology, the semantic model, the AI/BI dashboard, and Genie.
 That single vocabulary is the shared foundation — engineers and analysts read the same
 meaning of the same data.
 
 - **Part 1 (engineers):** the medallion pipeline, the dimensional model, and the governed
   Metric View, documented in C4, ontology, and a semantic model.
-- **Part 2 (analysts):** the AI/BI Page, the Genie space, and a Unity Catalog **Sales**
+- **Part 2 (analysts):** the AI/BI dashboard, the Genie space, and a Unity Catalog **Sales**
   Domain, all reading the same governed gold model.
 
 ### Run it

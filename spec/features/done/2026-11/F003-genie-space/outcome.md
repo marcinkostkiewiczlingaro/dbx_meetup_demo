@@ -4,7 +4,7 @@ Analysts can ask bakery sales questions in natural language through a Genie spac
 live in the workspace. The space "Bakery Sales" (id `01f1d95d34801550a076d05d60e5bd69`) is
 wired to `workspace.gold.sales_enriched` and carries the semantic model as text
 instructions. A question — "total revenue, and the top product by revenue" — returned total
-revenue 66,471 and Golden Gate Ginger (11,595), matching the Metric View and the AI/BI Page.
+revenue 66,471 and Golden Gate Ginger (11,595), matching the Metric View and the AI/BI dashboard.
 The serialized space version-controls in `genie/bakery_sales_space.json` with a recreate
 guide. Merge commit will follow this file.
 

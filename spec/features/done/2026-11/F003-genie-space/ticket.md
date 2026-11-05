@@ -9,7 +9,7 @@ landed: 2026-11-05
 
 A business user opens a Genie space and asks a sales question in plain English. Genie
 answers from the governed gold table, using instructions that carry the semantic model, so
-its numbers match the Metric View and the AI/BI Page. This is the natural-language side of
+its numbers match the Metric View and the AI/BI dashboard. This is the natural-language side of
 Part 2: the same foundation, now reachable without SQL.
 
 ## Scope

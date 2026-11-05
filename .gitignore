@@ -219,3 +219,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 /.limen/
+
+# macOS
+.DS_Store
+
+# Databricks bundle local state
+.databricks/

@@ -1,6 +1,6 @@
 # Outcome
 
-Business users have an AI/BI Page over the governed Metric View, confirmed rendering in
+Business users have an AI/BI dashboard over the governed Metric View, confirmed rendering in
 the workspace. The dashboard `dashboards/bakery_sales_overview.lvdash.json` version-controls
 in the repo and deploys through the Asset Bundle. It has one page with six tiles — three
 headline counters (total revenue, transactions, average transaction value) and three charts

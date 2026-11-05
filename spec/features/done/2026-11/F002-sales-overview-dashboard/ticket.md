@@ -3,13 +3,13 @@ opened: 2026-11-05
 landed: 2026-11-05
 ---
 
-# F002 · Analysts see bakery sales on a published AI/BI page
+# F002 · Analysts see bakery sales on a published AI/BI dashboard
 
 ## Outcome
 
-A business user opens an AI/BI dashboard (a Page) and sees bakery sales without writing
+A business user opens an AI/BI dashboard and sees bakery sales without writing
 SQL: headline numbers, revenue by product, revenue by country, and the sales trend. Every
-tile reads the governed Metric View from F001, so the Page shows the same numbers the
+tile reads the governed Metric View from F001, so the dashboard shows the same numbers the
 pipeline and the semantic model define. This is the Part 2 payoff: the shared foundation
 reaches a non-technical audience.
 
@@ -23,7 +23,7 @@ reaches a non-technical audience.
 ## Out of scope
 
 - Genie space setup and Domains; separate features.
-- New metrics or gold tables; the Page consumes F001 as is.
+- New metrics or gold tables; the dashboard consumes F001 as is.
 - Row-level security or sharing rules.
 
 ## Acceptance
