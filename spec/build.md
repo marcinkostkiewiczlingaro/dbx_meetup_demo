@@ -14,6 +14,8 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 <!-- Generated from spec/features/active/ by limen land, limen ticket done and limen board --write. Edit the tickets, not these lines. -->
 
+- `F001-tpcds-store-sales-medallion` (🟠 ACTIVE): Store sales runs end to end on TPC-DS, with one shared semantic foundation
+
 ## NEXT
 
 - `FNNN-slug` (PLANNED): <!-- One clause: likely outcome, dependency, or sequencing reason. -->
