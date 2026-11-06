@@ -19,8 +19,8 @@ content remains anywhere in the repository.
 ## Scope
 
 - Replace the bakehouse sample with TPC-DS store sales. Source schema is a bundle variable
-  `source_schema`, default `samples.tpcds_sf1000`. Start seam: `databricks.yml` and
-  `resources/`.
+  `source_schema`, default `samples.tpcds_sf1` (1 GB, runs on Free Edition); `samples.tpcds_sf1000`
+  (1 TB) is the scale-up option. Start seam: `databricks.yml` and `resources/`.
 - Medallion over `store_sales` (grain: one ticket line, `ss_ticket_number` × `ss_item_sk`)
   with dimensions `customer` + `customer_address`, `item`, `date_dim`, `store`, `promotion`.
   Bronze = typed ingest; silver = business-named clean columns; gold = star schema
@@ -56,12 +56,12 @@ content remains anywhere in the repository.
 - Measure and dimension names match across the Metric View reference file, the ontology, the
   semantic model, Genie instructions, and the dashboard tiles.
 - `README.md` and `docs/README.md` describe the TPC-DS store-sales demo and the
-  `source_schema` variable, including the sf1 fallback for a cheap run.
+  `source_schema` variable, naming sf1000 as the scale-up option.
 
 ## Notes
 
-- sf1000 is 1 TB and will not build cheaply on Databricks Free Edition; the `source_schema`
-  variable lets a run target `samples.tpcds_sf1` (1 GB) instead. Flag kept visible in both
-  READMEs; the owner decides which scale the live demo uses.
+- Default is `samples.tpcds_sf1` (1 GB), which runs on Free Edition, so the demo runs in the
+  room. `samples.tpcds_sf1000` (1 TB) stays named as the scale-up option for realistic volume;
+  the `source_schema` variable switches between them in one line.
 - Prepared standard: `/Users/karolmierzejewski/Downloads/documentation-standard.md` (already
   extended with the metric-view L4 type). Copy it into the repo and adapt its examples.
