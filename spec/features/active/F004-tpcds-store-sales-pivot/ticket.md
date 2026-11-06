@@ -57,6 +57,9 @@ content remains anywhere in the repository.
   semantic model, Genie instructions, and the dashboard tiles.
 - `README.md` and `docs/README.md` describe the TPC-DS store-sales demo and the
   `source_schema` variable, naming sf1000 as the scale-up option.
+- The dev target sets `workspace.root_path` to a shared folder
+  (`/Workspace/Shared/dbx_meetup_demo/${bundle.target}`), not the personal
+  `/Workspace/Users/<me>` default, so the deployed demo is shareable with other users.
 
 ## Notes
 
