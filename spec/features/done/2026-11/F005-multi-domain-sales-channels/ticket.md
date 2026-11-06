@@ -1,5 +1,6 @@
 ---
 opened: 2026-11-06
+landed: 2026-11-06
 ---
 
 # F005 · The demo spans three sales-channel domains on one shared set of conformed dimensions
