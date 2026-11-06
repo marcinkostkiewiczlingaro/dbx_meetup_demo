@@ -2,25 +2,34 @@
 
 ↑ [System Context](../README.md) &nbsp;|&nbsp; ↓ [Components](../components/README.md)
 
-> **C4 Level 2 — Containers.** The system's two modules and how they relate: the pipeline that builds the model, and the semantic layer that governs the metrics over it.
+> **C4 Level 2 — Containers.** One core pipeline builds the conformed dimensions once; three sales-channel domains build their facts and read those shared dims.
 
 ```mermaid
 C4Container
-  title Store-Sales Analytics — Containers
+  title Sales-Channel Analytics — Containers
 
   System_Ext(src, "TPC-DS source", "${source_schema}")
 
   Container_Boundary(ws, "Databricks Workspace") {
-    Container(pipeline, "Pipeline", "Lakeflow SQL", "Builds bronze, silver, gold.")
-    Container(semantic, "Semantic", "Metric View, dashboard, Genie", "Governed metrics on the gold model.")
+    Container(core, "Core", "Lakeflow SQL", "Conformed dims: customer, item, date, promotion.")
+    Container(store, "Store Sales", "Lakeflow SQL + Metric View", "Store facts and metrics.")
+    Container(catalog, "Catalog Sales", "Lakeflow SQL + Metric View", "Catalog facts and metrics.")
+    Container(web, "Web Sales", "Lakeflow SQL + Metric View", "Web facts and metrics.")
   }
 
-  Rel(src, pipeline, "Read")
-  Rel(pipeline, semantic, "Gold model")
+  Rel(src, core, "Read")
+  Rel(src, store, "Read")
+  Rel(src, catalog, "Read")
+  Rel(src, web, "Read")
+  Rel(core, store, "Conformed dims")
+  Rel(core, catalog, "Conformed dims")
+  Rel(core, web, "Conformed dims")
   UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
 
 | Module | Role | Databases |
 |---|---|---|
-| [pipeline](./pipeline.md) | Builds the store-sales model through the medallion. | `bronze`, `silver`, `gold` |
-| [semantic](./semantic.md) | Governs the metrics and serves the dashboard and Genie. | `gold` |
+| [core](./core.md) | Builds the conformed dimensions once, read by every channel. | `bronze`, `silver`, `gold` |
+| [store_sales](./store_sales.md) | Store sales-channel facts, enriched table, and Metric View. | `bronze`, `silver`, `gold` |
+| [catalog_sales](./catalog_sales.md) | Catalog sales-channel facts, enriched table, and Metric View. | `bronze`, `silver`, `gold` |
+| [web_sales](./web_sales.md) | Web sales-channel facts, enriched table, and Metric View. | `bronze`, `silver`, `gold` |
