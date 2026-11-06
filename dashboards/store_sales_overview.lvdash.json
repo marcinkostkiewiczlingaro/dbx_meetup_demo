@@ -4,39 +4,39 @@
       "name": "kpis",
       "displayName": "Headline metrics",
       "queryLines": [
-        "SELECT MEASURE(`Total Revenue`) AS total_revenue, MEASURE(`Transaction Count`) AS transactions, MEASURE(`Average Transaction Value`) AS avg_txn FROM workspace.gold.sales_metrics"
+        "SELECT MEASURE(`Net Sales`) AS net_sales, MEASURE(`Ticket Count`) AS tickets, MEASURE(`Average Ticket Value`) AS avg_ticket FROM workspace.gold.store_sales_metrics"
       ]
     },
     {
-      "name": "by_product",
-      "displayName": "Revenue by product",
+      "name": "by_category",
+      "displayName": "Net sales by category",
       "queryLines": [
-        "SELECT `Product` AS product, MEASURE(`Total Revenue`) AS revenue FROM workspace.gold.sales_metrics GROUP BY `Product`"
+        "SELECT `Category` AS category, MEASURE(`Net Sales`) AS net_sales FROM workspace.gold.store_sales_metrics GROUP BY `Category`"
       ]
     },
     {
-      "name": "by_country",
-      "displayName": "Revenue by franchise country",
+      "name": "by_store_state",
+      "displayName": "Net sales by store state",
       "queryLines": [
-        "SELECT `Franchise Country` AS country, MEASURE(`Total Revenue`) AS revenue FROM workspace.gold.sales_metrics GROUP BY `Franchise Country`"
+        "SELECT `Store State` AS store_state, MEASURE(`Net Sales`) AS net_sales FROM workspace.gold.store_sales_metrics GROUP BY `Store State`"
       ]
     },
     {
-      "name": "by_day",
-      "displayName": "Revenue by day",
+      "name": "by_date",
+      "displayName": "Net sales by day",
       "queryLines": [
-        "SELECT `Sold Date` AS sold_date, MEASURE(`Total Revenue`) AS revenue FROM workspace.gold.sales_metrics GROUP BY `Sold Date`"
+        "SELECT `Sold Date` AS sold_date, MEASURE(`Net Sales`) AS net_sales FROM workspace.gold.store_sales_metrics GROUP BY `Sold Date`"
       ]
     }
   ],
   "pages": [
     {
       "name": "overview",
-      "displayName": "Bakery Sales Overview",
+      "displayName": "Store Sales Overview",
       "layout": [
         {
           "widget": {
-            "name": "c_rev",
+            "name": "c_sales",
             "queries": [
               {
                 "name": "main_query",
@@ -44,8 +44,8 @@
                   "datasetName": "kpis",
                   "fields": [
                     {
-                      "name": "sum(total_revenue)",
-                      "expression": "SUM(`total_revenue`)"
+                      "name": "sum(net_sales)",
+                      "expression": "SUM(`net_sales`)"
                     }
                   ],
                   "disaggregated": false
@@ -57,8 +57,8 @@
               "widgetType": "counter",
               "encodings": {
                 "value": {
-                  "fieldName": "sum(total_revenue)",
-                  "displayName": "Total Revenue"
+                  "fieldName": "sum(net_sales)",
+                  "displayName": "Net Sales"
                 }
               }
             }
@@ -72,7 +72,7 @@
         },
         {
           "widget": {
-            "name": "c_txn",
+            "name": "c_tickets",
             "queries": [
               {
                 "name": "main_query",
@@ -80,8 +80,8 @@
                   "datasetName": "kpis",
                   "fields": [
                     {
-                      "name": "sum(transactions)",
-                      "expression": "SUM(`transactions`)"
+                      "name": "sum(tickets)",
+                      "expression": "SUM(`tickets`)"
                     }
                   ],
                   "disaggregated": false
@@ -93,8 +93,8 @@
               "widgetType": "counter",
               "encodings": {
                 "value": {
-                  "fieldName": "sum(transactions)",
-                  "displayName": "Transactions"
+                  "fieldName": "sum(tickets)",
+                  "displayName": "Tickets"
                 }
               }
             }
@@ -116,8 +116,8 @@
                   "datasetName": "kpis",
                   "fields": [
                     {
-                      "name": "sum(avg_txn)",
-                      "expression": "SUM(`avg_txn`)"
+                      "name": "sum(avg_ticket)",
+                      "expression": "SUM(`avg_ticket`)"
                     }
                   ],
                   "disaggregated": false
@@ -129,8 +129,8 @@
               "widgetType": "counter",
               "encodings": {
                 "value": {
-                  "fieldName": "sum(avg_txn)",
-                  "displayName": "Avg Transaction Value"
+                  "fieldName": "sum(avg_ticket)",
+                  "displayName": "Avg Ticket Value"
                 }
               }
             }
@@ -144,20 +144,20 @@
         },
         {
           "widget": {
-            "name": "bar_product",
+            "name": "bar_category",
             "queries": [
               {
                 "name": "main_query",
                 "query": {
-                  "datasetName": "by_product",
+                  "datasetName": "by_category",
                   "fields": [
                     {
-                      "name": "product",
-                      "expression": "`product`"
+                      "name": "category",
+                      "expression": "`category`"
                     },
                     {
-                      "name": "sum(revenue)",
-                      "expression": "SUM(`revenue`)"
+                      "name": "sum(net_sales)",
+                      "expression": "SUM(`net_sales`)"
                     }
                   ],
                   "disaggregated": false
@@ -169,18 +169,18 @@
               "widgetType": "bar",
               "encodings": {
                 "x": {
-                  "fieldName": "product",
+                  "fieldName": "category",
                   "scale": {
                     "type": "categorical"
                   },
-                  "displayName": "Product"
+                  "displayName": "Category"
                 },
                 "y": {
-                  "fieldName": "sum(revenue)",
+                  "fieldName": "sum(net_sales)",
                   "scale": {
                     "type": "quantitative"
                   },
-                  "displayName": "Total Revenue"
+                  "displayName": "Net Sales"
                 }
               }
             }
@@ -194,20 +194,20 @@
         },
         {
           "widget": {
-            "name": "bar_country",
+            "name": "bar_store_state",
             "queries": [
               {
                 "name": "main_query",
                 "query": {
-                  "datasetName": "by_country",
+                  "datasetName": "by_store_state",
                   "fields": [
                     {
-                      "name": "country",
-                      "expression": "`country`"
+                      "name": "store_state",
+                      "expression": "`store_state`"
                     },
                     {
-                      "name": "sum(revenue)",
-                      "expression": "SUM(`revenue`)"
+                      "name": "sum(net_sales)",
+                      "expression": "SUM(`net_sales`)"
                     }
                   ],
                   "disaggregated": false
@@ -219,18 +219,18 @@
               "widgetType": "bar",
               "encodings": {
                 "x": {
-                  "fieldName": "country",
+                  "fieldName": "store_state",
                   "scale": {
                     "type": "categorical"
                   },
-                  "displayName": "Country"
+                  "displayName": "Store State"
                 },
                 "y": {
-                  "fieldName": "sum(revenue)",
+                  "fieldName": "sum(net_sales)",
                   "scale": {
                     "type": "quantitative"
                   },
-                  "displayName": "Total Revenue"
+                  "displayName": "Net Sales"
                 }
               }
             }
@@ -244,20 +244,20 @@
         },
         {
           "widget": {
-            "name": "line_day",
+            "name": "line_date",
             "queries": [
               {
                 "name": "main_query",
                 "query": {
-                  "datasetName": "by_day",
+                  "datasetName": "by_date",
                   "fields": [
                     {
                       "name": "sold_date",
                       "expression": "`sold_date`"
                     },
                     {
-                      "name": "sum(revenue)",
-                      "expression": "SUM(`revenue`)"
+                      "name": "sum(net_sales)",
+                      "expression": "SUM(`net_sales`)"
                     }
                   ],
                   "disaggregated": false
@@ -276,11 +276,11 @@
                   "displayName": "Sold Date"
                 },
                 "y": {
-                  "fieldName": "sum(revenue)",
+                  "fieldName": "sum(net_sales)",
                   "scale": {
                     "type": "quantitative"
                   },
-                  "displayName": "Total Revenue"
+                  "displayName": "Net Sales"
                 }
               }
             }

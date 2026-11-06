@@ -1,16 +1,20 @@
-# Lakeflow Declarative Pipeline (DLT) for the bakery-sales medallion.
+# Lakeflow Declarative Pipeline (DLT) for the store-sales medallion.
 # Direct publishing mode: each SQL file names its own bronze/silver/gold schema
 # under the catalog below. Schemas are created by the pipeline on first run.
+# The source_schema configuration is read by the bronze SQL as ${source_schema}, so the
+# same pipeline can target the 1 TB sf1000 sample or the 1 GB sf1 sample.
 resources:
   pipelines:
-    bakehouse_sales:
-      name: bakehouse_sales_medallion
+    store_sales:
+      name: store_sales_medallion
       catalog: ${var.catalog}
       # Default schema for unqualified datasets. Each SQL file still qualifies its own
       # bronze/silver/gold schema, so tables land in the right layer.
       schema: gold
       serverless: true
       continuous: false
+      configuration:
+        source_schema: ${var.source_schema}
       libraries:
         - glob:
             include: ../src/**

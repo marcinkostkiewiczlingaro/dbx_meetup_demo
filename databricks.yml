@@ -1,6 +1,6 @@
-# Databricks Asset Bundle for the bakery-sales demo on the bakehouse sample.
+# Databricks Asset Bundle for the store-sales demo on the TPC-DS sample.
 # Deploy: databricks bundle deploy --target dev
-# Run:    databricks bundle run bakehouse_sales
+# Run:    databricks bundle run store_sales
 bundle:
   name: dbx_meetup_demo
 
@@ -9,6 +9,11 @@ variables:
     description: Unity Catalog catalog that holds the bronze, silver, and gold schemas.
     # Free Edition gives one writable catalog named workspace.
     default: workspace
+  source_schema:
+    description: >-
+      Catalog.schema that holds the TPC-DS source tables the bronze layer reads.
+      Default is the 1 TB sf1000 sample; set to samples.tpcds_sf1 for a cheap 1 GB run.
+    default: samples.tpcds_sf1000
 
 include:
   - resources/*.yml
