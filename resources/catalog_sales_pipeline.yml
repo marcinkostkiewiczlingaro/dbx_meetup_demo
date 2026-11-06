@@ -1,0 +1,20 @@
+# Lakeflow Declarative Pipeline (DLT) for the catalog-sales medallion.
+# Builds the catalog-sales and catalog-returns facts and the catalog-only dimensions —
+# call center, catalog page, ship mode — through bronze, silver, and gold. The gold
+# enriched table reads the conformed core dims (customer, item, date, promotion) owned by
+# the core pipeline; reads across pipelines are fine, it never rebuilds them.
+resources:
+  pipelines:
+    catalog_sales:
+      name: catalog_sales_medallion
+      catalog: ${var.catalog}
+      # Default schema for unqualified datasets. Each SQL file still qualifies its own
+      # bronze/silver/gold schema, so tables land in the right layer.
+      schema: gold
+      serverless: true
+      continuous: false
+      configuration:
+        source_schema: ${var.source_schema}
+      libraries:
+        - glob:
+            include: ../src/catalog_sales/**

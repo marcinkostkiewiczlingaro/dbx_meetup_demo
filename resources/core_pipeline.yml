@@ -1,0 +1,20 @@
+# Lakeflow Declarative Pipeline (DLT) for the conformed core dimensions.
+# Built once, read by every sales-channel pipeline. Owns the shared dimensions —
+# customer, item, date, promotion — through bronze, silver, and gold. A table is owned
+# by exactly one pipeline; the channel pipelines read these gold dims, they never rebuild
+# them. Direct publishing mode: each SQL file names its own bronze/silver/gold schema.
+resources:
+  pipelines:
+    core:
+      name: core_dimensions_medallion
+      catalog: ${var.catalog}
+      # Default schema for unqualified datasets. Each SQL file still qualifies its own
+      # bronze/silver/gold schema, so tables land in the right layer.
+      schema: gold
+      serverless: true
+      continuous: false
+      configuration:
+        source_schema: ${var.source_schema}
+      libraries:
+        - glob:
+            include: ../src/core/**
