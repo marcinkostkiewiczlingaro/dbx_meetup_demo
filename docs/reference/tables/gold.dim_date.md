@@ -3,7 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_date
-component: components/pipeline/gold.md
+component: components/core/gold.md
 partition_columns: []
 data_layer: Gold (dimension)
 ---
@@ -11,7 +11,7 @@ data_layer: Gold (dimension)
 
 | module | component | table | pipeline |
 |---|---|---|---|
-| [pipeline](../../modules/pipeline.md) | [gold](../../components/pipeline/gold.md) | gold.dim_date | ← [silver.dim_date](../../components/pipeline/silver.md) · → [gold.fct_store_sales](./gold.fct_store_sales.md) |
+| [core](../../modules/core.md) | [gold](../../components/core/gold.md) | gold.dim_date | ← [silver.dim_date](../../components/core/silver.md) · → [gold.fct_store_sales](./gold.fct_store_sales.md) |
 
 > **C4 Level 4 — Table.** Conformed calendar dimension, one row per calendar day.
 

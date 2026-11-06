@@ -3,7 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: fct_store_sales
-component: components/pipeline/gold.md
+component: components/store_sales/gold.md
 partition_columns: []
 data_layer: Gold (star schema fact)
 ---
@@ -11,7 +11,7 @@ data_layer: Gold (star schema fact)
 
 | module | component | table | pipeline |
 |---|---|---|---|
-| [pipeline](../../modules/pipeline.md) | [gold](../../components/pipeline/gold.md) | gold.fct_store_sales | ← [silver.fct_store_sales](../../components/pipeline/silver.md) · → [gold.store_sales_enriched](./gold.store_sales_enriched.md) |
+| [store_sales](../../modules/store_sales.md) | [gold](../../components/store_sales/gold.md) | gold.fct_store_sales | ← [silver.fct_store_sales](../../components/store_sales/silver.md) · → [gold.store_sales_enriched](./gold.store_sales_enriched.md) |
 
 > **C4 Level 4 — Table.** The conformed store-sales fact. Grain: one store-sales ticket line (`ticket_number` × `item_key`).
 

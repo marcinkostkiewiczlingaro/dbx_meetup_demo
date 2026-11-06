@@ -4,13 +4,13 @@ type: metric_view
 metric_view: store_sales_metrics
 source: workspace.gold.store_sales_enriched
 created_as: workspace.gold.store_sales_metrics
-component: components/semantic/store-sales-metrics.md
+component: components/store_sales/metrics.md
 ---
 # Metric View — store_sales_metrics
 
 | module | component | metric view | source |
 |---|---|---|---|
-| [semantic](../../modules/semantic.md) | [store-sales-metrics](../../components/semantic/store-sales-metrics.md) | `workspace.gold.store_sales_metrics` | [gold.store_sales_enriched](../tables/gold.store_sales_enriched.md) |
+| [store_sales](../../modules/store_sales.md) | [metrics](../../components/store_sales/metrics.md) | `workspace.gold.store_sales_metrics` | [gold.store_sales_enriched](../tables/gold.store_sales_enriched.md) |
 
 > **C4 Level 4 — Metric View.** The governed definition of the store-sales metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
 

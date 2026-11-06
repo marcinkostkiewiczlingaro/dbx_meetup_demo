@@ -3,7 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: store_sales_enriched
-component: components/pipeline/gold.md
+component: components/store_sales/gold.md
 partition_columns: []
 data_layer: Gold (consumption)
 ---
@@ -11,7 +11,7 @@ data_layer: Gold (consumption)
 
 | module | component | table | pipeline |
 |---|---|---|---|
-| [pipeline](../../modules/pipeline.md) | [gold](../../components/pipeline/gold.md) | gold.store_sales_enriched | ← [gold.fct_store_sales](./gold.fct_store_sales.md) · → [store_sales_metrics](../metrics_views/store_sales_metrics.md) |
+| [store_sales](../../modules/store_sales.md) | [gold](../../components/store_sales/gold.md) | gold.store_sales_enriched | ← [gold.fct_store_sales](./gold.fct_store_sales.md) · → [store_sales_metrics](../metrics_views/store_sales_metrics.md) |
 
 > **C4 Level 4 — Table.** The store-sales fact widened with descriptive dimension columns, so the Metric View and Genie read one table with no joins.
 
