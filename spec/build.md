@@ -8,6 +8,7 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 ## TRACK
 
+- Grow the demo from one subject area to three sales-channel domains (store, catalog, web) on one shared set of conformed dimensions, each its own pipeline and Metric View. Shows many pipelines held together by one semantic foundation.
 - Pivot the demo off the bakehouse sample onto TPC-DS store sales (`samples.tpcds_sf1000`), under the prepared documentation standard, with the Metric View a governed `docs/reference/metrics_views/` reference. One vocabulary across pipeline, metrics, ontology, Genie, dashboard. Default `source_schema` is `samples.tpcds_sf1` (1 GB, runs on Free Edition); sf1000 (1 TB) is the scale-up option.
 
 ## NOW
@@ -16,7 +17,7 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 ## NEXT
 
-- `F004-tpcds-store-sales-pivot` (🟠 ACTIVE): store-sales medallion on TPC-DS plus the full docs restructure; one worker in flight.
+- `F005-multi-domain-sales-channels` (🟠 ACTIVE): add catalog and web sales domains plus a shared core-dimensions pipeline; one worker in flight.
 
 ## PROVEN
 
