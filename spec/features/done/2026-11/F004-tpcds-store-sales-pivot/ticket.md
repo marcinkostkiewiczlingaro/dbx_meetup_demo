@@ -1,5 +1,6 @@
 ---
 opened: 2026-11-06
+landed: 2026-11-06
 ---
 
 # F004 · The demo runs on the TPC-DS store-sales dataset under one documented semantic foundation

@@ -22,7 +22,8 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 <!-- Generated from spec/features/done/ by limen land, limen ticket done and limen board --write. Edit the tickets, not these lines. -->
 
+- `F004-tpcds-store-sales-pivot` (🟢 PROVEN): The demo runs on the TPC-DS store-sales dataset under one documented semantic foundation; landed 2026-11-06
 - `F003-genie-space` (🟢 PROVEN): Analysts ask bakery sales questions in natural language through Genie; landed 2026-11-05
 - `F002-sales-overview-dashboard` (🟢 PROVEN): Analysts see bakery sales on a published AI/BI dashboard; landed 2026-11-05
 - `F001-bakehouse-sales-medallion` (🟢 PROVEN): Bakery sales runs end to end on the bakehouse sample, with one shared semantic foundation; landed 2026-11-05
-- 2026-11: 3 landed. spec/features/done/2026-11/
+- 2026-11: 4 landed. spec/features/done/2026-11/
