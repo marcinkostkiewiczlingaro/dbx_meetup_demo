@@ -1,6 +1,6 @@
-# Databricks Asset Bundle for the bakery-sales demo on the bakehouse sample.
+# Databricks Asset Bundle for the store-sales demo on the TPC-DS sample.
 # Deploy: databricks bundle deploy --target dev
-# Run:    databricks bundle run bakehouse_sales
+# Run:    databricks bundle run store_sales
 bundle:
   name: dbx_meetup_demo
 
@@ -9,12 +9,30 @@ variables:
     description: Unity Catalog catalog that holds the bronze, silver, and gold schemas.
     # Free Edition gives one writable catalog named workspace.
     default: workspace
+  source_schema:
+    description: >-
+      Catalog.schema that holds the TPC-DS source tables the bronze layer reads.
+      Default is the 1 GB sf1 sample, which builds on Databricks Free Edition; set to
+      samples.tpcds_sf1000 for realistic 1 TB volume.
+    default: samples.tpcds_sf1
 
 include:
   - resources/*.yml
 
+# The demo is shared with other workspace users (see the dev target's shared root_path).
+# Grant the users group manage access so the shared deploy is explicit and governed.
+permissions:
+  - level: CAN_MANAGE
+    group_name: users
+
 targets:
   dev:
-    mode: development
     default: true
     # workspace.host is read from your Databricks CLI profile; set it there, not here.
+    # Deploy to a shared folder so the owner can share the demo with other users.
+    # Keep ${bundle.target} so dev and other targets stay separate.
+    # No `mode: development`: development mode forces a per-user root_path (it must
+    # contain the username), which cannot be a shared folder, and it prefixes resource
+    # names per user. A shared demo wants one stable deploy location and stable names.
+    workspace:
+      root_path: /Workspace/Shared/dbx_meetup_demo/${bundle.target}

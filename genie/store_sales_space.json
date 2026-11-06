@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "data_sources": {
+    "tables": [
+      { "identifier": "workspace.gold.store_sales_enriched" }
+    ]
+  },
+  "instructions": {
+    "text_instructions": [
+      {
+        "content": [
+          "This space answers questions about store sales. The data is workspace.gold.store_sales_enriched, one row per store-sales ticket line (ticket_number x item_key). It is the governed gold table that the store_sales_metrics Metric View also uses, so answers match the dashboards.",
+          "Net Sales means SUM(sales_amount). Quantity Sold means SUM(quantity). Ticket Count means COUNT(DISTINCT ticket_number). Average Ticket Value means SUM(sales_amount) / COUNT(DISTINCT ticket_number). Net Profit means SUM(net_profit). Never use sales_price alone for net sales; sales_amount is the extended sales price of the line.",
+          "An item is a product sold in a store. Slice sales by item (item_name), brand (brand), category (category), class (class), store (store_name), store state (store_state), store country (store_country), customer state (customer_state), or promotion (promo_name). Day is sold_date; month_name and calendar_year give coarser time grains.",
+          "A ticket_number groups the lines of one store visit; counting distinct ticket_number gives the number of store visits. A line may carry no promotion (promo_key is null)."
+        ]
+      }
+    ]
+  }
+}
