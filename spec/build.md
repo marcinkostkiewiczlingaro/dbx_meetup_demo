@@ -8,7 +8,7 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 ## TRACK
 
-- <!-- Current stretch: intended outcome, why it matters, and material constraint. At most three bullets. -->
+- Pivot the demo off the bakehouse sample onto TPC-DS store sales (`samples.tpcds_sf1000`), under the prepared documentation standard, with the Metric View a governed `docs/reference/metrics_views/` reference. One vocabulary across pipeline, metrics, ontology, Genie, dashboard. Constraint: sf1000 is 1 TB, so `source_schema` is a variable with an sf1 fallback.
 
 ## NOW
 
@@ -16,7 +16,7 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 ## NEXT
 
-- `FNNN-slug` (PLANNED): <!-- One clause: likely outcome, dependency, or sequencing reason. -->
+- `F004-tpcds-store-sales-pivot` (🟠 ACTIVE): store-sales medallion on TPC-DS plus the full docs restructure; one worker in flight.
 
 ## PROVEN
 
