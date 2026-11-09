@@ -47,6 +47,7 @@ dashboard.
 ## Other views
 
 - [Ontology](./ontology/README.md) — the business objects, their properties, and links.
+- [Business domains](./domains/README.md) — the governance map from every gold table to one business domain.
 - [Documentation standard](./engineering/documentation-standard.md) — how these files are built.
 
 ## Data source and deployment

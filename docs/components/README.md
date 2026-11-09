@@ -10,3 +10,4 @@
 | [store_sales](../modules/store_sales.md) | [bronze](./store_sales/bronze.md) · [silver](./store_sales/silver.md) · [gold](./store_sales/gold.md) · [metrics](./store_sales/metrics.md) |
 | [catalog_sales](../modules/catalog_sales.md) | [bronze](./catalog_sales/bronze.md) · [silver](./catalog_sales/silver.md) · [gold](./catalog_sales/gold.md) · [metrics](./catalog_sales/metrics.md) |
 | [web_sales](../modules/web_sales.md) | [bronze](./web_sales/bronze.md) · [silver](./web_sales/silver.md) · [gold](./web_sales/gold.md) · [metrics](./web_sales/metrics.md) |
+| [inventory](../modules/inventory.md) | [bronze](./inventory/bronze.md) · [silver](./inventory/silver.md) · [gold](./inventory/gold.md) |

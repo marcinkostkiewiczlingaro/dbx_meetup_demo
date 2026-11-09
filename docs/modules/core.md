@@ -28,7 +28,7 @@ C4Component
   Container_Boundary(pipe, "Core Pipeline") {
     ComponentDb(bronze, "Bronze", "Raw ingest", "Streaming copies of the source dimensions.")
     ComponentDb(silver, "Silver", "Cleansed", "Business-named, quality-checked dimensions.")
-    ComponentDb(gold, "Gold", "Conformed", "dim_customer, dim_item, dim_date, dim_promotion.")
+    ComponentDb(gold, "Gold", "Conformed", "customer, item, date, promotion, time, reason, and the demographic and income-band dims.")
   }
 
   Rel(src, bronze, "STREAM")
@@ -43,4 +43,4 @@ C4Component
 |---|---|
 | [bronze](../components/core/bronze.md) | Raw streaming copies of the shared TPC-DS dimension tables. |
 | [silver](../components/core/silver.md) | Cleansed, business-named conformed dimensions. |
-| [gold](../components/core/gold.md) | The conformed `dim_customer`, `dim_item`, `dim_date`, `dim_promotion`. |
+| [gold](../components/core/gold.md) | The conformed shared dimensions: customer, item, date, promotion, time, reason, and the customer/household demographics and income band. |
