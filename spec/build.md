@@ -19,8 +19,6 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 <!-- Generated from spec/features/active/ by limen land, limen ticket done and limen board --write. Edit the tickets, not these lines. -->
 
-- `F006-all-24-tpc-ds-tables-build-and-carry-a-business-domain-category` (🟠 ACTIVE): All 24 TPC-DS tables build, and every gold table carries a business-domain category
-
 ## NEXT
 
 - `F006-all-24-tpc-ds-tables-build-and-carry-a-business-domain-category` (🟠 ACTIVE): build the seven remaining TPC-DS tables, add an inventory domain, and tag every gold table with its business domain; one worker in flight.
@@ -29,9 +27,10 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 <!-- Generated from spec/features/done/ by limen land, limen ticket done and limen board --write. Edit the tickets, not these lines. -->
 
+- `F006-all-24-tpc-ds-tables-build-and-carry-a-business-domain-category` (🟢 PROVEN): All 24 TPC-DS tables build, and every gold table carries a business-domain category; landed 2026-11-09
 - `F005-multi-domain-sales-channels` (🟢 PROVEN): The demo spans three sales-channel domains on one shared set of conformed dimensions; landed 2026-11-06
 - `F004-tpcds-store-sales-pivot` (🟢 PROVEN): The demo runs on the TPC-DS store-sales dataset under one documented semantic foundation; landed 2026-11-06
 - `F003-genie-space` (🟢 PROVEN): Analysts ask bakery sales questions in natural language through Genie; landed 2026-11-05
 - `F002-sales-overview-dashboard` (🟢 PROVEN): Analysts see bakery sales on a published AI/BI dashboard; landed 2026-11-05
 - `F001-bakehouse-sales-medallion` (🟢 PROVEN): Bakery sales runs end to end on the bakehouse sample, with one shared semantic foundation; landed 2026-11-05
-- 2026-11: 5 landed. spec/features/done/2026-11/
+- 2026-11: 6 landed. spec/features/done/2026-11/

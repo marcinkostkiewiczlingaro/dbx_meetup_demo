@@ -1,5 +1,6 @@
 ---
 opened: 2026-11-09
+landed: 2026-11-09
 ---
 
 # F006 · All 24 TPC-DS tables build, and every gold table carries a business-domain category
