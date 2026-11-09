@@ -15,9 +15,11 @@ Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ D
 
 <!-- Generated from spec/features/active/ by limen land, limen ticket done and limen board --write. Edit the tickets, not these lines. -->
 
+- `F006-all-24-tpc-ds-tables-build-and-carry-a-business-domain-category` (🟠 ACTIVE): All 24 TPC-DS tables build, and every gold table carries a business-domain category
+
 ## NEXT
 
-- `F005-multi-domain-sales-channels` (🟠 ACTIVE): add catalog and web sales domains plus a shared core-dimensions pipeline; one worker in flight.
+- `F006-all-24-tpc-ds-tables-build-and-carry-a-business-domain-category` (🟠 ACTIVE): build the seven remaining TPC-DS tables, add an inventory domain, and tag every gold table with its business domain; one worker in flight.
 
 ## PROVEN
 
