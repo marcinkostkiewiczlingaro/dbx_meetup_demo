@@ -1,7 +1,7 @@
 -- Gold: conformed catalog-page dimension, ready for analytics and Genie.
 -- Presentation copy of silver.dim_catalog_page; one row per catalog page.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_catalog_page
-  COMMENT 'Conformed catalog-page dimension for the catalog-sales star schema.'
+  COMMENT 'Conformed catalog-page dimension for the catalog-sales star schema. domain=Catalog Sales'
 AS
 SELECT
   catalog_page_key,

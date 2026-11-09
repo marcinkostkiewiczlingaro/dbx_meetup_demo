@@ -1,7 +1,7 @@
 -- Gold: conformed item (product) dimension, ready for analytics and Genie.
 -- Presentation copy of silver.dim_item; one row per item.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_item
-  COMMENT 'Conformed item (product) dimension for the store-sales star schema.'
+  COMMENT 'Conformed item (product) dimension for the store-sales star schema. domain=Product'
 AS
 SELECT
   item_key,

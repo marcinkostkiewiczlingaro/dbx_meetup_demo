@@ -1,7 +1,7 @@
 -- Gold: conformed call-center dimension, ready for analytics and Genie.
 -- Presentation copy of silver.dim_call_center; one row per call center.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_call_center
-  COMMENT 'Conformed call-center dimension for the catalog-sales star schema.'
+  COMMENT 'Conformed call-center dimension for the catalog-sales star schema. domain=Catalog Sales'
 AS
 SELECT
   call_center_key,

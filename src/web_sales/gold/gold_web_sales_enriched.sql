@@ -4,7 +4,7 @@
 -- by the core pipeline and the web-only dims (web site, web page).
 -- Grain: one web-sales order line (order_number x item_key).
 CREATE OR REFRESH MATERIALIZED VIEW gold.web_sales_enriched
-  COMMENT 'Wide web-sales table for the Metric View and Genie. Source: gold.fct_web_sales + dims.'
+  COMMENT 'Wide web-sales table for the Metric View and Genie. Source: gold.fct_web_sales + dims. domain=Web Sales'
 AS
 SELECT
   f.order_number,

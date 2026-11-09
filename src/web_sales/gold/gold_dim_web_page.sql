@@ -1,7 +1,7 @@
 -- Gold: conformed web-page dimension, ready for analytics and Genie.
 -- Presentation copy of silver.dim_web_page; one row per web page.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_web_page
-  COMMENT 'Conformed web-page dimension for the web-sales star schema.'
+  COMMENT 'Conformed web-page dimension for the web-sales star schema. domain=Web Sales'
 AS
 SELECT
   web_page_key,

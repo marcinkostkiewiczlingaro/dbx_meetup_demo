@@ -3,7 +3,7 @@
 -- customer and item dims keep only referentially clean rows. Web site and web page are
 -- optional, so they are left-joined.
 CREATE OR REFRESH MATERIALIZED VIEW gold.fct_web_sales
-  COMMENT 'Conformed web-sales fact. Grain: one order line. Source: silver.fct_web_sales.'
+  COMMENT 'Conformed web-sales fact. Grain: one order line. Source: silver.fct_web_sales. domain=Web Sales'
 AS
 SELECT
   f.order_number,

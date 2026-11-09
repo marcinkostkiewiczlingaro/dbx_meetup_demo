@@ -2,7 +2,7 @@
 -- Grain: one catalog-return line (order_number x item_key). Inner joins to the core
 -- customer and item dims keep only referentially clean rows.
 CREATE OR REFRESH MATERIALIZED VIEW gold.fct_catalog_returns
-  COMMENT 'Conformed catalog-returns fact. Grain: one return line. Source: silver.fct_catalog_returns.'
+  COMMENT 'Conformed catalog-returns fact. Grain: one return line. Source: silver.fct_catalog_returns. domain=Catalog Sales'
 AS
 SELECT
   f.order_number,

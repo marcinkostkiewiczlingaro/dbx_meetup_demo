@@ -2,7 +2,7 @@
 -- Grain: one store-return line (ticket_number x item_key). Inner joins to customer, item,
 -- and store (the core dims and the store dim) keep only referentially clean rows.
 CREATE OR REFRESH MATERIALIZED VIEW gold.fct_store_returns
-  COMMENT 'Conformed store-returns fact. Grain: one return line. Source: silver.fct_store_returns.'
+  COMMENT 'Conformed store-returns fact. Grain: one return line. Source: silver.fct_store_returns. domain=Store Sales'
 AS
 SELECT
   f.ticket_number,

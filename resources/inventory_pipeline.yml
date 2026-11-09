@@ -1,0 +1,21 @@
+# Lakeflow Declarative Pipeline (DLT) for the inventory medallion.
+# Inventory is TPC-DS's one non-sales fact: a periodic stock snapshot over item, warehouse,
+# and date. This pipeline owns the warehouse dimension and the inventory fact through bronze,
+# silver, and gold. It reads the conformed item and date gold dims built by the core pipeline;
+# it never rebuilds them (reads across pipelines are allowed, writes are not).
+# Direct publishing mode: each SQL file names its own bronze/silver/gold schema.
+resources:
+  pipelines:
+    inventory:
+      name: inventory_medallion
+      catalog: ${var.catalog}
+      # Default schema for unqualified datasets. Each SQL file still qualifies its own
+      # bronze/silver/gold schema, so tables land in the right layer.
+      schema: gold
+      serverless: true
+      continuous: false
+      configuration:
+        source_schema: ${var.source_schema}
+      libraries:
+        - glob:
+            include: ../src/inventory/**

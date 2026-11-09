@@ -4,7 +4,7 @@
 -- this is the consumption table built from it.
 -- Grain: one store-sales line (ticket_number x item_key).
 CREATE OR REFRESH MATERIALIZED VIEW gold.store_sales_enriched
-  COMMENT 'Wide store-sales table for the Metric View and Genie. Source: gold.fct_store_sales + dims.'
+  COMMENT 'Wide store-sales table for the Metric View and Genie. Source: gold.fct_store_sales + dims. domain=Store Sales'
 AS
 SELECT
   f.ticket_number,

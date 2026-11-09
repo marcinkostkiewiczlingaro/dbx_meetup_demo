@@ -2,7 +2,7 @@
 -- Grain: one store-sales line (ticket_number x item_key). Inner joins to customer, item,
 -- and store keep only referentially clean rows. Promotion is optional, so it is left-joined.
 CREATE OR REFRESH MATERIALIZED VIEW gold.fct_store_sales
-  COMMENT 'Conformed store-sales fact. Grain: one ticket line. Source: silver.fct_store_sales.'
+  COMMENT 'Conformed store-sales fact. Grain: one ticket line. Source: silver.fct_store_sales. domain=Store Sales'
 AS
 SELECT
   f.ticket_number,

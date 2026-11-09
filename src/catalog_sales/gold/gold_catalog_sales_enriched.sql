@@ -4,7 +4,7 @@
 -- by the core pipeline and the catalog-only dims (call center, catalog page, ship mode).
 -- Grain: one catalog-sales order line (order_number x item_key).
 CREATE OR REFRESH MATERIALIZED VIEW gold.catalog_sales_enriched
-  COMMENT 'Wide catalog-sales table for the Metric View and Genie. Source: gold.fct_catalog_sales + dims.'
+  COMMENT 'Wide catalog-sales table for the Metric View and Genie. Source: gold.fct_catalog_sales + dims. domain=Catalog Sales'
 AS
 SELECT
   f.order_number,

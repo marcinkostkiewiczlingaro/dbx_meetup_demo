@@ -2,7 +2,7 @@
 -- Grain: one web-return line (order_number x item_key). Inner joins to the core customer
 -- and item dims keep only referentially clean rows.
 CREATE OR REFRESH MATERIALIZED VIEW gold.fct_web_returns
-  COMMENT 'Conformed web-returns fact. Grain: one return line. Source: silver.fct_web_returns.'
+  COMMENT 'Conformed web-returns fact. Grain: one return line. Source: silver.fct_web_returns. domain=Web Sales'
 AS
 SELECT
   f.order_number,

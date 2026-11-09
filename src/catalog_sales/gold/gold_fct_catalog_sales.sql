@@ -3,7 +3,7 @@
 -- customer and item dims keep only referentially clean rows. Call center, catalog page,
 -- and ship mode are optional, so they are left-joined.
 CREATE OR REFRESH MATERIALIZED VIEW gold.fct_catalog_sales
-  COMMENT 'Conformed catalog-sales fact. Grain: one order line. Source: silver.fct_catalog_sales.'
+  COMMENT 'Conformed catalog-sales fact. Grain: one order line. Source: silver.fct_catalog_sales. domain=Catalog Sales'
 AS
 SELECT
   f.order_number,
