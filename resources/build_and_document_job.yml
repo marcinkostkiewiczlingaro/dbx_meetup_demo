@@ -1,0 +1,55 @@
+# Build-and-document job: one entry point for the whole demo.
+# Runs the six medallion pipelines in dependency order (core first, then the sales
+# channels and inventory), then applies the governed column dictionary to Unity Catalog.
+# Lakeflow does not carry inline column comments into UC, so the comments are applied
+# as the final task with COMMENT ON COLUMN. Run with:
+#   databricks bundle run build_and_document --target dev
+resources:
+  jobs:
+    build_and_document:
+      name: build_and_document_store_sales
+      tasks:
+        - task_key: core
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.core.id}
+
+        - task_key: store_sales
+          depends_on:
+            - task_key: core
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.store_sales.id}
+
+        - task_key: web_sales
+          depends_on:
+            - task_key: core
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.web_sales.id}
+
+        - task_key: catalog_sales
+          depends_on:
+            - task_key: core
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.catalog_sales.id}
+
+        - task_key: inventory
+          depends_on:
+            - task_key: core
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.inventory.id}
+
+        - task_key: apply_column_comments
+          depends_on:
+            - task_key: store_sales
+            - task_key: web_sales
+            - task_key: catalog_sales
+            - task_key: inventory
+          environment_key: serverless
+          notebook_task:
+            notebook_path: ../src/semantic/apply_column_comments.py
+            base_parameters:
+              comments_file: ${workspace.file_path}/src/semantic/column_comments.sql
+
+      environments:
+        - environment_key: serverless
+          spec:
+            environment_version: "2"
