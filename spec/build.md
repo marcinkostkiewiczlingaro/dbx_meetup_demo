@@ -6,6 +6,10 @@ TRACK at most three bullets. NEXT one clause per ticket. PROVEN names the last t
 
 Status marks are prose only: 🟠 ACTIVE · 🔴 PLANNED · 🟢 PROVEN · ⚪ DROPPED. Nothing in `limen` treats them as workflow state.
 
+## ENGINE
+
+- Jobs run Pi with `--provider anthropic --model claude-opus-4-8 --thinking medium` for ordinary work, review, and planning. Only `anthropic` is authenticated on this seat; the package default `openai-codex/gpt-6-astra:high` has no key and fails at once. Always pass these flags explicitly on every spawn, continue, and review.
+
 ## TRACK
 
 - Grow the demo from one subject area to three sales-channel domains (store, catalog, web) on one shared set of conformed dimensions, each its own pipeline and Metric View. Shows many pipelines held together by one semantic foundation.
