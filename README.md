@@ -59,9 +59,9 @@ same data.
 # Authenticate to your workspace (one browser sign-in)
 databricks auth login --host <your-workspace-url> --profile <name>
 
-# Deploy and run the pipeline and dashboard
-databricks bundle deploy --target dev
-databricks bundle run store_sales
+# Deploy to a workspace and run the pipeline (targets: meetup, free)
+databricks bundle deploy --target meetup
+databricks bundle run store_sales --target meetup
 ```
 
 The Metric View (`docs/reference/metrics_views/`) and the Genie space (`genie/`) are Unity

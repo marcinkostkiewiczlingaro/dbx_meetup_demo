@@ -1,6 +1,6 @@
 # Databricks Asset Bundle for the store-sales demo on the TPC-DS sample.
-# Deploy: databricks bundle deploy --target dev
-# Run:    databricks bundle run store_sales
+# Deploy: databricks bundle deploy --target meetup   (or --target free)
+# Run:    databricks bundle run store_sales --target meetup
 bundle:
   name: dbx_meetup_demo
 
@@ -25,14 +25,25 @@ permissions:
   - level: CAN_MANAGE
     group_name: users
 
+# One target per Databricks workspace. Each pins its own host, so bundle state and the
+# deploy folder stay separate per workspace. Reusing one target across workspaces leaks
+# state between them. Deploy with `databricks bundle deploy -t <target>`; the CLI picks
+# the login profile whose host matches.
+#
+#   databricks bundle deploy -t meetup   # dbc-6e62e3ed-79ce (default)
+#   databricks bundle deploy -t free     # dbc-e968297e-f78a
+#
+# No `mode: development`: development mode forces a per-user root_path (it must contain
+# the username), which cannot be a shared folder, and it prefixes resource names per
+# user. A shared demo wants one stable deploy location and stable names. ${bundle.target}
+# keeps each workspace's files in its own folder.
 targets:
-  dev:
+  meetup:
     default: true
-    # workspace.host is read from your Databricks CLI profile; set it there, not here.
-    # Deploy to a shared folder so the owner can share the demo with other users.
-    # Keep ${bundle.target} so dev and other targets stay separate.
-    # No `mode: development`: development mode forces a per-user root_path (it must
-    # contain the username), which cannot be a shared folder, and it prefixes resource
-    # names per user. A shared demo wants one stable deploy location and stable names.
     workspace:
+      host: https://dbc-6e62e3ed-79ce.cloud.databricks.com
+      root_path: /Workspace/Shared/dbx_meetup_demo/${bundle.target}
+  free:
+    workspace:
+      host: https://dbc-e968297e-f78a.cloud.databricks.com
       root_path: /Workspace/Shared/dbx_meetup_demo/${bundle.target}
