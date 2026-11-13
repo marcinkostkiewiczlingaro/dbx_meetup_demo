@@ -3,7 +3,7 @@
 # channels and inventory), then applies the governed column dictionary to Unity Catalog.
 # Lakeflow does not carry inline column comments into UC, so the comments are applied
 # as the final task with COMMENT ON COLUMN. Run with:
-#   databricks bundle run build_and_document --target dev
+#   databricks bundle run build_and_document --target meetup
 resources:
   jobs:
     build_and_document:
