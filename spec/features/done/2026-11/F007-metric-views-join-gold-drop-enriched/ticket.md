@@ -1,5 +1,6 @@
 ---
 opened: 2026-11-16
+landed: 2026-11-16
 ---
 
 # F007 · Metric Views join the gold star schema and the _enriched tables are gone
