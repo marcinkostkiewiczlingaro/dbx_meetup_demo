@@ -7,7 +7,7 @@
 | Level | Folder | Purpose | Load when |
 | ----- | ------ | ------- | --------- |
 | L1 | `docs/README.md` | System context — demo overview, actors, external systems | Always load first |
-| L2 | `docs/modules/*.md` | Containers — one file per module (`pipeline`, `semantic`) | Working in a specific module |
+| L2 | `docs/modules/*.md` | Modules — one file per module (`pipeline`, `semantic`) | Working in a specific module |
 | L3 | `docs/components/{module}/*.md` | Components — entity groups with tables and business rules | Implementing a feature |
 | L4 | `docs/reference/tables/*.md` | Code — full column-level table schemas | Need exact column names |
 | L4 | `docs/reference/metrics_views/*.md` | Code — one file per Metric View: measures, dimensions, and the authoritative YAML the backend creates it from (see "L4 — Metric View reference files") | Need a governed metric definition |
@@ -106,11 +106,11 @@ across all 4 C4 levels and every index/`README.md` file.
 - **L1 (`docs/README.md`) and index/`README.md` files** use a short breadcrumb instead,
   placed directly under the title/blockquote, e.g.:
   ```markdown
-  # Modules (L2 — Containers)
+  # Modules (L2)
 
   ↑ [System Context](../README.md) &nbsp;|&nbsp; ↓ [Components](../components/README.md)
 
-  > **C4 Level 2 — Containers.** ...
+  > **C4 Level 2 — Modules.** ...
   ```
 - A file never has both a top breadcrumb/inline table **and** a bottom `## Navigation`
   section — pick the one top element for the file's level.
@@ -125,7 +125,7 @@ which uses `erDiagram` (see below). The canonical reference is the diagram in
 | C4 level | Mermaid diagram type | Used for | Example |
 |---|---|---|---|
 | L1 — System Context | `C4Context` | Actors and external systems around the demo | `docs/README.md` |
-| L2 — Container | `C4Container` | Modules and how they relate (build view) | `docs/modules/README.md` |
+| L2 — Module | `C4Container` | Modules and how they relate (build view) | `docs/modules/README.md` |
 | L2 — Object graph | `erDiagram` | The ontology: object types and their links (semantic view) | `docs/modules/README.md` |
 | L2/L3 — internal flow | `C4Component` | Pipeline stages or entity groups within one module | `docs/modules/pipeline.md`, `docs/components/pipeline/gold.md` |
 
@@ -154,10 +154,15 @@ C4 types, takes no `click` directives.
 
 ### L2 — Module files
 
+The `C4Container` diagram type and the `Container(...)` / `ContainerDb(...)` /
+`Container_Boundary(...)` elements are mermaid's own keywords, so they keep the word
+"container" in diagram source. Everywhere else — headings, prose, the `type` field — this
+project uses one word, **module**.
+
 ```yaml
 ---
 c4_level: 2
-type: container
+type: module
 module: pipeline
 database: bronze / silver / gold
 entry_point: resources/store_sales_pipeline.yml

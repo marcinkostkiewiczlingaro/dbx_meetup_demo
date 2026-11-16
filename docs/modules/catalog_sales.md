@@ -1,6 +1,6 @@
 ---
 c4_level: 2
-type: container
+type: module
 module: catalog_sales
 database: bronze / silver / gold
 entry_point: resources/catalog_sales_pipeline.yml
@@ -13,7 +13,7 @@ entry_point: resources/catalog_sales_pipeline.yml
 |---|---|---|
 | [catalog_sales](./catalog_sales.md) | `bronze` · `silver` · `gold` | [catalog_sales_pipeline.yml](../../resources/catalog_sales_pipeline.yml) |
 
-> **C4 Level 2 — Container.** The catalog sales-channel domain: the catalog-sales and catalog-returns facts, the catalog-only dimensions, the wide enriched table, and the governed Metric View.
+> **C4 Level 2 — Module.** The catalog sales-channel domain: the catalog-sales and catalog-returns facts, the catalog-only dimensions, the wide enriched table, and the governed Metric View.
 
 The catalog domain builds its facts and the call-center, catalog-page, and ship-mode
 dimensions, then reads the conformed core dims (customer, item, date, promotion) to widen

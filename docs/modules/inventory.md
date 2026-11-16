@@ -1,6 +1,6 @@
 ---
 c4_level: 2
-type: container
+type: module
 module: inventory
 database: bronze / silver / gold
 entry_point: resources/inventory_pipeline.yml
@@ -13,7 +13,7 @@ entry_point: resources/inventory_pipeline.yml
 |---|---|---|
 | [inventory](./inventory.md) | `bronze` · `silver` · `gold` | [inventory_pipeline.yml](../../resources/inventory_pipeline.yml) |
 
-> **C4 Level 2 — Container.** The inventory domain: TPC-DS's one non-sales fact, a periodic stock snapshot over item, warehouse, and date, plus the warehouse dimension.
+> **C4 Level 2 — Module.** The inventory domain: TPC-DS's one non-sales fact, a periodic stock snapshot over item, warehouse, and date, plus the warehouse dimension.
 
 Inventory is the demo's second fact subject area beyond sales. It builds the warehouse
 dimension and the `fct_inventory` periodic-snapshot fact through bronze, silver, and gold,

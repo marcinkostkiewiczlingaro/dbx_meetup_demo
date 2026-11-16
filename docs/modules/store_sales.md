@@ -1,6 +1,6 @@
 ---
 c4_level: 2
-type: container
+type: module
 module: store_sales
 database: bronze / silver / gold
 entry_point: resources/store_sales_pipeline.yml
@@ -13,7 +13,7 @@ entry_point: resources/store_sales_pipeline.yml
 |---|---|---|
 | [store_sales](./store_sales.md) | `bronze` · `silver` · `gold` | [store_sales_pipeline.yml](../../resources/store_sales_pipeline.yml) |
 
-> **C4 Level 2 — Container.** The store sales-channel domain: the store-sales and store-returns facts, the store dimension, the wide enriched table, and the governed Metric View.
+> **C4 Level 2 — Module.** The store sales-channel domain: the store-sales and store-returns facts, the store dimension, the wide enriched table, and the governed Metric View.
 
 The store domain builds its facts and the store dimension, then reads the conformed core
 dims (customer, item, date, promotion) to widen the fact into `gold.store_sales_enriched`.

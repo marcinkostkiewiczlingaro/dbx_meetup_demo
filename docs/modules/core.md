@@ -1,6 +1,6 @@
 ---
 c4_level: 2
-type: container
+type: module
 module: core
 database: bronze / silver / gold
 entry_point: resources/core_pipeline.yml
@@ -13,7 +13,7 @@ entry_point: resources/core_pipeline.yml
 |---|---|---|
 | [core](./core.md) | `bronze` · `silver` · `gold` | [core_pipeline.yml](../../resources/core_pipeline.yml) |
 
-> **C4 Level 2 — Container.** The Lakeflow Declarative Pipeline that builds the conformed dimensions once — customer, item, date, promotion — read by every sales-channel domain.
+> **C4 Level 2 — Module.** The Lakeflow Declarative Pipeline that builds the conformed dimensions once — customer, item, date, promotion — read by every sales-channel domain.
 
 Core is the shared semantic foundation under the three sales channels. It builds the
 dimensions once, through bronze, silver, and gold, and the store, catalog, and web pipelines

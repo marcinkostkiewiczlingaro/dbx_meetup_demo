@@ -1,6 +1,6 @@
 ---
 c4_level: 2
-type: container
+type: module
 module: web_sales
 database: bronze / silver / gold
 entry_point: resources/web_sales_pipeline.yml
@@ -13,7 +13,7 @@ entry_point: resources/web_sales_pipeline.yml
 |---|---|---|
 | [web_sales](./web_sales.md) | `bronze` · `silver` · `gold` | [web_sales_pipeline.yml](../../resources/web_sales_pipeline.yml) |
 
-> **C4 Level 2 — Container.** The web sales-channel domain: the web-sales and web-returns facts, the web-only dimensions, the wide enriched table, and the governed Metric View.
+> **C4 Level 2 — Module.** The web sales-channel domain: the web-sales and web-returns facts, the web-only dimensions, the wide enriched table, and the governed Metric View.
 
 The web domain builds its facts and the web-site and web-page dimensions, then reads the
 conformed core dims (customer, item, date, promotion) to widen the fact into

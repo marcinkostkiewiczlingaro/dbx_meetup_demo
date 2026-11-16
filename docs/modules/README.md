@@ -1,12 +1,12 @@
-# Modules (L2 — Containers)
+# Modules (L2)
 
 ↑ [System Context](../README.md) &nbsp;|&nbsp; ↓ [Components](../components/README.md)
 
-> **C4 Level 2 — Containers.** One core pipeline builds the conformed dimensions once; three sales-channel domains build their facts and read those shared dims.
+> **C4 Level 2 — Modules.** One core pipeline builds the conformed dimensions once; three sales-channel domains build their facts and read those shared dims.
 
 ```mermaid
 C4Container
-  title Sales-Channel Analytics — Containers
+  title Sales-Channel Analytics — Modules
 
   System_Ext(src, "TPC-DS source", "${source_schema}")
 
@@ -40,7 +40,7 @@ C4Container
 
 ## Object graph (ontology)
 
-The diagram above is the **build view**: which pipeline builds which container. This one is
+The diagram above is the **build view**: which pipeline builds which module. This one is
 the **semantic view**: the business objects and the links between them, in the Palantir
 ontology style. An object type is a gold table; a link is a foreign key in the star schema;
 the crow's-foot end shows the cardinality, and an open circle shows an optional link. Each

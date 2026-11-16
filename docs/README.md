@@ -8,7 +8,7 @@ c4_level: 1
 > **C4 Level 1 — System Context.** One governed semantic foundation on the public TPC-DS store-sales dataset, shared by data engineers who build the pipeline and data analysts who ask Genie.
 
 This documentation follows the C4 model. Load top-down: this page for context, a module
-(L2) for a container, a component (L3) to implement a feature, a reference file (L4) for
+(L2) for a module, a component (L3) to implement a feature, a reference file (L4) for
 exact column names or the governed metric definition. The rules are in
 [engineering/documentation-standard.md](./engineering/documentation-standard.md).
 
@@ -40,7 +40,7 @@ dashboard.
 | Level | Where | What |
 |---|---|---|
 | L1 | this file | System context. |
-| L2 | [modules/](./modules/README.md) | The pipeline and semantic containers. |
+| L2 | [modules/](./modules/README.md) | The pipeline and semantic modules. |
 | L3 | [components/](./components/README.md) | Bronze, silver, gold, and the metrics component. |
 | L4 | [reference/tables/](./reference/tables/README.md), [reference/metrics_views/](./reference/metrics_views/README.md), [reference/algorithms/](./reference/algorithms/README.md) | Table schemas (each carries its business object, source lineage, and links — the ontology), the governed Metric View, and named algorithms. |
 
