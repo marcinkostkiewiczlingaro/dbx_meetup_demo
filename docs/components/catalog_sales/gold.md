@@ -2,16 +2,16 @@
 c4_level: 3
 module: catalog_sales
 component: gold
-entities: [FctCatalogSales, FctCatalogReturns, DimCallCenter, DimCatalogPage, DimShipMode, CatalogSalesEnriched]
-tables: [gold.fct_catalog_sales, gold.fct_catalog_returns, gold.dim_call_center, gold.dim_catalog_page, gold.dim_ship_mode, gold.catalog_sales_enriched]
+entities: [FctCatalogSales, FctCatalogReturns, DimCallCenter, DimCatalogPage, DimShipMode]
+tables: [gold.fct_catalog_sales, gold.fct_catalog_returns, gold.dim_call_center, gold.dim_catalog_page, gold.dim_ship_mode]
 ---
-# Gold — Star Schema and Consumption Table (Catalog)
+# Gold — Star Schema (Catalog)
 
 | module | component | entities | tables |
 |---|---|---|---|
-| [catalog_sales](../../modules/catalog_sales.md) | gold | FctCatalogSales · FctCatalogReturns · DimCallCenter · DimCatalogPage · DimShipMode · CatalogSalesEnriched | [gold.fct_catalog_sales](../../reference/tables/gold.fct_catalog_sales.md) · [gold.catalog_sales_enriched](../../reference/tables/gold.catalog_sales_enriched.md) |
+| [catalog_sales](../../modules/catalog_sales.md) | gold | FctCatalogSales · FctCatalogReturns · DimCallCenter · DimCatalogPage · DimShipMode | [gold.fct_catalog_sales](../../reference/tables/gold.fct_catalog_sales.md) · [gold.fct_catalog_returns](../../reference/tables/gold.fct_catalog_returns.md) · [gold.dim_call_center](../../reference/tables/gold.dim_call_center.md) |
 
-> **C4 Level 3 — Component.** The catalog star schema (sales and returns facts, three catalog dims) plus the wide `catalog_sales_enriched` table the Metric View reads.
+> **C4 Level 3 — Component.** The catalog star schema — sales and returns facts and three catalog dims — that the governed Metric Views read directly, joined on surrogate keys.
 
 ## Entities
 
@@ -22,7 +22,6 @@ tables: [gold.fct_catalog_sales, gold.fct_catalog_returns, gold.dim_call_center,
 | `DimCallCenter` | [`gold.dim_call_center`](../../reference/tables/gold.dim_call_center.md) | — | Call-center dimension. |
 | `DimCatalogPage` | [`gold.dim_catalog_page`](../../reference/tables/gold.dim_catalog_page.md) | — | Catalog-page dimension. |
 | `DimShipMode` | [`gold.dim_ship_mode`](../../reference/tables/gold.dim_ship_mode.md) | — | Ship-mode dimension. |
-| `CatalogSalesEnriched` | [`gold.catalog_sales_enriched`](../../reference/tables/gold.catalog_sales_enriched.md) | — | Sales fact widened with core dims and the catalog dims; read by the Metric View and Genie with no joins. |
 
 ```mermaid
 C4Component
@@ -42,5 +41,6 @@ C4Component
   UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
-Each entity is one SQL file in `src/catalog_sales/gold/`. The enriched table reads the core
-gold dims across pipelines; the catalog dims are owned by this pipeline.
+Each entity is one SQL file in `src/catalog_sales/gold/`. The catalog dims are owned by this
+pipeline; the facts read the conformed core gold dims across pipelines. The governed Metric
+Views read these facts and dimensions directly, joined on surrogate keys.

@@ -40,14 +40,14 @@ Every L2/L3/L4 content file follows this layout — no exceptions:
 c4_level: 3
 module: pipeline
 component: gold
-entities: [FctStoreSales, DimItem, StoreSalesEnriched]
-tables: [gold.fct_store_sales, gold.dim_item, gold.store_sales_enriched]
+entities: [FctStoreSales, DimItem, DimStore]
+tables: [gold.fct_store_sales, gold.dim_item, gold.dim_store]
 ---
-# Gold — Star Schema and Consumption Table
+# Gold — Star Schema
 
 | module | component | entities | tables |
 |---|---|---|---|
-| [pipeline](../../modules/pipeline.md) | gold | FctStoreSales · DimItem · StoreSalesEnriched | [gold.fct_store_sales](../../reference/tables/gold.fct_store_sales.md) |
+| [pipeline](../../modules/pipeline.md) | gold | FctStoreSales · DimItem · DimStore | [gold.fct_store_sales](../../reference/tables/gold.fct_store_sales.md) |
 
 > **C4 Level 3 — Component.** One-line description of the file's scope.
 
@@ -176,8 +176,8 @@ entry_point: resources/store_sales_pipeline.yml
 c4_level: 3
 module: pipeline
 component: gold
-entities: [FctStoreSales, DimItem, StoreSalesEnriched]   # mandatory — every entity defined in the file's ## Entities table
-tables: [gold.fct_store_sales, gold.dim_item, gold.store_sales_enriched]
+entities: [FctStoreSales, DimItem, DimStore]   # mandatory — every entity defined in the file's ## Entities table
+tables: [gold.fct_store_sales, gold.dim_item, gold.dim_store]
 ---
 ```
 
@@ -224,9 +224,9 @@ introduces a synonym.
 c4_level: 4
 type: metric_view
 metric_view: store_sales_metrics            # Metric View object name, without catalog/schema
-source: workspace.gold.store_sales_enriched # table/view the Metric View reads (no joins)
+source: workspace.gold.fct_store_sales      # fact/dimension the Metric View reads; it joins the other dims in its ## Definition
 created_as: workspace.gold.store_sales_metrics # fully-qualified Unity Catalog object it is created as
-component: components/semantic/store-sales-metrics.md  # L3 component that owns this metric definition
+component: components/store_sales/metrics.md  # L3 component that owns this metric definition
 ---
 ```
 
@@ -245,7 +245,7 @@ copy of the YAML anywhere.
 c4_level: 4
 type: algorithm
 algorithm: net_margin_allocation          # algorithm name, snake_case, unique
-implemented_in: src/store_sales/gold/store_sales_enriched.sql  # the code that runs it
+implemented_in: src/store_sales/gold/fct_store_sales.sql  # the code that runs it
 component: components/store_sales/gold.md  # L3 component whose entity uses it
 produces: [net_margin]                     # the column(s) or measure(s) it computes
 ---
@@ -294,21 +294,21 @@ mapping — has a governed home instead of hiding inside a SQL file.
 ```markdown
 | module | component | table | pipeline |
 |---|---|---|---|
-| [pipeline](../../modules/pipeline.md) | [gold](../../components/pipeline/gold.md) | gold.store_sales_enriched | ← [gold.fct_store_sales](./gold.fct_store_sales.md) · → [store_sales_metrics](../metrics_views/store_sales_metrics.md) |
+| [pipeline](../../modules/pipeline.md) | [gold](../../components/pipeline/gold.md) | gold.fct_store_sales | ← [silver.fct_store_sales](../../components/pipeline/silver.md) · → [store_sales_metrics](../metrics_views/store_sales_metrics.md) |
 ```
 
 ### L4 metric view
 ```markdown
 | module | component | metric view | source |
 |---|---|---|---|
-| [semantic](../../modules/semantic.md) | [store-sales-metrics](../../components/semantic/store-sales-metrics.md) | `workspace.gold.store_sales_metrics` | [gold.store_sales_enriched](../tables/gold.store_sales_enriched.md) |
+| [semantic](../../modules/semantic.md) | [store-sales-metrics](../../components/semantic/store-sales-metrics.md) | `workspace.gold.store_sales_metrics` | [gold.fct_store_sales](../tables/gold.fct_store_sales.md) |
 ```
 
 ### L4 algorithm
 ```markdown
 | module | component | algorithm | implemented in |
 |---|---|---|---|
-| [store_sales](../../modules/store_sales.md) | [gold](../../components/store_sales/gold.md) | `net_margin_allocation` | [store_sales_enriched.sql](../../../src/store_sales/gold/store_sales_enriched.sql) |
+| [store_sales](../../modules/store_sales.md) | [gold](../../components/store_sales/gold.md) | `net_margin_allocation` | [fct_store_sales.sql](../../../src/store_sales/gold/fct_store_sales.sql) |
 ```
 
 ### L4 table `## Links` (object tables only)
@@ -324,7 +324,7 @@ mapping — has a governed home instead of hiding inside a SQL file.
 |---|---|---|
 | L2 module | `docs/modules/{module-name}.md` | `docs/modules/pipeline.md` |
 | L3 component | `docs/components/{module}/{group}.md` | `docs/components/pipeline/gold.md` |
-| L4 table | `docs/reference/tables/{db}.{table}.md` | `docs/reference/tables/gold.store_sales_enriched.md` |
+| L4 table | `docs/reference/tables/{db}.{table}.md` | `docs/reference/tables/gold.fct_store_sales.md` |
 | L4 metric view | `docs/reference/metrics_views/{metric_view}.md` | `docs/reference/metrics_views/store_sales_metrics.md` |
 | L4 algorithm | `docs/reference/algorithms/{algorithm}.md` | `docs/reference/algorithms/net_margin_allocation.md` |
 

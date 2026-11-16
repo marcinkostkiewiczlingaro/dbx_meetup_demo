@@ -12,7 +12,7 @@
 A pipeline is the build-ownership layer: it says which code writes a table. A domain is the
 governance layer: it says which business area owns the meaning of a table, regardless of which
 pipeline built it. For example, the Calendar domain holds `gold.dim_date` and `gold.dim_time`,
-both built by the `core` pipeline; the Store Sales domain holds four tables built by the
+both built by the `core` pipeline; the Store Sales domain holds three tables built by the
 `store_sales` pipeline. Part 2 of the demo lifts these groups straight into Unity Catalog
 Domain governance objects without re-deciding what belongs where.
 
@@ -42,16 +42,13 @@ written in each table's `COMMENT` marker.
 | `gold.dim_promotion` | core | Marketing |
 | `gold.fct_store_sales` | store_sales | Store Sales |
 | `gold.fct_store_returns` | store_sales | Store Sales |
-| `gold.store_sales_enriched` | store_sales | Store Sales |
 | `gold.dim_store` | store_sales | Store Sales |
 | `gold.fct_catalog_sales` | catalog_sales | Catalog Sales |
 | `gold.fct_catalog_returns` | catalog_sales | Catalog Sales |
-| `gold.catalog_sales_enriched` | catalog_sales | Catalog Sales |
 | `gold.dim_call_center` | catalog_sales | Catalog Sales |
 | `gold.dim_catalog_page` | catalog_sales | Catalog Sales |
 | `gold.fct_web_sales` | web_sales | Web Sales |
 | `gold.fct_web_returns` | web_sales | Web Sales |
-| `gold.web_sales_enriched` | web_sales | Web Sales |
 | `gold.dim_web_site` | web_sales | Web Sales |
 | `gold.dim_web_page` | web_sales | Web Sales |
 | `gold.dim_warehouse` | inventory | Inventory |

@@ -11,7 +11,7 @@ data_layer: Gold (star schema fact)
 
 | module | component | table | pipeline |
 |---|---|---|---|
-| [web_sales](../../modules/web_sales.md) | [gold](../../components/web_sales/gold.md) | gold.fct_web_sales | ← [silver.fct_web_sales](../../components/web_sales/silver.md) · → [gold.web_sales_enriched](./gold.web_sales_enriched.md) |
+| [web_sales](../../modules/web_sales.md) | [gold](../../components/web_sales/gold.md) | gold.fct_web_sales | ← [silver.fct_web_sales](../../components/web_sales/silver.md) · → [web_sales_metrics](../metrics_views/web_sales_metrics.md) |
 
 > **C4 Level 4 — Table.** The conformed web-sales fact. Grain: one web-sales order line (`order_number` × `item_key`).
 

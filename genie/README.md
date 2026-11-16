@@ -1,9 +1,9 @@
 # Genie Space
 
 `store_sales_space.json` is the version-controlled definition of the Genie space. It wires
-Genie to `workspace.gold.store_sales_enriched` — the governed gold table the Metric View
-also reads — and carries the shared vocabulary as text instructions, so Genie's answers
-match the dashboards and the metrics.
+Genie to the governed `workspace.gold.store_sales_metrics` Metric View — which reads the gold
+star schema directly, joined on surrogate keys — and carries the shared vocabulary as text
+instructions, so Genie's answers match the dashboards and the metrics.
 
 The Asset Bundle does not deploy Genie spaces. Create the space from the JSON with the Genie
 API after the gold tables exist:

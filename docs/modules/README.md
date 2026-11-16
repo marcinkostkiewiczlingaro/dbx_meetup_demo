@@ -33,9 +33,9 @@ C4Container
 | Module | Role | Databases |
 |---|---|---|
 | [core](./core.md) | Builds the conformed dimensions once, read by every channel. | `bronze`, `silver`, `gold` |
-| [store_sales](./store_sales.md) | Store sales-channel facts, enriched table, and Metric View. | `bronze`, `silver`, `gold` |
-| [catalog_sales](./catalog_sales.md) | Catalog sales-channel facts, enriched table, and Metric View. | `bronze`, `silver`, `gold` |
-| [web_sales](./web_sales.md) | Web sales-channel facts, enriched table, and Metric View. | `bronze`, `silver`, `gold` |
+| [store_sales](./store_sales.md) | Store sales-channel facts, the store dimension, and the governed Metric Views. | `bronze`, `silver`, `gold` |
+| [catalog_sales](./catalog_sales.md) | Catalog sales-channel facts, catalog dimensions, and the governed Metric Views. | `bronze`, `silver`, `gold` |
+| [web_sales](./web_sales.md) | Web sales-channel facts, web dimensions, and the governed Metric Views. | `bronze`, `silver`, `gold` |
 | [inventory](./inventory.md) | Periodic stock-snapshot fact and the warehouse dimension. | `bronze`, `silver`, `gold` |
 
 ## Object graph (ontology)

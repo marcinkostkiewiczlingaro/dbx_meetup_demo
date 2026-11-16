@@ -13,12 +13,12 @@ entry_point: resources/store_sales_pipeline.yml
 |---|---|---|
 | [store_sales](./store_sales.md) | `bronze` · `silver` · `gold` | [store_sales_pipeline.yml](../../resources/store_sales_pipeline.yml) |
 
-> **C4 Level 2 — Module.** The store sales-channel domain: the store-sales and store-returns facts, the store dimension, the wide enriched table, and the governed Metric View.
+> **C4 Level 2 — Module.** The store sales-channel domain: the store-sales and store-returns facts, the store dimension, and the governed Metric Views.
 
 The store domain builds its facts and the store dimension, then reads the conformed core
-dims (customer, item, date, promotion) to widen the fact into `gold.store_sales_enriched`.
-The Metric View and Genie read that one table. `Net Sales` and `Quantity Sold` mean the same
-here as in the catalog and web domains.
+dims (customer, item, date, promotion). The governed Metric Views and Genie read the gold
+star schema directly, joined on surrogate keys. `Gross Sales` and `Sales Quantity` mean the
+same here as in the catalog and web domains.
 
 ```mermaid
 C4Component
@@ -30,15 +30,15 @@ C4Component
   Container_Boundary(pipe, "Store-Sales Pipeline") {
     ComponentDb(bronze, "Bronze", "Raw ingest", "store_sales, store_returns, store.")
     ComponentDb(silver, "Silver", "Cleansed", "Facts and dim_store with business names.")
-    ComponentDb(gold, "Gold", "Star + wide", "Facts, dim_store, store_sales_enriched.")
-    Component(metric, "store_sales_metrics", "Metric View", "Named measures on the wide table.")
+    ComponentDb(gold, "Gold", "Star", "Facts and dim_store.")
+    Component(metric, "store_sales_metrics", "Metric View", "Named measures joined on surrogate keys.")
   }
 
   Rel(src, bronze, "STREAM")
   Rel(bronze, silver, "Clean, rename")
-  Rel(silver, gold, "Conform, widen")
+  Rel(silver, gold, "Conform")
   Rel(core, gold, "Read dims")
-  Rel(gold, metric, "Source")
+  Rel(gold, metric, "Source + joins")
   UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
@@ -48,5 +48,5 @@ C4Component
 |---|---|
 | [bronze](../components/store_sales/bronze.md) | Raw streaming copies of the store-sales, store-returns, and store tables. |
 | [silver](../components/store_sales/silver.md) | Cleansed store-sales and store-returns facts and the store dimension. |
-| [gold](../components/store_sales/gold.md) | The star schema and the wide `store_sales_enriched` table. |
-| [metrics](../components/store_sales/metrics.md) | The governed store-sales Metric View. |
+| [gold](../components/store_sales/gold.md) | The store star schema: facts and dim_store. |
+| [metrics](../components/store_sales/metrics.md) | The governed store-sales, store-returns, and store Metric Views. |

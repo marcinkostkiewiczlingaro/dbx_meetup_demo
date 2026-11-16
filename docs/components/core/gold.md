@@ -27,8 +27,9 @@ tables: [gold.dim_customer, gold.dim_item, gold.dim_date, gold.dim_promotion, go
 | `DimHouseholdDemographics` | [`gold.dim_household_demographics`](../../reference/tables/gold.dim_household_demographics.md) | — | Household-demographics dimension. |
 | `DimIncomeBand` | [`gold.dim_income_band`](../../reference/tables/gold.dim_income_band.md) | — | Income-band dimension. |
 
-Each entity is one SQL file in `src/core/gold/`. The store, catalog, and web gold enriched
-tables read these dims across pipelines (reads across pipelines are allowed; writes are not).
+Each entity is one SQL file in `src/core/gold/`. The store, catalog, web, and inventory gold
+facts and their Metric Views read these dims across pipelines (reads across pipelines are
+allowed; writes are not).
 Each dimension names its business object, its source-column lineage, and its links to the
 facts in its own L4 table file (for example
 [`gold.dim_customer`](../../reference/tables/gold.dim_customer.md)).

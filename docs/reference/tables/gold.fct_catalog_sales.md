@@ -11,7 +11,7 @@ data_layer: Gold (star schema fact)
 
 | module | component | table | pipeline |
 |---|---|---|---|
-| [catalog_sales](../../modules/catalog_sales.md) | [gold](../../components/catalog_sales/gold.md) | gold.fct_catalog_sales | ← [silver.fct_catalog_sales](../../components/catalog_sales/silver.md) · → [gold.catalog_sales_enriched](./gold.catalog_sales_enriched.md) |
+| [catalog_sales](../../modules/catalog_sales.md) | [gold](../../components/catalog_sales/gold.md) | gold.fct_catalog_sales | ← [silver.fct_catalog_sales](../../components/catalog_sales/silver.md) · → [catalog_sales_metrics](../metrics_views/catalog_sales_metrics.md) |
 
 > **C4 Level 4 — Table.** The conformed catalog-sales fact. Grain: one catalog-sales order line (`order_number` × `item_key`).
 

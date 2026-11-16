@@ -14,7 +14,7 @@ data_layer: Gold (star schema fact)
 
 | module | component | table | pipeline |
 |---|---|---|---|
-| [store_sales](../../modules/store_sales.md) | [gold](../../components/store_sales/gold.md) | gold.fct_store_sales | ← [silver.fct_store_sales](../../components/store_sales/silver.md) · → [gold.store_sales_enriched](./gold.store_sales_enriched.md) |
+| [store_sales](../../modules/store_sales.md) | [gold](../../components/store_sales/gold.md) | gold.fct_store_sales | ← [silver.fct_store_sales](../../components/store_sales/silver.md) · → [store_sales_metrics](../metrics_views/store_sales_metrics.md) |
 
 > **C4 Level 4 — Table.** The **Store-Sales Line** business object: one item bought by a customer at a store on a day, optionally under a promotion — the measurable event the metrics count. Grain: one store-sales ticket line (`ticket_number` × `item_key`).
 

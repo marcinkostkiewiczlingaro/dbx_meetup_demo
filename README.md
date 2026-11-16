@@ -38,8 +38,8 @@ a Databricks Free Edition workspace.
 
 The fact is `store_sales` — one row per ticket line (`ticket_number` × `item_key`). It is
 surrounded by conformed dimensions: customer (with address), item, store, date, and
-promotion. One wide gold table, `gold.store_sales_enriched`, pre-joins the fact and the
-dimensions so the Metric View and Genie read one table with no joins.
+promotion. The governed Metric Views read the gold `fct_*`/`dim_*` star schema directly,
+joined on surrogate keys, so no pre-joined copy of the star schema exists to drift from it.
 
 ### The through-line
 
@@ -79,7 +79,7 @@ Catalog objects, not bundle resources; each one's README has the command that cr
   keeps `dev` separate from any other target.
 - **Catalog:** the medallion targets the `workspace` catalog, the one writable catalog in
   Free Edition. Change it in `databricks.yml`.
-- **Metric View has no joins:** `using`-key joins hit a Free Edition engine error, so the
-  gold fact is pre-widened into `gold.store_sales_enriched`, which the Metric View and Genie
-  read.
+- **Metric Views join on surrogate keys:** each Metric View reads a gold `fct_*`/`dim_*`
+  table and declares its dimension joins with explicit `on:` expressions, not `using` keys.
+  Genie reads the `store_sales_metrics` Metric View.
 - **Governance:** `email_address` stops at silver; only business-safe columns reach gold.
