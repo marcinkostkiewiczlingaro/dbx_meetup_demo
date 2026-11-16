@@ -44,3 +44,4 @@ C4Component
 | [bronze](../components/core/bronze.md) | Raw streaming copies of the shared TPC-DS dimension tables. |
 | [silver](../components/core/silver.md) | Cleansed, business-named conformed dimensions. |
 | [gold](../components/core/gold.md) | The conformed shared dimensions: customer, item, date, promotion, time, reason, and the customer/household demographics and income band. |
+| [metrics](../components/core/metrics.md) | The governed core-dimension Metric Views: item, promotion, and customer. |

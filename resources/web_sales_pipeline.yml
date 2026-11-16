@@ -1,8 +1,9 @@
 # Lakeflow Declarative Pipeline (DLT) for the web-sales medallion.
 # Builds the web-sales and web-returns facts and the web-only dimensions — web site and
-# web page — through bronze, silver, and gold. The gold enriched table reads the conformed
-# core dims (customer, item, date, promotion) owned by the core pipeline; reads across
-# pipelines are fine, it never rebuilds them.
+# web page — through bronze, silver, and gold. The gold facts read the conformed core dims
+# (customer, item, date, promotion) owned by the core pipeline; reads across pipelines are
+# fine, it never rebuilds them. The governed Metric View reads the gold star schema directly,
+# joined on surrogate keys.
 resources:
   pipelines:
     web_sales:

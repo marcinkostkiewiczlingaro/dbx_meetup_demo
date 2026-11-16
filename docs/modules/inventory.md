@@ -49,3 +49,4 @@ C4Component
 | [bronze](../components/inventory/bronze.md) | Raw streaming copies of the inventory and warehouse tables. |
 | [silver](../components/inventory/silver.md) | Cleansed inventory fact and the warehouse dimension. |
 | [gold](../components/inventory/gold.md) | The inventory star: `fct_inventory` and `dim_warehouse`. |
+| [metrics](../components/inventory/metrics.md) | The governed inventory Metric View. |
