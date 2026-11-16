@@ -29,5 +29,6 @@ tables: [gold.dim_customer, gold.dim_item, gold.dim_date, gold.dim_promotion, go
 
 Each entity is one SQL file in `src/core/gold/`. The store, catalog, and web gold enriched
 tables read these dims across pipelines (reads across pipelines are allowed; writes are not).
-These are the shared links the ontology names
-([`docs/ontology/link-types.md`](../../ontology/link-types.md)).
+Each dimension names its business object, its source-column lineage, and its links to the
+facts in its own L4 table file (for example
+[`gold.dim_customer`](../../reference/tables/gold.dim_customer.md)).

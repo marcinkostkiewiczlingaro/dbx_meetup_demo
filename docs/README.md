@@ -3,7 +3,7 @@ c4_level: 1
 ---
 # Store-Sales Analytics — Documentation (L1 — System Context)
 
-↓ [Modules](./modules/README.md) &nbsp;|&nbsp; [Ontology](./ontology/README.md) &nbsp;|&nbsp; [Doc standard](./engineering/documentation-standard.md)
+↓ [Modules](./modules/README.md) &nbsp;|&nbsp; [Doc standard](./engineering/documentation-standard.md)
 
 > **C4 Level 1 — System Context.** One governed semantic foundation on the public TPC-DS store-sales dataset, shared by data engineers who build the pipeline and data analysts who ask Genie.
 
@@ -42,11 +42,10 @@ dashboard.
 | L1 | this file | System context. |
 | L2 | [modules/](./modules/README.md) | The pipeline and semantic containers. |
 | L3 | [components/](./components/README.md) | Bronze, silver, gold, and the metrics component. |
-| L4 | [reference/tables/](./reference/tables/README.md), [reference/metrics_views/](./reference/metrics_views/README.md) | Column schemas and the governed Metric View. |
+| L4 | [reference/tables/](./reference/tables/README.md), [reference/metrics_views/](./reference/metrics_views/README.md), [reference/algorithms/](./reference/algorithms/README.md) | Table schemas (each carries its business object, source lineage, and links — the ontology), the governed Metric View, and named algorithms. |
 
 ## Other views
 
-- [Ontology](./ontology/README.md) — the business objects, their properties, and links.
 - [Business domains](./domains/README.md) — the governance map from every gold table to one business domain.
 - [Documentation standard](./engineering/documentation-standard.md) — how these files are built.
 
