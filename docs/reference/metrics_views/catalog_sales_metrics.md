@@ -2,7 +2,7 @@
 c4_level: 4
 type: metric_view
 metric_view: catalog_sales_metrics
-source: workspace.gold.catalog_sales_enriched
+source: workspace.gold.fct_catalog_sales
 created_as: workspace.gold.catalog_sales_metrics
 component: components/catalog_sales/metrics.md
 ---
@@ -10,99 +10,105 @@ component: components/catalog_sales/metrics.md
 
 | module | component | metric view | source |
 |---|---|---|---|
-| [catalog_sales](../../modules/catalog_sales.md) | [metrics](../../components/catalog_sales/metrics.md) | `workspace.gold.catalog_sales_metrics` | [gold.catalog_sales_enriched](../tables/gold.catalog_sales_enriched.md) |
+| [catalog_sales](../../modules/catalog_sales.md) | [metrics](../../components/catalog_sales/metrics.md) | `workspace.gold.catalog_sales_metrics` | [gold.fct_catalog_sales](../tables/gold.fct_catalog_sales.md) |
 
 > **C4 Level 4 — Metric View.** The governed definition of the catalog-sales metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
 
-The Metric View reads the wide `gold.catalog_sales_enriched` table, so it needs no joins
-(Free Edition rejects `using`-key joins). `Net Sales` and `Quantity Sold` carry the exact
-same name and expression as the store-sales and web-sales metric views — one name for one
-thing. The transaction count is `Order Count` here, the same name and expression as the
-web-sales view (catalog and web sell by order); the store view counts tickets instead.
+The Metric View reads the `gold.fct_catalog_sales` fact and joins the gold dimensions on
+their surrogate keys — `dim_customer`, `dim_item`, `dim_promotion`, `dim_call_center`,
+`dim_catalog_page`, `dim_ship_mode`, and `dim_date`. `Gross Sales`, `Net Paid`, and
+`Sales Quantity` carry the same name and expression as the store and web metric views.
 
 ## Measures
 
 | Measure | Expression | Description |
 |---|---|---|
-| Net Sales | `SUM(sales_amount)` | Total net revenue, the extended sales price of each line. |
-| Quantity Sold | `SUM(quantity)` | Total units sold. |
-| Order Count | `COUNT(DISTINCT order_number)` | Number of distinct catalog-sales orders. |
-| Line Count | `COUNT(1)` | Number of catalog-sales lines. |
-| Average Order Value | `SUM(sales_amount) / COUNT(DISTINCT order_number)` | Net sales divided by order count. |
+| Sales Quantity | `SUM(quantity)` | Total units sold. |
+| Gross Sales | `SUM(sales_price * quantity)` | Sales price times quantity across lines. |
+| Net Paid | `SUM(net_paid)` | Total net amount paid. |
 | Net Profit | `SUM(net_profit)` | Total net profit across lines. |
-| Discount Amount | `SUM(discount_amount)` | Total extended discount given. |
+| Wholesale Cost | `SUM(wholesale_cost)` | Total wholesale cost of the lines. |
+| List Price | `SUM(list_price)` | Total list price of the lines. |
+| Extended Discount Amount | `SUM(discount_amount)` | Total extended discount given. |
+| Extended Sales Price | `SUM(sales_amount)` | Total extended sales price (net revenue). |
 
 ## Dimensions
 
 | Dimension | Expression | Description |
 |---|---|---|
+| Item ID | `item.item_id` | Business id of the item. |
+| Brand | `item.brand` | Brand of the item. |
+| Customer ID | `customer.customer_id` | Business id of the customer. |
+| Promotion Name | `promotion.promo_name` | Promotion the line is attributed to. |
+| Call Center | `call_center.call_center_id` | Call center that took the order. |
+| Catalog Page | `catalog_page.catalog_page_id` | Catalog page the order came from. |
+| Ship Mode | `ship_mode.ship_mode_type` | Shipping method of the order. |
 | Sold Date | `sold_date` | Calendar day of the sale. |
-| Calendar Year | `calendar_year` | Year of the sale. |
-| Month Name | `month_name` | Month of the sale. |
-| Item | `item_name` | Product sold. |
-| Brand | `brand` | Brand of the item. |
-| Class | `class` | Class of the item. |
-| Category | `category` | Category of the item. |
-| Call Center | `call_center_name` | Call center that took the order. |
-| Call Center State | `call_center_state` | State of the call center. |
-| Catalog Department | `catalog_department` | Department of the catalog page. |
-| Ship Mode | `ship_mode_type` | Shipping method of the order. |
-| Carrier | `carrier` | Carrier that shipped the order. |
-| Customer State | `customer_state` | State of the customer. |
-| Promotion | `promo_name` | Promotion the line is attributed to. |
+| Order Number | `order_number` | Catalog-sales order the line belongs to. |
 
 ## Definition
 
 ```yaml
-version: 0.1
-
-source: workspace.gold.catalog_sales_enriched
-
+version: 1.1
+source: workspace.gold.fct_catalog_sales
+joins:
+  - name: customer
+    source: workspace.gold.dim_customer
+    on: source.customer_key = customer.customer_key
+  - name: item
+    source: workspace.gold.dim_item
+    on: source.item_key = item.item_key
+  - name: promotion
+    source: workspace.gold.dim_promotion
+    on: source.promo_key = promotion.promo_key
+  - name: call_center
+    source: workspace.gold.dim_call_center
+    on: source.call_center_key = call_center.call_center_key
+  - name: catalog_page
+    source: workspace.gold.dim_catalog_page
+    on: source.catalog_page_key = catalog_page.catalog_page_key
+  - name: ship_mode
+    source: workspace.gold.dim_ship_mode
+    on: source.ship_mode_key = ship_mode.ship_mode_key
+  - name: date_dim
+    source: workspace.gold.dim_date
+    on: source.date_key = date_dim.date_key
 dimensions:
+  - name: Item ID
+    expr: item.item_id
+  - name: Brand
+    expr: item.brand
+  - name: Customer ID
+    expr: customer.customer_id
+  - name: Promotion Name
+    expr: promotion.promo_name
+  - name: Call Center
+    expr: call_center.call_center_id
+  - name: Catalog Page
+    expr: catalog_page.catalog_page_id
+  - name: Ship Mode
+    expr: ship_mode.ship_mode_type
   - name: Sold Date
     expr: sold_date
-  - name: Calendar Year
-    expr: calendar_year
-  - name: Month Name
-    expr: month_name
-  - name: Item
-    expr: item_name
-  - name: Brand
-    expr: brand
-  - name: Class
-    expr: class
-  - name: Category
-    expr: category
-  - name: Call Center
-    expr: call_center_name
-  - name: Call Center State
-    expr: call_center_state
-  - name: Catalog Department
-    expr: catalog_department
-  - name: Ship Mode
-    expr: ship_mode_type
-  - name: Carrier
-    expr: carrier
-  - name: Customer State
-    expr: customer_state
-  - name: Promotion
-    expr: promo_name
-
+  - name: Order Number
+    expr: order_number
 measures:
-  - name: Net Sales
-    expr: SUM(sales_amount)
-  - name: Quantity Sold
+  - name: Sales Quantity
     expr: SUM(quantity)
-  - name: Order Count
-    expr: COUNT(DISTINCT order_number)
-  - name: Line Count
-    expr: COUNT(1)
-  - name: Average Order Value
-    expr: SUM(sales_amount) / COUNT(DISTINCT order_number)
+  - name: Gross Sales
+    expr: SUM(sales_price * quantity)
+  - name: Net Paid
+    expr: SUM(net_paid)
   - name: Net Profit
     expr: SUM(net_profit)
-  - name: Discount Amount
+  - name: Wholesale Cost
+    expr: SUM(wholesale_cost)
+  - name: List Price
+    expr: SUM(list_price)
+  - name: Extended Discount Amount
     expr: SUM(discount_amount)
+  - name: Extended Sales Price
+    expr: SUM(sales_amount)
 ```
 
 ## Deploy
@@ -123,8 +129,8 @@ $$;
 Query it with `MEASURE()`:
 
 ```sql
-SELECT `Category`, MEASURE(`Net Sales`), MEASURE(`Order Count`)
+SELECT `Ship Mode`, MEASURE(`Extended Sales Price`), MEASURE(`Sales Quantity`)
 FROM workspace.gold.catalog_sales_metrics
-GROUP BY `Category`
+GROUP BY `Ship Mode`
 ORDER BY 2 DESC;
 ```
