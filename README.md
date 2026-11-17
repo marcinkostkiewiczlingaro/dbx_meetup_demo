@@ -100,9 +100,9 @@ shared semantic foundation Genie reads.
 
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"fontfamily": "Segoe UI, Helvetica, Arial, sans-serif", "fontSize": "14px", "primaryColor": "#eef2ff", "lineColor": "#64748b", "clusterBorder": "#cbd5e1"}, "flowchart": {"curve": "basis", "nodeSpacing": 45, "rankSpacing": 70}}}%%
-flowchart LR
+flowchart TB
   subgraph DOCS["📘 &nbsp;docs/ &mdash; C4 knowledge &middot; source of truth in Git"]
-    direction TB
+    direction LR
     L1["L1 &middot; README.md<br/><b>system context</b>"]
     L2["L2 &middot; modules/<br/>one file per pipeline module"]
     L3["L3 &middot; components/{module}/<br/>bronze &middot; silver &middot; gold &middot; metrics"]
@@ -117,7 +117,7 @@ flowchart LR
   end
 
   subgraph DBX["⚡ &nbsp;Databricks &mdash; governed runtime &middot; deployed by bundle, SQL, and API"]
-    direction TB
+    direction LR
     GOLD["🟡 Gold star schema<br/>fct_* / dim_* in Unity Catalog<br/><i>COMMENT domain= marker</i>"]
     MVIEW["📐 Metric Views (UC objects)<br/>carry real UC domain tag"]
     DOMAIN["🏷️ Databricks Domains<br/>Retail Analytics / Sales &middot; Returns &middot; Shared"]
