@@ -36,10 +36,14 @@ a Databricks Free Edition workspace.
 
 ### The data model
 
-The fact is `store_sales` — one row per ticket line (`ticket_number` × `item_key`). It is
-surrounded by conformed dimensions: customer (with address), item, store, date, and
-promotion. The governed Metric Views read the gold `fct_*`/`dim_*` star schema directly,
-joined on surrogate keys, so no pre-joined copy of the star schema exists to drift from it.
+The model is a shared star schema with seven conformed facts: the three sales channels
+(`fct_store_sales`, `fct_catalog_sales`, `fct_web_sales`), their three returns
+(`fct_store_returns`, `fct_catalog_returns`, `fct_web_returns`), and the inventory snapshot
+(`fct_inventory`). The sales facts hold one row per ticket line. The facts share one set of
+conformed dimensions — customer, item, store, date, promotion, and the other TPC-DS
+reference dimensions. The governed Metric Views read the gold `fct_*`/`dim_*` star schema
+directly, joined on surrogate keys, so no pre-joined copy of the star schema exists to drift
+from it.
 
 ### The through-line
 
