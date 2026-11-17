@@ -161,3 +161,40 @@ flowchart LR
 - **Right into the ontology (Part 2, analysts):** gold objects, Metric Views, domain tags,
   and pages converge into the shared semantic foundation Genie reads — the talk's
   through-line.
+
+## Key takeaways
+
+### 1. Reuse the documentation standard on any project
+The standard in [`docs/engineering/documentation-standard.md`](docs/engineering/documentation-standard.md)
+and the [`c4-docs`](.agents/skills/c4-docs/SKILL.md) skill are not tied to TPC-DS or to
+Databricks. Copy them, rename the modules and layers, and start with L1 (system context) and
+L2 (modules). On an existing or legacy project, document each module the next time you touch
+it. Agents get better one module at a time, and so does onboarding for people.
+
+### 2. Keep the documentation consistent with a review cadence
+Documentation drifts the moment code is merged without it. Two rules:
+
+- **Code and docs change in the same PR.**
+- **An agent reviews the docs against the code and the standard once a week.** It checks that:
+  - every gold table has an L4 file and exactly one entry in the [domains registry](docs/domains/README.md);
+  - each table's `COMMENT domain=` marker matches the registry;
+  - every entity in front-matter is defined in `## Entities` and backed by a real table;
+  - `## Links` and `Source column` lineage still match the SQL;
+  - Page ↔ Metric View links are reciprocal and no relative link is broken;
+  - no new table or column in `src/` is undocumented.
+
+The output is a report or a PR. The agent proposes; the team reviews and decides.
+
+### 3. Recheck the Genie Ontology against the docs
+Git is the source of truth. The docs define the Metric Views, Domains and Pages, and the
+workspace is deployed from them. Genie Ontology also learns context, which can drift from
+what was defined. Weekly, and after each release, compare the workspace with the docs:
+
+- the Databricks Domains tree vs. [`docs/domains/README.md`](docs/domains/README.md);
+- the Genie Knowledge Pages (definition, synonyms, state) vs. [`docs/reference/pages/`](docs/reference/pages/);
+- the deployed Metric Views and their UC domain tags vs. the `## Definition` YAML and `domain` field in [`docs/reference/metrics_views/`](docs/reference/metrics_views/);
+- anything Genie learned that contradicts a defined business term.
+
+When the workspace and the docs differ, the docs win. Fix the difference in Git with a reviewed PR
+and redeploy; never edit the workspace by hand. If Genie learned something useful, add it to
+the docs first.
