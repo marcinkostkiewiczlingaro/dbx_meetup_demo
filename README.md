@@ -31,7 +31,6 @@ a Databricks Free Edition workspace.
 | Deployment | Databricks Asset Bundle that deploys the pipeline and the dashboard | `databricks.yml`, `resources/` |
 | Metrics | A governed Metric View; business metrics defined once | `docs/reference/metrics_views/store_sales_metrics.md` |
 | Dashboard | An AI/BI dashboard over the Metric View, for business users | `dashboards/` |
-| Genie | A Genie space wired to the gold model, with the shared vocabulary as instructions | `genie/` |
 | Documentation | C4 architecture, a Palantir-style ontology, and a governed metric definition | `docs/` |
 
 ### The data model
@@ -64,8 +63,8 @@ databricks bundle deploy --target meetup
 databricks bundle run store_sales --target meetup
 ```
 
-The Metric View (`docs/reference/metrics_views/`) and the Genie space (`genie/`) are Unity
-Catalog objects, not bundle resources; each one's README has the command that creates it.
+The Metric View (`docs/reference/metrics_views/`) is a Unity Catalog object, not a bundle
+resource; its reference file carries the definition the deploy creates it from.
 
 ### Good to know
 
