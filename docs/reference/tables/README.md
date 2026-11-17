@@ -14,11 +14,11 @@ the cardinality, and an open circle shows an optional link. Each object's full p
 source-column lineage, and links live in its L4 table file below.
 
 The model has seven fact stars, so the ontology is drawn as one **named view per fact**, not a
-single crowded diagram. One view is fully modelled today — **Store Sales** below. The other
-facts (Catalog Sales, Web Sales, the three Returns, and Inventory) are gold tables but are not
-yet business objects: they carry no `object_type` or `## Links` yet, so they have no view. Each
-gets its own named view when it is modelled. The views share the conformed dimensions
-(Customer, Item, Date, Promotion), which is the point of the star schema.
+single crowded diagram. Two views are modelled today — **Store Sales** and **Catalog Returns**
+below. The other facts (Catalog Sales, Web Sales, Store Returns, Web Returns, and Inventory) are
+gold tables but are not yet business objects: they carry no `object_type` or `## Links` yet, so
+they have no view. Each gets its own named view when it is modelled. The views share the
+conformed dimensions (Customer, Item, Date, Promotion), which is the point of the star schema.
 
 ### Store Sales
 
@@ -76,6 +76,68 @@ erDiagram
 | Promotion | [`gold.dim_promotion`](./gold.dim_promotion.md) | core |
 | Date | [`gold.dim_date`](./gold.dim_date.md) | core |
 | Store-Sales Line | [`gold.fct_store_sales`](./gold.fct_store_sales.md) | store_sales |
+
+### Catalog Returns
+
+The catalog-returns star: the `Catalog-Return Line` fact and the dimensions it links. An open
+circle marks an optional link (call center, catalog page, ship mode).
+
+```mermaid
+erDiagram
+  CUSTOMER {
+    int customer_key PK
+    string customer_id
+    string customer_state
+  }
+  ITEM {
+    int item_key PK
+    string item_name
+    string category
+  }
+  CALL_CENTER {
+    int call_center_key PK
+    string call_center_name
+  }
+  CATALOG_PAGE {
+    int catalog_page_key PK
+    string catalog_number
+  }
+  SHIP_MODE {
+    int ship_mode_key PK
+    string ship_mode_type
+  }
+  DATE {
+    int date_key PK
+    date returned_date
+  }
+  CATALOG_RETURN_LINE {
+    long order_number PK
+    int item_key FK
+    int customer_key FK
+    int call_center_key FK
+    int catalog_page_key FK
+    int ship_mode_key FK
+    int date_key FK
+    decimal return_amount
+    decimal net_loss
+  }
+  CUSTOMER     ||--o{ CATALOG_RETURN_LINE : "returns"
+  ITEM         ||--o{ CATALOG_RETURN_LINE : "is returned in"
+  CALL_CENTER  |o--o{ CATALOG_RETURN_LINE : "handles"
+  CATALOG_PAGE |o--o{ CATALOG_RETURN_LINE : "is ordered from"
+  SHIP_MODE    |o--o{ CATALOG_RETURN_LINE : "ships"
+  DATE         ||--o{ CATALOG_RETURN_LINE : "dates"
+```
+
+| Object type | Gold table | Built by |
+|---|---|---|
+| Customer | [`gold.dim_customer`](./gold.dim_customer.md) | core |
+| Item | [`gold.dim_item`](./gold.dim_item.md) | core |
+| Call Center | [`gold.dim_call_center`](./gold.dim_call_center.md) | catalog_sales |
+| Catalog Page | [`gold.dim_catalog_page`](./gold.dim_catalog_page.md) | catalog_sales |
+| Ship Mode | [`gold.dim_ship_mode`](./gold.dim_ship_mode.md) | catalog_sales |
+| Date | [`gold.dim_date`](./gold.dim_date.md) | core |
+| Catalog-Return Line | [`gold.fct_catalog_returns`](./gold.fct_catalog_returns.md) | catalog_sales |
 
 
 Core dimensions (built once, shared by all channels):

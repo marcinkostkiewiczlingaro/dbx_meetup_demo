@@ -12,7 +12,7 @@ data_layer: Gold (dimension)
 
 | module | component | table | pipeline |
 |---|---|---|---|
-| [catalog_sales](../../modules/catalog_sales.md) | [gold](../../components/catalog_sales/gold.md) | gold.dim_call_center | ← [silver.dim_call_center](../../components/catalog_sales/silver.md) · → [gold.fct_catalog_sales](./gold.fct_catalog_sales.md) |
+| [catalog_sales](../../modules/catalog_sales.md) | [gold](../../components/catalog_sales/gold.md) | gold.dim_call_center | ← [silver.dim_call_center](../../components/catalog_sales/silver.md) · → [gold.fct_catalog_sales](./gold.fct_catalog_sales.md) · → [gold.fct_catalog_returns](./gold.fct_catalog_returns.md) |
 
 > **C4 Level 4 — Table.** Conformed call-center dimension, one row per call center (current records only).
 

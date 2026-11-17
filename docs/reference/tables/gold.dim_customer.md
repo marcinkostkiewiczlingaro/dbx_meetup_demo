@@ -15,7 +15,7 @@ data_layer: Gold (dimension)
 
 | module | component | table | pipeline |
 |---|---|---|---|
-| [core](../../modules/core.md) | [gold](../../components/core/gold.md) | gold.dim_customer | ← [silver.dim_customer](../../components/core/silver.md) · → [gold.fct_store_sales](./gold.fct_store_sales.md) |
+| [core](../../modules/core.md) | [gold](../../components/core/gold.md) | gold.dim_customer | ← [silver.dim_customer](../../components/core/silver.md) · → [gold.fct_store_sales](./gold.fct_store_sales.md) · → [gold.fct_catalog_returns](./gold.fct_catalog_returns.md) |
 
 > **C4 Level 4 — Table.** The **Customer** business object: a person who buys from a store. Conformed customer dimension, one row per customer. `email_address` stops at silver (governance).
 
@@ -41,3 +41,4 @@ data_layer: Gold (dimension)
 ## Links
 
 - **Makes** many [`gold.fct_store_sales`](./gold.fct_store_sales.md) via `customer_key` (one customer → many store-sales lines).
+- **Returns** many [`gold.fct_catalog_returns`](./gold.fct_catalog_returns.md) via `customer_key` (one customer → many catalog-return lines).
