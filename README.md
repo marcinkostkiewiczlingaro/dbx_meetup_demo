@@ -106,7 +106,7 @@ flowchart LR
     L1 --> L2 --> L3
     L3 --> TBL & MV
     MV --> PG
-    L3 -. governed by .-> DOM
+    TBL -. governed by .-> DOM
   end
 
   subgraph DBX["⚡ &nbsp;Databricks &mdash; governed runtime &middot; deployed by the Asset Bundle"]
@@ -145,7 +145,8 @@ flowchart LR
 ```
 
 - **Left (Part 1, engineers):** the C4 docs tree. L1 context → L2 modules → L3 components →
-  L4 reference files, plus the cross-cutting `domains/` governance registry.
+  L4 reference files. The `domains/` registry is a cross-cutting governance layer: it maps
+  each L4 gold table to one business subdomain, not the L3 component.
 - **The `==>` arrows (deploy):** the Asset Bundle builds the gold tables, creates the Metric
   Views from their YAML, the Domains API governs the subdomain tree, and the pages publish
   as Genie Knowledge Pages.
