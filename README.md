@@ -27,11 +27,12 @@ a Databricks Free Edition workspace.
 
 | Layer | What it is | Where |
 |---|---|---|
-| Pipeline | Medallion (bronze, silver, gold) in declarative SQL, as a Lakeflow Declarative Pipeline | `src/bronze`, `src/silver`, `src/gold` |
-| Deployment | Databricks Asset Bundle that deploys the pipeline and the dashboard | `databricks.yml`, `resources/` |
-| Metrics | A governed Metric View; business metrics defined once | `docs/reference/metrics_views/store_sales_metrics.md` |
-| Dashboard | An AI/BI dashboard over the Metric View, for business users | `dashboards/` |
-| Documentation | C4 architecture, a Palantir-style ontology, and a governed metric definition | `docs/` |
+| Pipeline | Medallion (bronze → silver → gold) in declarative SQL, as Lakeflow Declarative Pipelines, one per module | `src/{module}/{bronze,silver,gold}` |
+| Deployment | Databricks Asset Bundle that deploys the pipelines and the build-and-document job | `databricks.yml`, `resources/` |
+| Metric Views | Governed Metric Views; each business metric defined once, created in Unity Catalog with SQL `CREATE VIEW ... WITH METRICS` | `docs/reference/metrics_views/` |
+| Pages | Genie Knowledge Pages; one governed business term each, applied through the Knowledge Pages API | `docs/reference/pages/` |
+| Domains | Business-domain registry; every gold table and Metric View mapped to one subdomain, applied as Databricks Domains through the Domains API | `docs/domains/README.md` |
+| Documentation | C4 architecture and a Palantir-style ontology folded into the gold table files | `docs/` |
 
 ### The data model
 
@@ -43,14 +44,14 @@ joined on surrogate keys, so no pre-joined copy of the star schema exists to dri
 ### The through-line
 
 One business term keeps one name across every layer: the silver columns, the gold star
-schema, the Metric View, the ontology, the AI/BI dashboard, and Genie. That single
+schema, the Metric Views, the ontology, the Genie Knowledge Pages, and Genie. That single
 vocabulary is the shared foundation — engineers and analysts read the same meaning of the
 same data.
 
 - **Part 1 (engineers):** the medallion pipeline, the dimensional model, and the governed
   Metric View, documented in C4, ontology, and a governed metric definition.
-- **Part 2 (analysts):** the AI/BI dashboard, the Genie space, and a Unity Catalog **Store
-  Sales** Domain, all reading the same governed gold model.
+- **Part 2 (analysts):** the governed Metric Views, the Genie Knowledge Pages, and the Unity
+  Catalog **Domains**, all reading the same governed gold model.
 
 ### Run it
 
@@ -87,9 +88,11 @@ resource; its reference file carries the definition the deploy creates it from.
 
 The `docs/` tree is the source of truth, kept in Git. It follows the C4 model: context
 (L1), modules (L2), components (L3), and reference files (L4), plus a cross-cutting
-`domains/` governance registry. The Asset Bundle deploys these definitions into governed
-Databricks objects. The gold tables, Metric Views, domain tags, and Genie pages all
-converge into one **ontology** — the shared semantic foundation Genie reads.
+`domains/` governance registry. Each definition deploys to the workspace by the path that
+fits it: the Asset Bundle (Lakeflow pipeline) builds the gold tables, SQL creates the Metric
+Views, and the Databricks REST APIs apply the Domains and the Genie Knowledge Pages. The gold
+tables, Metric Views, domain tags, and Genie pages all converge into one **ontology** — the
+shared semantic foundation Genie reads.
 
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"fontfamily": "Segoe UI, Helvetica, Arial, sans-serif", "fontSize": "14px", "primaryColor": "#eef2ff", "lineColor": "#64748b", "clusterBorder": "#cbd5e1"}, "flowchart": {"curve": "basis", "nodeSpacing": 45, "rankSpacing": 70}}}%%
