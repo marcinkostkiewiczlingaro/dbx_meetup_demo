@@ -119,15 +119,15 @@ across all 4 C4 levels and every index/`README.md` file.
 ## Diagrams — C4 Mermaid Format
 
 Every **architecture** diagram in `docs/` uses mermaid's dedicated **C4 diagram types** —
-never a generic `flowchart`/`graph` block. The one exception is the ontology object graph,
-which uses `erDiagram` (see below). The canonical reference is the diagram in
-`docs/README.md` (L1 — System Context).
+never a generic `flowchart`/`graph` block. The one exception is the ontology object graph in
+`docs/reference/tables/README.md`, which uses `erDiagram` (see below). The canonical reference
+is the diagram in `docs/README.md` (L1 — System Context).
 
 | C4 level | Mermaid diagram type | Used for | Example |
 |---|---|---|---|
 | L1 — System Context | `C4Context` | Actors and external systems around the demo | `docs/README.md` |
 | L2 — Module | `C4Container` | Modules and how they relate (build view) | `docs/modules/README.md` |
-| L2 — Object graph | `erDiagram` | The ontology: object types and their links (semantic view) | `docs/modules/README.md` |
+| Object graph | `erDiagram` | The ontology: object types and their links (semantic view) | `docs/reference/tables/README.md` |
 | L2/L3 — internal flow | `C4Component` | Pipeline stages or entity groups within one module | `docs/modules/pipeline.md`, `docs/components/pipeline/gold.md` |
 
 Rules:
@@ -142,8 +142,10 @@ Rules:
   a diagram that needs navigation with a plain markdown-link table instead.
 
 **Ontology object graph (the `erDiagram` exception).** The one Palantir-style object graph
-lives at L2 in `docs/modules/README.md`, below the `C4Container` build diagram. It is the
-semantic view that a `C4` type cannot draw: object types as boxes with their key properties,
+lives in `docs/reference/tables/README.md`, at the head of the gold-table (object) index — the
+object types are those gold tables, so the graph sits with them, not in the build-view
+`docs/modules/README.md`. It is the semantic counterpart to the `C4Container` build diagram:
+object types as boxes with their key properties,
 and links as crow's-foot edges that carry cardinality. One object type per gold business
 object; one edge per foreign key, labelled with the link's business verb; an open circle
 (`|o`) marks an optional link. Keep it to key and identifying properties plus the fact's

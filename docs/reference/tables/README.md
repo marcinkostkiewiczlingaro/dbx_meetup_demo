@@ -2,7 +2,69 @@
 
 ↑ [System Context](../../README.md) &nbsp;|&nbsp; → [Metric Views](../metrics_views/README.md)
 
-> **C4 Level 4 — Tables.** Column-level schemas of the gold star schema and the wide consumption table. Load one only when you need exact column names. Every gold table's business domain is in the [domains registry](../../domains/README.md).
+> **C4 Level 4 — Tables.** Column-level schemas of the gold star schema and the wide consumption table, and the ontology object graph over them. Each gold table is a business object; load one only when you need exact column names. Every gold table's business domain is in the [domains registry](../../domains/README.md).
+
+## Object graph (ontology)
+
+The **semantic view** of the gold tables: the business objects and the links between them, in
+the Palantir ontology style. It is the counterpart to the build view in
+[modules/](../../modules/README.md), which shows which pipeline builds which module. An object
+type is a gold table; a link is a foreign key in the star schema; the crow's-foot end shows
+the cardinality, and an open circle shows an optional link. Each object's full properties,
+source-column lineage, and links live in its L4 table file below.
+
+```mermaid
+erDiagram
+  CUSTOMER {
+    int customer_key PK
+    string customer_id
+    string customer_state
+  }
+  ITEM {
+    int item_key PK
+    string item_name
+    string category
+  }
+  STORE {
+    int store_key PK
+    string store_name
+    string store_state
+  }
+  PROMOTION {
+    int promo_key PK
+    string promo_name
+    boolean is_discount_active
+  }
+  DATE {
+    int date_key PK
+    date sold_date
+  }
+  STORE_SALES_LINE {
+    long ticket_number PK
+    int item_key FK
+    int customer_key FK
+    int store_key FK
+    int promo_key FK
+    int date_key FK
+    decimal sales_amount
+    decimal net_profit
+  }
+  CUSTOMER   ||--o{ STORE_SALES_LINE : "makes"
+  ITEM       ||--o{ STORE_SALES_LINE : "is sold in"
+  STORE      ||--o{ STORE_SALES_LINE : "hosts"
+  PROMOTION  |o--o{ STORE_SALES_LINE : "applies to"
+  DATE       ||--o{ STORE_SALES_LINE : "dates"
+```
+
+| Object type | Gold table | Built by |
+|---|---|---|
+| Customer | [`gold.dim_customer`](./gold.dim_customer.md) | core |
+| Item | [`gold.dim_item`](./gold.dim_item.md) | core |
+| Store | [`gold.dim_store`](./gold.dim_store.md) | store_sales |
+| Promotion | [`gold.dim_promotion`](./gold.dim_promotion.md) | core |
+| Date | [`gold.dim_date`](./gold.dim_date.md) | core |
+| Store-Sales Line | [`gold.fct_store_sales`](./gold.fct_store_sales.md) | store_sales |
+
 
 Core dimensions (built once, shared by all channels):
 

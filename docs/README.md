@@ -46,6 +46,7 @@ dashboard.
 
 ## Other views
 
+- [Object graph (ontology)](./reference/tables/README.md#object-graph-ontology) — the business objects and the links between them, the semantic counterpart to the module build view.
 - [Business domains](./domains/README.md) — the governance map from every gold table to one business subdomain under the `Retail Analytics` domain.
 - [Documentation standard](./engineering/documentation-standard.md) — how these files are built.
 
