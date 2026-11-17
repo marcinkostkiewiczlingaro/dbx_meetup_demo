@@ -1,6 +1,6 @@
 # Metric Views (L4 — Code)
 
-↑ [System Context](../../README.md) &nbsp;|&nbsp; ← [Tables](../tables/README.md) &nbsp;|&nbsp; → [Algorithms](../algorithms/README.md)
+↑ [System Context](../../README.md) &nbsp;|&nbsp; ← [Tables](../tables/README.md) &nbsp;|&nbsp; → [Algorithms](../algorithms/README.md) &nbsp;|&nbsp; → [Pages](../pages/README.md)
 
 > **C4 Level 4 — Metric Views.** One file per Metric View: its measures, dimensions, and the authoritative YAML the backend creates it from.
 

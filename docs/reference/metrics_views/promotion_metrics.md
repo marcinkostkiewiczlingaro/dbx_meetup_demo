@@ -36,6 +36,13 @@ bronze's single channel string.
 | TV Channel | `channel_tv` | Whether the promotion ran on TV. |
 | Discount Active | `is_discount_active` | Whether a discount is active. |
 
+## Pages
+
+Genie knowledge pages (business terms) governed for this view, each the
+definition Genie reads for the term:
+
+- [Promotion Count](../pages/promotion_count.md)
+
 ## Definition
 
 ```yaml

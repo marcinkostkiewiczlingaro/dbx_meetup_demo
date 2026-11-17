@@ -35,6 +35,13 @@ potential are not reproduced; city, state, and country live on the dimension its
 | State | `customer_state` | State of the customer. |
 | Country | `customer_country` | Country of the customer. |
 
+## Pages
+
+Genie knowledge pages (business terms) governed for this view, each the
+definition Genie reads for the term:
+
+- [Customer Count](../pages/customer_count.md)
+
 ## Definition
 
 ```yaml

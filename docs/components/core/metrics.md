@@ -28,3 +28,12 @@ The authoritative definition of each view — every measure, every dimension, an
 backend creates the view from — is its L4 reference file under
 [reference/metrics_views/](../../reference/metrics_views/README.md). There is no second copy
 of the YAML anywhere in the repository.
+
+## Pages
+
+Genie knowledge pages (business terms) governed over these Metric Views. Each page is the
+definition Genie reads for the term; see [reference/pages/](../../reference/pages/README.md).
+
+- [Customer Count](../../reference/pages/customer_count.md)
+- [Item Count](../../reference/pages/item_count.md)
+- [Promotion Count](../../reference/pages/promotion_count.md)

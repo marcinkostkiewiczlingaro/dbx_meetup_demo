@@ -12,6 +12,7 @@
 | L4 | `docs/reference/tables/*.md` | Code — full column-level table schemas | Need exact column names |
 | L4 | `docs/reference/metrics_views/*.md` | Code — one file per Metric View: measures, dimensions, and the authoritative YAML the backend creates it from (see "L4 — Metric View reference files") | Need a governed metric definition |
 | L4 | `docs/reference/algorithms/*.md` | Code — one file per named computation or business-logic algorithm (see "L4 — Algorithm reference files") | Need the exact computation behind an entity |
+| L4 | `docs/reference/pages/*.md` | Code — one file per Genie knowledge page: a business term's governed definition, synonyms, and the Metric Views that expose it (see "L4 — Page reference files") | Need the business definition Genie reads for a term |
 
 **No per-module L3 index.** `docs/components/{module}/` holds only leaf component files
 directly. Its L2 module file's own `## Components` section is the index for that module's
@@ -271,6 +272,36 @@ to it from the `Algorithm(s)` column of its `## Entities` table.
 README. The type exists so the first real computation — anything more than a one-line column
 mapping — has a governed home instead of hiding inside a SQL file.
 
+### L4 — Page reference files
+
+```yaml
+---
+c4_level: 4
+type: page
+page: Gross Sales                               # Genie page display_name
+page_id: 690c0db0-eada-4ff3-b06b-397eb45de295   # Databricks Knowledge page uuid
+domain: Retail Analytics                        # the Genie domain the page is attached to
+defines: "`Gross Sales` measure"                # the measure or dimension the page names
+metric_views: [store_sales_metrics, web_sales_metrics, catalog_sales_metrics]  # the views that expose it
+synonyms: [gross revenue, top-line sales]
+state: PUBLISHED
+---
+```
+
+A page reference file mirrors a Databricks **Knowledge Page** object (Knowledge Pages API,
+`/api/2.0/knowledge/pages`) attached to a Genie domain. It documents one business term: its
+definition, business use, examples, and synonyms, in the page's own `body` text. A page names
+a measure or dimension that already lives in a Metric View; the page is the business-term
+layer over that measure, so the page, the measure, the gold column, and the dashboard spell
+it the same — one name for one thing. The Metric View reference file stays the source of
+truth for the expression and the YAML; the page never restates the expression as authority.
+
+A page is cross-cutting by nature — one business term is used across channels — so a page
+file may name several Metric Views and belongs to no single module. Its inline table links the
+Metric Views it relates to, not one module/component. Each listed Metric View links back to
+the page from its own `## Pages` section, and each L3 metrics component lists the pages its
+views expose in its `## Pages` section.
+
 ## Inline Table Formats
 
 ### L2 module
@@ -319,6 +350,13 @@ mapping — has a governed home instead of hiding inside a SQL file.
 | [store_sales](../../modules/store_sales.md) | [gold](../../components/store_sales/gold.md) | `net_margin_allocation` | [fct_store_sales.sql](../../../src/store_sales/gold/fct_store_sales.sql) |
 ```
 
+### L4 page
+```markdown
+| domain | page | defines | metric views |
+|---|---|---|---|
+| Retail Analytics | Gross Sales | `Gross Sales` measure | [store_sales_metrics](../metrics_views/store_sales_metrics.md) · [web_sales_metrics](../metrics_views/web_sales_metrics.md) · [catalog_sales_metrics](../metrics_views/catalog_sales_metrics.md) |
+```
+
 ### L4 table `## Links` (object tables only)
 ```markdown
 ## Links
@@ -335,6 +373,7 @@ mapping — has a governed home instead of hiding inside a SQL file.
 | L4 table | `docs/reference/tables/{db}.{table}.md` | `docs/reference/tables/gold.fct_store_sales.md` |
 | L4 metric view | `docs/reference/metrics_views/{metric_view}.md` | `docs/reference/metrics_views/store_sales_metrics.md` |
 | L4 algorithm | `docs/reference/algorithms/{algorithm}.md` | `docs/reference/algorithms/net_margin_allocation.md` |
+| L4 page | `docs/reference/pages/{page_slug}.md` | `docs/reference/pages/gross_sales.md` |
 
 ## Adding a New Component File
 
@@ -367,6 +406,7 @@ the authoritative definition the backend creates it from. There is no separate Y
 6. Add a `## Definition` section with the complete metric-view YAML in a fenced ```yaml block — the one authoritative copy; never keep a second copy elsewhere.
 7. State the create command and that the backend extracts the `## Definition` block to run it.
 8. Register the file in the owning L3 semantic component and update [`reference/metrics_views/README.md`](../reference/metrics_views/README.md).
+9. If Genie knowledge pages expose this view's measures or dimensions, add a `## Pages` section that links each page under [`reference/pages/`](../reference/pages/README.md).
 
 ## Adding a New Algorithm Reference File
 
@@ -380,6 +420,27 @@ does not explain. Do not create a file for a plain column mapping.
 5. Describe the rule in business terms and link to the code in `implemented_in`; never paste a second copy of the executable logic.
 6. Link the file from the `Algorithm(s)` column of the owning entity's `## Entities` table in its L3 component.
 7. Update [`reference/algorithms/README.md`](../reference/algorithms/README.md).
+
+## Adding a New Page Reference File
+
+Confirm the live page first, then document it. The Databricks workspace is the source of the
+page; the reference file follows it.
+
+1. List the live pages with the Databricks CLI (`databricks api get /api/2.0/knowledge/pages`)
+   and read the page object (`.../knowledge/pages/{page_id}`): its `display_name`, `domain`,
+   `description`, `body`, and `synonyms`.
+2. Create `docs/reference/pages/{page_slug}.md` (snake_case slug of the display name).
+3. Add front-matter with `c4_level: 4`, `type: page`, `page`, `page_id`, `domain`, `defines`,
+   `metric_views`, `synonyms`, `state`.
+4. Add the inline table (domain → page → defines → metric views) and the blockquote `>`
+   naming the Genie page and its domain.
+5. Carry the page's `body` (Definition, Business use, Examples) and a `## Synonyms` section
+   from the workspace object; never restate the measure expression as authority — it lives in
+   the Metric View file.
+6. Add a `## Metric Views` section linking each view that exposes the term, and add this page
+   to the `## Pages` section of each of those Metric View files and of each owning L3 metrics
+   component. Spell the term exactly as the measure/dimension and the gold column spell it.
+7. Update [`reference/pages/README.md`](../reference/pages/README.md).
 
 ## Adding a Business Object (Ontology)
 
@@ -437,8 +498,10 @@ Load docs/README.md (L1)         ~200 tokens
       → Load docs/reference/tables/{db}.{t}.md (L4)          on demand only
       → Load docs/reference/metrics_views/{mv}.md (L4)       for a governed metric
       → Load docs/reference/algorithms/{a}.md (L4)           for a named computation
+      → Load docs/reference/pages/{page_slug}.md (L4)        for the business definition Genie reads
 ```
 
 Load an L4 table file only when you need exact column names, the source-column lineage, the
 business object name, or its links; a metric-view file for the governed metric; an algorithm
-file for the computation behind a number.
+file for the computation behind a number; a page file for the business definition Genie reads
+for a term.

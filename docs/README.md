@@ -42,7 +42,7 @@ dashboard.
 | L1 | this file | System context. |
 | L2 | [modules/](./modules/README.md) | The pipeline and semantic modules. |
 | L3 | [components/](./components/README.md) | Bronze, silver, gold, and the metrics component. |
-| L4 | [reference/tables/](./reference/tables/README.md), [reference/metrics_views/](./reference/metrics_views/README.md), [reference/algorithms/](./reference/algorithms/README.md) | Table schemas (each carries its business object, source lineage, and links — the ontology), the governed Metric View, and named algorithms. |
+| L4 | [reference/tables/](./reference/tables/README.md), [reference/metrics_views/](./reference/metrics_views/README.md), [reference/algorithms/](./reference/algorithms/README.md), [reference/pages/](./reference/pages/README.md) | Table schemas (each carries its business object, source lineage, and links — the ontology), the governed Metric View, named algorithms, and the Genie knowledge pages that define each business term. |
 
 ## Other views
 

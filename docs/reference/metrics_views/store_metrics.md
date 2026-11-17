@@ -33,6 +33,13 @@ stores and exposes their location attributes for grouping.
 | City | `store_city` | City of the store. |
 | State | `store_state` | State of the store. |
 
+## Pages
+
+Genie knowledge pages (business terms) governed for this view, each the
+definition Genie reads for the term:
+
+- [Store Count](../pages/store_count.md)
+
 ## Definition
 
 ```yaml

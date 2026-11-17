@@ -34,6 +34,13 @@ date on-hand quantity.
 | Warehouse Name | `warehouse.warehouse_name` | Warehouse holding the stock. |
 | Snapshot Date | `snapshot_date` | Calendar day of the stock snapshot. |
 
+## Pages
+
+Genie knowledge pages (business terms) governed for this view, each the
+definition Genie reads for the term:
+
+- [Inventory Quantity](../pages/inventory_quantity.md)
+
 ## Definition
 
 ```yaml

@@ -27,3 +27,10 @@ The authoritative definition — every measure, every dimension, and the YAML th
 creates the view from — is its L4 reference file
 [reference/metrics_views/inventory_metrics.md](../../reference/metrics_views/inventory_metrics.md).
 There is no second copy of the YAML anywhere in the repository.
+
+## Pages
+
+Genie knowledge pages (business terms) governed over these Metric Views. Each page is the
+definition Genie reads for the term; see [reference/pages/](../../reference/pages/README.md).
+
+- [Inventory Quantity](../../reference/pages/inventory_quantity.md)

@@ -29,3 +29,21 @@ The authoritative definition of each view — every measure, every dimension, an
 backend creates the view from — is its L4 reference file under
 [reference/metrics_views/](../../reference/metrics_views/README.md). There is no second copy
 of the YAML anywhere in the repository.
+
+## Pages
+
+Genie knowledge pages (business terms) governed over these Metric Views. Each page is the
+definition Genie reads for the term; see [reference/pages/](../../reference/pages/README.md).
+
+- [Gross Sales](../../reference/pages/gross_sales.md)
+- [Net Sales](../../reference/pages/net_sales.md)
+- [Net Paid](../../reference/pages/net_paid.md)
+- [Net Profit](../../reference/pages/net_profit.md)
+- [Sales Quantity](../../reference/pages/sales_quantity.md)
+- [Return Amount](../../reference/pages/return_amount.md)
+- [Returned Quantity](../../reference/pages/returned_quantity.md)
+- [Return Tax](../../reference/pages/return_tax.md)
+- [Return Fee](../../reference/pages/return_fee.md)
+- [Net Loss](../../reference/pages/net_loss.md)
+- [Return Rate](../../reference/pages/return_rate.md)
+- [Return Date](../../reference/pages/return_date.md)

@@ -35,6 +35,13 @@ items and exposes their descriptive attributes for grouping.
 | Category | `category` | Category of the item. |
 | Class | `class` | Class of the item. |
 
+## Pages
+
+Genie knowledge pages (business terms) governed for this view, each the
+definition Genie reads for the term:
+
+- [Item Count](../pages/item_count.md)
+
 ## Definition
 
 ```yaml

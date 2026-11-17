@@ -47,6 +47,18 @@ Genie space, and the dashboard spell the same way.
 | Sold Date | `sold_date` | Calendar day of the sale. |
 | Ticket Number | `ticket_number` | Store-sales ticket the line belongs to. |
 
+## Pages
+
+Genie knowledge pages (business terms) governed for this view, each the
+definition Genie reads for the term:
+
+- [Gross Sales](../pages/gross_sales.md)
+- [Net Sales](../pages/net_sales.md)
+- [Net Paid](../pages/net_paid.md)
+- [Net Profit](../pages/net_profit.md)
+- [Sales Quantity](../pages/sales_quantity.md)
+- [Return Rate](../pages/return_rate.md)
+
 ## Definition
 
 ```yaml

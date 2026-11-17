@@ -41,6 +41,19 @@ are not reproduced.
 | Return Date | `returned_date` | Calendar day of the return. |
 | Ticket Number | `ticket_number` | Store-return ticket the line belongs to. |
 
+## Pages
+
+Genie knowledge pages (business terms) governed for this view, each the
+definition Genie reads for the term:
+
+- [Return Amount](../pages/return_amount.md)
+- [Returned Quantity](../pages/returned_quantity.md)
+- [Return Tax](../pages/return_tax.md)
+- [Return Fee](../pages/return_fee.md)
+- [Net Loss](../pages/net_loss.md)
+- [Return Rate](../pages/return_rate.md)
+- [Return Date](../pages/return_date.md)
+
 ## Definition
 
 ```yaml
