@@ -12,11 +12,11 @@
 
 A pipeline is the build-ownership layer: it says which code writes a table. A domain is the
 governance layer: it says which business area owns the meaning of a table, regardless of which
-pipeline built it. Part 2 of the demo lifts these groups straight into Databricks **Domain**
-governance objects, so the registry here mirrors the governed domain tree already created in
-the workspace — one name for one thing across code, catalog, and Genie.
+pipeline built it. This registry is the source of truth for the tree; Part 2 of the demo
+deploys it into Databricks **Domain** governance objects, and the two are rechecked against
+each other — one name for one thing across code, catalog, and Genie.
 
-## The domain tree (source: Databricks Domains API)
+## The domain tree (source of truth: this registry; deployed to Databricks Domains)
 
 The workspace governs a single two-level tree. `tag_key` is the exact Unity Catalog tag the
 Domain applies to a table; a child's `tag_key` is `parent/child`. The Databricks-managed

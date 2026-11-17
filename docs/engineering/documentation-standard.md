@@ -293,7 +293,7 @@ mapping — has a governed home instead of hiding inside a SQL file.
 c4_level: 4
 type: page
 page: Gross Sales                               # Genie page display_name
-page_id: 690c0db0-eada-4ff3-b06b-397eb45de295   # Databricks Knowledge page uuid
+page_id: 690c0db0-eada-4ff3-b06b-397eb45de295   # uuid of the published Knowledge Page (workspace assigns it on first deploy)
 domain: Retail Analytics                        # the Genie domain the page is attached to
 defines: "`Gross Sales` measure"                # the measure or dimension the page names
 metric_views: [store_sales_metrics, web_sales_metrics, catalog_sales_metrics]  # the views that expose it
@@ -302,8 +302,11 @@ state: PUBLISHED
 ---
 ```
 
-A page reference file mirrors a Databricks **Knowledge Page** object (Knowledge Pages API,
-`/api/2.0/knowledge/pages`) attached to a Genie domain. It documents one business term: its
+A page reference file is the source of truth for one Genie **Knowledge Page**. The deploy
+publishes it to the workspace as a Knowledge Page (Knowledge Pages API,
+`/api/2.0/knowledge/pages`) attached to a Genie domain; the workspace page is the deployed
+copy. Recheck the two against each other with the Knowledge Pages API, in either direction,
+and resolve every difference back to this file. It documents one business term: its
 definition, business use, examples, and synonyms, in the page's own `body` text. A page names
 a measure or dimension that already lives in a Metric View; the page is the business-term
 layer over that measure, so the page, the measure, the gold column, and the dashboard spell
@@ -438,20 +441,23 @@ does not explain. Do not create a file for a plain column mapping.
 
 ## Adding a New Page Reference File
 
-Confirm the live page first, then document it. The Databricks workspace is the source of the
-page; the reference file follows it.
+Author the reference file first; it is the source of truth. The deploy publishes it to the
+workspace as a Knowledge Page. Use the Knowledge Pages API only to recheck the two against
+each other, both ways.
 
-1. List the live pages with the Databricks CLI (`databricks api get /api/2.0/knowledge/pages`)
-   and read the page object (`.../knowledge/pages/{page_id}`): its `display_name`, `domain`,
-   `description`, `body`, and `synonyms`.
+1. Write the term's definition, business use, examples, and synonyms in the file. If the page
+   already exists in the workspace, read it with the Databricks CLI
+   (`databricks api get /api/2.0/knowledge/pages`, then `.../knowledge/pages/{page_id}`) to
+   compare, and make the file the authority for any difference.
 2. Create `docs/reference/pages/{page_slug}.md` (snake_case slug of the display name).
 3. Add front-matter with `c4_level: 4`, `type: page`, `page`, `page_id`, `domain`, `defines`,
-   `metric_views`, `synonyms`, `state`.
+   `metric_views`, `synonyms`, `state`. Leave `page_id` empty until the first deploy publishes
+   the page and assigns its uuid; record it then for reconciliation.
 4. Add the inline table (domain → page → defines → metric views) and the blockquote `>`
    naming the Genie page and its domain.
-5. Carry the page's `body` (Definition, Business use, Examples) and a `## Synonyms` section
-   from the workspace object; never restate the measure expression as authority — it lives in
-   the Metric View file.
+5. Write the page `body` (Definition, Business use, Examples) and a `## Synonyms` section in
+   the file; the deploy pushes this text to the workspace page. Never restate the measure
+   expression as authority — it lives in the Metric View file.
 6. List the views that expose the term in the inline table's `metric views` column (the file's
    one navigation element), and add this page to the `## Pages` section of each of those Metric
    View files and of each owning L3 metrics component. Spell the term exactly as the
@@ -470,9 +476,11 @@ space, and the dashboard name them — one name for one thing.
 ## Domains and Subdomains
 
 Domains are a two-level governance layer over the gold tables, independent of the pipeline
-that builds a table. They mirror the Databricks **Domain** objects governed in the workspace,
-so the documented tree and the deployed tree never drift — one name for one thing across code,
-Unity Catalog, and Genie.
+that builds a table. The registry in `docs/` is the source of truth for the tree; the deploy
+applies it to the Databricks **Domain** objects in the workspace. Recheck the documented tree
+against the deployed tree with the Domains API, in either direction, and resolve every
+difference back to the registry — one name for one thing across code, Unity Catalog, and
+Genie.
 
 - **One domain, named subdomains.** The demo governs a single top domain, `Retail Analytics`,
   with named subdomains beneath it (`Sales`, `Returns`, `Shared Dimensions`). A gold table is
@@ -482,9 +490,10 @@ Unity Catalog, and Genie.
   Catalog tag. It is spelled identically in the registry, the on-table marker, and the
   workspace.
 - **The registry is the single source of truth.** [`docs/domains/README.md`](../domains/README.md)
-  maps every gold table to exactly one subdomain and records each domain's `domain_id` and
-  `tag_key` from the Databricks Domains API. Do not record a table's subdomain anywhere else as
-  an authority; other mentions point back here.
+  defines the tree and maps every gold table to exactly one subdomain. It authors each
+  subdomain's `tag_key`; it records each domain's `domain_id` (the workspace assigns it when
+  the deploy creates the domain) for reconciliation. Do not record a table's subdomain anywhere
+  else as an authority; other mentions point back here.
 - **On-table marker.** Each gold table carries its subdomain in its `COMMENT` as a
   `domain=<tag_key>` marker (for example `domain=Retail Analytics/Sales`), because applying UC
   tags from inside a Lakeflow declarative pipeline is not reliable. The marker is the on-table
@@ -492,11 +501,14 @@ Unity Catalog, and Genie.
 
 ## Adding or Changing a Domain
 
-The Databricks workspace is the source of the tree; the registry follows it, not the reverse.
+The registry in `docs/` is the source of the tree; the workspace follows it, not the reverse.
+The deploy applies the registry to the workspace Domains; the Domains API is for rechecking
+the two against each other, both ways.
 
-1. Confirm the governed tree with the Databricks Domains API
-   (`databricks api get /api/2.0/domains`): each domain's `tag_key`, `domain_id`, and
-   `parent_domain_id`.
+1. Edit the domain tree table in [`docs/domains/README.md`](../domains/README.md) to the
+   intended tree — each subdomain's `tag_key` and its `parent_domain_id`. This registry is the
+   authority; the workspace is deployed from it. Record each `domain_id` after the deploy
+   creates the domain.
 2. Update the domain tree table and the registry in [`docs/domains/README.md`](../domains/README.md)
    so every gold table maps to exactly one subdomain `tag_key`.
 3. For any table whose subdomain changed, update three copies to the new `tag_key`: the
@@ -508,6 +520,10 @@ The Databricks workspace is the source of the tree; the registry follows it, not
    section of the registry, and the UC tag on the view object in the workspace.
 5. Keep the names identical everywhere — registry, table marker, Metric View UC tag, L4/L3
    prose, and the workspace Domain.
+6. Deploy the change, then recheck the workspace tree against the registry with the Domains
+   API (`databricks api get /api/2.0/domains`), both ways: anything in the workspace the
+   registry does not list, and anything the registry lists the workspace lacks. Resolve every
+   difference back to the registry.
 
 ## AI Navigation Pattern
 

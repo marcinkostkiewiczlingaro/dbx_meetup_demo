@@ -5,8 +5,9 @@
 > **C4 Level 4 — Pages.** One file per Genie knowledge page: the governed business definition
 > Genie reads for a term, with its synonyms and the Metric Views that expose it.
 
-Each file mirrors a Databricks **Knowledge Page** object (Knowledge Pages API,
-`/api/2.0/knowledge/pages`) attached to the `Retail Analytics` Genie domain. The page carries
+Each file is the source of truth for a Databricks **Knowledge Page** (Knowledge Pages API,
+`/api/2.0/knowledge/pages`): the deploy publishes it to the workspace attached to the
+`Retail Analytics` Genie domain, and the two are rechecked against each other. The page carries
 one business term's definition, business use, examples, and synonyms. A page names a measure
 or dimension already defined in a Metric View; the page is the business-term layer over that
 measure, so the two are spelled the same — one name for one thing. The Metric View reference
