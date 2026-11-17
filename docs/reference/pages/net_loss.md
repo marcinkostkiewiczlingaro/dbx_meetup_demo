@@ -30,8 +30,3 @@ Net Loss per channel: SUM(net_loss) grouped by sales channel from the three gold
 
 loss on returns, return loss
 
-## Metric Views
-
-- [store_returns_metrics](../metrics_views/store_returns_metrics.md)
-- [web_returns_metrics](../metrics_views/web_returns_metrics.md)
-- [catalog_returns_metrics](../metrics_views/catalog_returns_metrics.md)

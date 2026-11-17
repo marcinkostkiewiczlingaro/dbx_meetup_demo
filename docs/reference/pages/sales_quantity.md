@@ -30,8 +30,3 @@ SELECT `Brand`, MEASURE(`Sales Quantity`) FROM workspace.gold.web_sales_metrics 
 
 quantity sold, units sold
 
-## Metric Views
-
-- [store_sales_metrics](../metrics_views/store_sales_metrics.md)
-- [web_sales_metrics](../metrics_views/web_sales_metrics.md)
-- [catalog_sales_metrics](../metrics_views/catalog_sales_metrics.md)

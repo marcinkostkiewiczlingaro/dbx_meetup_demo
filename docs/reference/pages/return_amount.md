@@ -30,8 +30,3 @@ SELECT `Store Name`, MEASURE(`Return Amount`) FROM workspace.gold.store_returns_
 
 refund value, returned value
 
-## Metric Views
-
-- [store_returns_metrics](../metrics_views/store_returns_metrics.md)
-- [web_returns_metrics](../metrics_views/web_returns_metrics.md)
-- [catalog_returns_metrics](../metrics_views/catalog_returns_metrics.md)

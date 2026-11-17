@@ -30,6 +30,3 @@ SELECT `Purpose`, MEASURE(`Promotion Count`) FROM workspace.gold.promotion_metri
 
 number of promotions
 
-## Metric Views
-
-- [promotion_metrics](../metrics_views/promotion_metrics.md)

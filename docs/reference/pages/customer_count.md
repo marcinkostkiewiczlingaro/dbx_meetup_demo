@@ -30,6 +30,3 @@ SELECT `State`, MEASURE(`Customer Count`) FROM workspace.gold.customer_metrics G
 
 customer base size, number of customers
 
-## Metric Views
-
-- [customer_metrics](../metrics_views/customer_metrics.md)

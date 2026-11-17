@@ -437,9 +437,10 @@ page; the reference file follows it.
 5. Carry the page's `body` (Definition, Business use, Examples) and a `## Synonyms` section
    from the workspace object; never restate the measure expression as authority — it lives in
    the Metric View file.
-6. Add a `## Metric Views` section linking each view that exposes the term, and add this page
-   to the `## Pages` section of each of those Metric View files and of each owning L3 metrics
-   component. Spell the term exactly as the measure/dimension and the gold column spell it.
+6. List the views that expose the term in the inline table's `metric views` column (the file's
+   one navigation element), and add this page to the `## Pages` section of each of those Metric
+   View files and of each owning L3 metrics component. Spell the term exactly as the
+   measure/dimension and the gold column spell it.
 7. Update [`reference/pages/README.md`](../reference/pages/README.md).
 
 ## Adding a Business Object (Ontology)

@@ -30,8 +30,3 @@ SELECT `Category`, MEASURE(`Net Profit`) FROM workspace.gold.store_sales_metrics
 
 profit, sales margin
 
-## Metric Views
-
-- [store_sales_metrics](../metrics_views/store_sales_metrics.md)
-- [web_sales_metrics](../metrics_views/web_sales_metrics.md)
-- [catalog_sales_metrics](../metrics_views/catalog_sales_metrics.md)

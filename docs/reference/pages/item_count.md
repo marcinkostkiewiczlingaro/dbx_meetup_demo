@@ -30,6 +30,3 @@ SELECT `Category`, MEASURE(`Item Count`) FROM workspace.gold.item_metrics GROUP 
 
 number of items, product count
 
-## Metric Views
-
-- [item_metrics](../metrics_views/item_metrics.md)

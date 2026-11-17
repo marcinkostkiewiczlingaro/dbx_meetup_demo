@@ -30,8 +30,3 @@ SELECT `Brand`, MEASURE(`Extended Sales Price`) AS net_sales FROM workspace.gold
 
 extended sales price, net revenue
 
-## Metric Views
-
-- [store_sales_metrics](../metrics_views/store_sales_metrics.md)
-- [web_sales_metrics](../metrics_views/web_sales_metrics.md)
-- [catalog_sales_metrics](../metrics_views/catalog_sales_metrics.md)

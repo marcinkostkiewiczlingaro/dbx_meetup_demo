@@ -30,6 +30,3 @@ SELECT `State`, MEASURE(`Store Count`) FROM workspace.gold.store_metrics GROUP B
 
 number of stores, store footprint
 
-## Metric Views
-
-- [store_metrics](../metrics_views/store_metrics.md)

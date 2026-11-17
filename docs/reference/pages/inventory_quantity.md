@@ -30,6 +30,3 @@ SELECT `Warehouse Name`, MEASURE(`Inventory Quantity`) FROM workspace.gold.inven
 
 on-hand quantity, stock on hand
 
-## Metric Views
-
-- [inventory_metrics](../metrics_views/inventory_metrics.md)

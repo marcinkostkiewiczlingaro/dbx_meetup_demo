@@ -30,8 +30,3 @@ Monthly Return Amount trend grouped by Return Date from workspace.gold.store_ret
 
 returned date
 
-## Metric Views
-
-- [store_returns_metrics](../metrics_views/store_returns_metrics.md)
-- [web_returns_metrics](../metrics_views/web_returns_metrics.md)
-- [catalog_returns_metrics](../metrics_views/catalog_returns_metrics.md)
