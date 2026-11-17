@@ -31,6 +31,14 @@ The domain tree is governed in the Databricks workspace, not invented in the doc
 - Each domain returns a `tag_key` (`Parent/Child` for a subdomain), a `domain_id`, and a `parent_domain_id`. The `tag_key` is the one canonical name — it is the Unity Catalog tag the Domain applies to a table. Ignore the Databricks-managed `system.general_domain`.
 - The registry (`docs/domains/README.md`) records each domain's `tag_key` and `domain_id` from this API and maps every gold table to exactly one subdomain. Follow "Adding or Changing a Domain" in the standard to keep the four copies above in sync.
 
+## Databricks Knowledge Pages are the source of the page files
+
+A page file under `docs/reference/pages/` mirrors a Genie **Knowledge Page** governed in the workspace. Confirm the live page, then document it:
+
+- List the live pages with the Databricks CLI: `databricks api get /api/2.0/knowledge/pages -p free`, and read one with `databricks api get /api/2.0/knowledge/pages/<page_id> -p free` (the documented path `/api/knowledge/v1/page` is the reference, not the REST route; `/api/2.0/knowledge/pages` is the working path). Reference: <https://docs.databricks.com/api/knowledge/v1/page>.
+- The list returns a summary (`name`, `domain`, `display_name`, `state`, `update_time`); the per-page get adds `description`, `body` (markdown: Definition, Business use, Examples), and `synonyms`. The `name` is `pages/<uuid>`; the uuid is the `page_id`. `domain` is `domains/<domain_id>` from the Domains API.
+- A page names a measure or dimension that already lives in a Metric View. The page is the business-term layer; the Metric View file stays the source of truth for the expression and YAML. Follow "Adding a New Page Reference File" in the standard, and keep the links reciprocal (a page's `## Metric Views`, each view's and component's `## Pages`).
+
 ## After you edit
 
 - Register the new file in its index (`docs/modules/README.md`, `docs/components/README.md`, or the matching `reference/*/README.md`).
