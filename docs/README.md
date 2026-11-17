@@ -46,7 +46,7 @@ dashboard.
 
 ## Other views
 
-- [Business domains](./domains/README.md) — the governance map from every gold table to one business domain.
+- [Business domains](./domains/README.md) — the governance map from every gold table to one business subdomain under the `Retail Analytics` domain.
 - [Documentation standard](./engineering/documentation-standard.md) — how these files are built.
 
 ## Data source and deployment

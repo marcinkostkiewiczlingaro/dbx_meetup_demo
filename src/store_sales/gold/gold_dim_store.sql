@@ -1,7 +1,7 @@
 -- Gold: conformed store dimension, ready for analytics and Genie.
 -- Presentation copy of silver.dim_store; one row per store.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_store
-  COMMENT 'Conformed store dimension for the store-sales star schema. domain=Store Sales'
+  COMMENT 'Conformed store dimension for the store-sales star schema. domain=Retail Analytics/Shared Dimensions'
 AS
 SELECT
   store_key,

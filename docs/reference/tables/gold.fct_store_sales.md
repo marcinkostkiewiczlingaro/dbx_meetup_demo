@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: fct_store_sales
+domain: Retail Analytics/Sales
 object_type: Store-Sales Line
 primary_key: ticket_number + item_key
 source_of_truth: ${source_schema}.store_sales

@@ -1,7 +1,7 @@
 -- Gold: conformed calendar dimension, ready for analytics and Genie.
 -- Presentation copy of silver.dim_date; one row per calendar day.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_date
-  COMMENT 'Conformed calendar dimension for the store-sales star schema. domain=Calendar'
+  COMMENT 'Conformed calendar dimension for the store-sales star schema. domain=Retail Analytics/Shared Dimensions'
 AS
 SELECT
   date_key,

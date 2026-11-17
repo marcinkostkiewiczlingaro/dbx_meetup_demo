@@ -6,7 +6,7 @@
 -- Business domain: Inventory (see docs/domains/README.md). The domain tag is carried in the
 -- COMMENT because applying Unity Catalog tags inside a Lakeflow pipeline is not reliable.
 CREATE OR REFRESH MATERIALIZED VIEW gold.fct_inventory
-  COMMENT 'Conformed inventory fact. Grain: item x warehouse x date snapshot. domain=Inventory'
+  COMMENT 'Conformed inventory fact. Grain: item x warehouse x date snapshot. domain=Retail Analytics/Shared Dimensions'
 AS
 SELECT
   f.item_key,

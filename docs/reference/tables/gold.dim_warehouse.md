@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_warehouse
+domain: Retail Analytics/Shared Dimensions
 component: components/inventory/gold.md
 partition_columns: []
 data_layer: Gold (dimension)
@@ -13,7 +14,7 @@ data_layer: Gold (dimension)
 |---|---|---|---|
 | [inventory](../../modules/inventory.md) | [gold](../../components/inventory/gold.md) | gold.dim_warehouse | ← [silver.dim_warehouse](../../components/inventory/silver.md) · → [gold.fct_inventory](./gold.fct_inventory.md) |
 
-> **C4 Level 4 — Table.** Conformed warehouse dimension, one row per warehouse. Business domain: Inventory (see [domains registry](../../domains/README.md)).
+> **C4 Level 4 — Table.** Conformed warehouse dimension, one row per warehouse. Business domain: Retail Analytics / Shared Dimensions (see [domains registry](../../domains/README.md)).
 
 ## Columns
 

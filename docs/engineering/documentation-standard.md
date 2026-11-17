@@ -28,7 +28,7 @@ sum of these fields across the L4 table files. The star-schema relationship over
 in the L3 gold component's C4 diagram; `## Links` carries the per-table detail.
 
 Supporting views (outside the C4 L-structure):
-- `docs/domains/` — the governance map from every gold table to one business domain.
+- `docs/domains/` — the governance map from every gold table to one business subdomain under the `Retail Analytics` domain (see "Domains and Subdomains").
 - `docs/engineering/` — this standard and any other code standards.
 
 ## File Anatomy
@@ -191,6 +191,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_customer
+domain: Retail Analytics/Shared Dimensions      # gold tables only — the subdomain tag_key from the domains registry
 object_type: Customer                           # optional — the business object this table is, when it is one
 primary_key: customer_key                       # optional — present with object_type
 source_of_truth: ${source_schema}.customer      # optional — the source the table is built from
@@ -199,6 +200,13 @@ partition_columns: []
 data_layer: Gold (dimension)
 ---
 ```
+
+**Every gold table carries its `domain`.** The `domain` field is the subdomain `tag_key`
+from the [domains registry](../domains/README.md) (for example `Retail Analytics/Sales`) —
+the one governance tag a table belongs to, spelled exactly as the registry, the on-table
+`COMMENT` marker, and the Databricks Domain spell it (see "Domains and Subdomains"). It is
+present on every gold table, object or not, and absent on bronze/silver tables. It is not an
+ontology field: a pure reference dimension has a `domain` but no `object_type`.
 
 **The ontology lives in these fields.** A gold table that is a business object (a dimension
 or a fact an analyst names) carries three extra things; a pure reference or staging table
@@ -340,7 +348,7 @@ mapping — has a governed home instead of hiding inside a SQL file.
 ## Adding a New Table Schema File
 
 1. Create `docs/reference/tables/{db}.{table}.md`.
-2. Add front-matter with `c4_level: 4`, `type: table_schema`, `database`, `table`, `component`, `partition_columns`, `data_layer`.
+2. Add front-matter with `c4_level: 4`, `type: table_schema`, `database`, `table`, `component`, `partition_columns`, `data_layer`. For a gold table, also add `domain` — the subdomain `tag_key` from the [domains registry](../domains/README.md).
 3. Add the inline table (module → component → table → pipeline neighbours).
 4. List all columns grouped by logical area (keys, business columns, measures). Add a `Source column` column when the source-to-gold lineage is known.
 5. If the table is a business object, add `object_type`, `primary_key`, and `source_of_truth` to the front-matter; name the object in bold in the blockquote; state primary key and source of truth as bullets; and add a `## Links` section with one row or bullet per foreign-key relationship and its business verb.
@@ -381,6 +389,44 @@ To add one, create or edit `docs/reference/tables/{db}.{table}.md` and follow st
 `primary_key`, and `source_of_truth`; map each column to its source column; and add the
 `## Links` section. Name the object and every property exactly as the Metric View, the Genie
 space, and the dashboard name them — one name for one thing.
+
+## Domains and Subdomains
+
+Domains are a two-level governance layer over the gold tables, independent of the pipeline
+that builds a table. They mirror the Databricks **Domain** objects governed in the workspace,
+so the documented tree and the deployed tree never drift — one name for one thing across code,
+Unity Catalog, and Genie.
+
+- **One domain, named subdomains.** The demo governs a single top domain, `Retail Analytics`,
+  with named subdomains beneath it (`Sales`, `Returns`, `Shared Dimensions`). A gold table is
+  tagged on a **subdomain**, never on the bare top domain.
+- **`tag_key` is the canonical name.** Each subdomain's `tag_key` is `Parent/Child` (for
+  example `Retail Analytics/Sales`) — the exact string the Databricks Domain applies as a Unity
+  Catalog tag. It is spelled identically in the registry, the on-table marker, and the
+  workspace.
+- **The registry is the single source of truth.** [`docs/domains/README.md`](../domains/README.md)
+  maps every gold table to exactly one subdomain and records each domain's `domain_id` and
+  `tag_key` from the Databricks Domains API. Do not record a table's subdomain anywhere else as
+  an authority; other mentions point back here.
+- **On-table marker.** Each gold table carries its subdomain in its `COMMENT` as a
+  `domain=<tag_key>` marker (for example `domain=Retail Analytics/Sales`), because applying UC
+  tags from inside a Lakeflow declarative pipeline is not reliable. The marker is the on-table
+  copy and must match the `tag_key` in the registry.
+
+## Adding or Changing a Domain
+
+The Databricks workspace is the source of the tree; the registry follows it, not the reverse.
+
+1. Confirm the governed tree with the Databricks Domains API
+   (`databricks api get /api/2.0/domains`): each domain's `tag_key`, `domain_id`, and
+   `parent_domain_id`.
+2. Update the domain tree table and the registry in [`docs/domains/README.md`](../domains/README.md)
+   so every gold table maps to exactly one subdomain `tag_key`.
+3. For any table whose subdomain changed, update three copies to the new `tag_key`: the
+   `domain` front-matter field of its L4 table file, its `COMMENT` `domain=<tag_key>` marker in
+   the pipeline code, and any `Business domain:` mention in its L4 table file and L3 component
+   file.
+4. Keep the names identical everywhere — registry, marker, L4/L3 prose, and the workspace Domain.
 
 ## AI Navigation Pattern
 

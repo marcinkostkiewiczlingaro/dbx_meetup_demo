@@ -2,7 +2,7 @@
 -- Presentation copy of silver.dim_customer; one row per customer.
 -- email_address stops at silver (governance); only business-safe columns reach gold.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_customer
-  COMMENT 'Conformed customer dimension for the store-sales star schema. domain=Customer'
+  COMMENT 'Conformed customer dimension for the store-sales star schema. domain=Retail Analytics/Shared Dimensions'
 AS
 SELECT
   customer_key,

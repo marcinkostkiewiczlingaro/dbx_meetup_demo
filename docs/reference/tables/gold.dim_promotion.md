@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_promotion
+domain: Retail Analytics/Shared Dimensions
 object_type: Promotion
 primary_key: promo_key
 source_of_truth: ${source_schema}.promotion

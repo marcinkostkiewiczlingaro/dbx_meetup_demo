@@ -3,7 +3,7 @@
 -- Business domain: Inventory (see docs/domains/README.md). The domain tag is carried in the
 -- COMMENT because applying Unity Catalog tags inside a Lakeflow pipeline is not reliable.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_warehouse
-  COMMENT 'Conformed warehouse dimension for the inventory star schema. domain=Inventory'
+  COMMENT 'Conformed warehouse dimension for the inventory star schema. domain=Retail Analytics/Shared Dimensions'
 AS
 SELECT
   warehouse_key,

@@ -3,7 +3,7 @@
 -- Business domain: Customer (see docs/domains/README.md). The domain tag is carried in the
 -- COMMENT because applying Unity Catalog tags inside a Lakeflow pipeline is not reliable.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_household_demographics
-  COMMENT 'Conformed household-demographics dimension for the star schema. domain=Customer'
+  COMMENT 'Conformed household-demographics dimension for the star schema. domain=Retail Analytics/Shared Dimensions'
 AS
 SELECT
   household_demographics_key,

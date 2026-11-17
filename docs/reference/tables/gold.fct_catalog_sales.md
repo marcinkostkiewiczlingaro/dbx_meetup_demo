@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: fct_catalog_sales
+domain: Retail Analytics/Sales
 component: components/catalog_sales/gold.md
 partition_columns: []
 data_layer: Gold (star schema fact)

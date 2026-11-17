@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_web_site
+domain: Retail Analytics/Shared Dimensions
 component: components/web_sales/gold.md
 partition_columns: []
 data_layer: Gold (dimension)

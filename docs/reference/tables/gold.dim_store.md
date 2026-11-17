@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_store
+domain: Retail Analytics/Shared Dimensions
 object_type: Store
 primary_key: store_key
 source_of_truth: ${source_schema}.store

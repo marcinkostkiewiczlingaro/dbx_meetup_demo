@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_customer_demographics
+domain: Retail Analytics/Shared Dimensions
 component: components/core/gold.md
 partition_columns: []
 data_layer: Gold (dimension)
@@ -13,7 +14,7 @@ data_layer: Gold (dimension)
 |---|---|---|---|
 | [core](../../modules/core.md) | [gold](../../components/core/gold.md) | gold.dim_customer_demographics | ← [silver.dim_customer_demographics](../../components/core/silver.md) |
 
-> **C4 Level 4 — Table.** Conformed customer-demographics dimension, one row per demographic profile. Business domain: Customer (see [domains registry](../../domains/README.md)).
+> **C4 Level 4 — Table.** Conformed customer-demographics dimension, one row per demographic profile. Business domain: Retail Analytics / Shared Dimensions (see [domains registry](../../domains/README.md)).
 
 ## Columns
 

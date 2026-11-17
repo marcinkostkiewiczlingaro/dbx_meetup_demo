@@ -4,7 +4,7 @@
 -- is carried in the COMMENT because applying Unity Catalog tags inside a Lakeflow pipeline is
 -- not reliable.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_reason
-  COMMENT 'Conformed return-reason dimension for the returns facts. domain=Shipping & Returns Reference'
+  COMMENT 'Conformed return-reason dimension for the returns facts. domain=Retail Analytics/Shared Dimensions'
 AS
 SELECT
   reason_key,

@@ -1,7 +1,7 @@
 -- Gold: conformed promotion dimension, ready for analytics and Genie.
 -- Presentation copy of silver.dim_promotion; one row per promotion.
 CREATE OR REFRESH MATERIALIZED VIEW gold.dim_promotion
-  COMMENT 'Conformed promotion dimension for the store-sales star schema. domain=Marketing'
+  COMMENT 'Conformed promotion dimension for the store-sales star schema. domain=Retail Analytics/Shared Dimensions'
 AS
 SELECT
   promo_key,

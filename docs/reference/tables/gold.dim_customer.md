@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_customer
+domain: Retail Analytics/Shared Dimensions
 object_type: Customer
 primary_key: customer_key
 source_of_truth: ${source_schema}.customer + ${source_schema}.customer_address

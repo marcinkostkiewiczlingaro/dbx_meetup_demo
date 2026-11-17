@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: dim_income_band
+domain: Retail Analytics/Shared Dimensions
 component: components/core/gold.md
 partition_columns: []
 data_layer: Gold (dimension)
@@ -13,7 +14,7 @@ data_layer: Gold (dimension)
 |---|---|---|---|
 | [core](../../modules/core.md) | [gold](../../components/core/gold.md) | gold.dim_income_band | ← [silver.dim_income_band](../../components/core/silver.md) |
 
-> **C4 Level 4 — Table.** Conformed income-band dimension, one row per income band. Business domain: Customer (see [domains registry](../../domains/README.md)).
+> **C4 Level 4 — Table.** Conformed income-band dimension, one row per income band. Business domain: Retail Analytics / Shared Dimensions (see [domains registry](../../domains/README.md)).
 
 ## Columns
 

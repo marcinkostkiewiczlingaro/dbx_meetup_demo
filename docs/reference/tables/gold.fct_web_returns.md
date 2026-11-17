@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: fct_web_returns
+domain: Retail Analytics/Returns
 component: components/web_sales/gold.md
 partition_columns: []
 data_layer: Gold (star schema fact)

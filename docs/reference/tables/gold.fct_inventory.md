@@ -3,6 +3,7 @@ c4_level: 4
 type: table_schema
 database: gold
 table: fct_inventory
+domain: Retail Analytics/Shared Dimensions
 component: components/inventory/gold.md
 partition_columns: []
 data_layer: Gold (fact)
@@ -13,7 +14,7 @@ data_layer: Gold (fact)
 |---|---|---|---|
 | [inventory](../../modules/inventory.md) | [gold](../../components/inventory/gold.md) | gold.fct_inventory | ← [silver.fct_inventory](../../components/inventory/silver.md) · [gold.dim_item](./gold.dim_item.md) · [gold.dim_warehouse](./gold.dim_warehouse.md) · [gold.dim_date](./gold.dim_date.md) |
 
-> **C4 Level 4 — Table.** Conformed inventory fact, a periodic stock snapshot. Grain: one item × warehouse × date snapshot. Business domain: Inventory (see [domains registry](../../domains/README.md)).
+> **C4 Level 4 — Table.** Conformed inventory fact, a periodic stock snapshot. Grain: one item × warehouse × date snapshot. Business domain: Retail Analytics / Shared Dimensions (see [domains registry](../../domains/README.md)).
 
 ## Columns
 
