@@ -109,7 +109,7 @@ flowchart LR
     TBL -. governed by .-> DOM
   end
 
-  subgraph DBX["⚡ &nbsp;Databricks &mdash; governed runtime &middot; deployed by the Asset Bundle"]
+  subgraph DBX["⚡ &nbsp;Databricks &mdash; governed runtime &middot; deployed by bundle, SQL, and API"]
     direction TB
     GOLD["🟡 Gold star schema<br/>fct_* / dim_* in Unity Catalog<br/><i>COMMENT domain= marker</i>"]
     MVIEW["📐 Metric Views (UC objects)<br/>carry real UC domain tag"]
@@ -120,10 +120,10 @@ flowchart LR
   ONT(["🧠 <b>Ontology &mdash; shared semantic foundation</b><br/>object types + links &middot; one name for one thing"])
   GENIE(["💬 <b>Databricks Genie</b><br/>trusted, explainable answers"])
 
-  TBL ==>|pipeline builds tables| GOLD
-  MV ==>|create Metric View from YAML| MVIEW
-  DOM ==>|governs| DOMAIN
-  PG ==>|publish| PAGES
+  TBL ==>|Asset Bundle · Lakeflow pipeline| GOLD
+  MV ==>|SQL · CREATE VIEW WITH METRICS| MVIEW
+  DOM ==>|Domains API| DOMAIN
+  PG ==>|Knowledge Pages API| PAGES
   DOMAIN -. applies UC tag .-> MVIEW
 
   GOLD ==> ONT
@@ -147,9 +147,10 @@ flowchart LR
 - **Left (Part 1, engineers):** the C4 docs tree. L1 context → L2 modules → L3 components →
   L4 reference files. The `domains/` registry is a cross-cutting governance layer: it maps
   each L4 gold table to one business subdomain, not the L3 component.
-- **The `==>` arrows (deploy):** the Asset Bundle builds the gold tables, creates the Metric
-  Views from their YAML, the Domains API governs the subdomain tree, and the pages publish
-  as Genie Knowledge Pages.
+- **The `==>` arrows (deploy) show how each object reaches the workspace:** the Asset Bundle
+  (Lakeflow pipeline) builds the gold tables; the Metric Views are created with SQL
+  (`CREATE VIEW ... WITH METRICS`); the Domains and the Genie Knowledge Pages are applied
+  through the Databricks REST APIs.
 - **Right into the ontology (Part 2, analysts):** gold objects, Metric Views, domain tags,
   and pages converge into the shared semantic foundation Genie reads — the talk's
   through-line.
