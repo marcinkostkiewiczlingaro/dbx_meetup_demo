@@ -4,7 +4,7 @@ type: page
 page: Net Paid
 page_id: d63a9719-63d2-4d77-941f-ea0adbb6a2a2
 domain: Retail Analytics
-defines: `Net Paid` measure
+defines: "`Net Paid` measure"
 metric_views: [store_sales_metrics, web_sales_metrics, catalog_sales_metrics]
 synonyms: [paid amount]
 state: PUBLISHED

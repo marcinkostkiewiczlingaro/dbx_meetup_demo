@@ -4,7 +4,7 @@ type: page
 page: Item Count
 page_id: be5dbf9d-901e-44e7-adbe-5c1debdc3f4f
 domain: Retail Analytics
-defines: `Item Count` measure
+defines: "`Item Count` measure"
 metric_views: [item_metrics]
 synonyms: [number of items, product count]
 state: PUBLISHED

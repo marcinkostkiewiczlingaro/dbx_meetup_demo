@@ -4,7 +4,7 @@ type: page
 page: Inventory Quantity
 page_id: 92c8d09f-bcd1-4a79-a396-1bcf67bc59f1
 domain: Retail Analytics
-defines: `Inventory Quantity` measure
+defines: "`Inventory Quantity` measure"
 metric_views: [inventory_metrics]
 synonyms: [on-hand quantity, stock on hand]
 state: PUBLISHED

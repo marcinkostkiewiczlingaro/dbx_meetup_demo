@@ -4,7 +4,7 @@ type: page
 page: Net Profit
 page_id: e501f7c1-327e-4532-96ca-d06ec978d63f
 domain: Retail Analytics
-defines: `Net Profit` measure
+defines: "`Net Profit` measure"
 metric_views: [store_sales_metrics, web_sales_metrics, catalog_sales_metrics]
 synonyms: [profit, sales margin]
 state: PUBLISHED

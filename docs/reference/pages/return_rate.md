@@ -4,7 +4,7 @@ type: page
 page: Return Rate
 page_id: 4b8526c1-bb3c-4b2b-8ab5-ee21036d8e91
 domain: Retail Analytics
-defines: derived ratio (Returned Quantity ÷ Sales Quantity, or Return Amount ÷ Gross Sales)
+defines: "derived ratio (Returned Quantity ÷ Sales Quantity, or Return Amount ÷ Gross Sales)"
 metric_views: [store_sales_metrics, web_sales_metrics, catalog_sales_metrics, store_returns_metrics, web_returns_metrics, catalog_returns_metrics]
 synonyms: [return percentage, return ratio, returns rate]
 state: PUBLISHED

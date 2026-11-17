@@ -4,7 +4,7 @@ type: page
 page: Return Fee
 page_id: e1de9638-7d08-471c-b717-b4f2d85904d7
 domain: Retail Analytics
-defines: `Fee` measure
+defines: "`Fee` measure"
 metric_views: [store_returns_metrics, web_returns_metrics, catalog_returns_metrics]
 synonyms: [restocking fee, return fees]
 state: PUBLISHED

@@ -4,7 +4,7 @@ type: page
 page: Return Amount
 page_id: 3a54b353-7853-4f76-bfa5-59aee1e5e407
 domain: Retail Analytics
-defines: `Return Amount` measure
+defines: "`Return Amount` measure"
 metric_views: [store_returns_metrics, web_returns_metrics, catalog_returns_metrics]
 synonyms: [refund value, returned value]
 state: PUBLISHED

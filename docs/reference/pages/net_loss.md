@@ -4,7 +4,7 @@ type: page
 page: Net Loss
 page_id: 08074fcc-ab22-4426-9a55-98d237c4dbae
 domain: Retail Analytics
-defines: `Net Loss` measure
+defines: "`Net Loss` measure"
 metric_views: [store_returns_metrics, web_returns_metrics, catalog_returns_metrics]
 synonyms: [loss on returns, return loss]
 state: PUBLISHED

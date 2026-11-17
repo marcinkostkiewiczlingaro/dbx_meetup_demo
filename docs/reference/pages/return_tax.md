@@ -4,7 +4,7 @@ type: page
 page: Return Tax
 page_id: a233d8e2-a8b0-4ad7-a38a-fb4a61b18127
 domain: Retail Analytics
-defines: `Return Tax` measure
+defines: "`Return Tax` measure"
 metric_views: [store_returns_metrics, web_returns_metrics, catalog_returns_metrics]
 synonyms: [tax on returns]
 state: PUBLISHED

@@ -4,7 +4,7 @@ type: page
 page: Gross Sales
 page_id: 690c0db0-eada-4ff3-b06b-397eb45de295
 domain: Retail Analytics
-defines: `Gross Sales` measure
+defines: "`Gross Sales` measure"
 metric_views: [store_sales_metrics, web_sales_metrics, catalog_sales_metrics]
 synonyms: [gross revenue, top-line sales]
 state: PUBLISHED

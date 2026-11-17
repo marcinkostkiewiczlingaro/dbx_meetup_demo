@@ -4,7 +4,7 @@ type: page
 page: Customer Count
 page_id: 91982ef6-c9ae-4c19-a081-d4efc90a1b87
 domain: Retail Analytics
-defines: `Customer Count` measure
+defines: "`Customer Count` measure"
 metric_views: [customer_metrics]
 synonyms: [customer base size, number of customers]
 state: PUBLISHED

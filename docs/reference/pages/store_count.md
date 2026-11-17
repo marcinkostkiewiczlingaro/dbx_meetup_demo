@@ -4,7 +4,7 @@ type: page
 page: Store Count
 page_id: 5121027f-6eb4-4110-8886-c97dae84dfe1
 domain: Retail Analytics
-defines: `Store Count` measure
+defines: "`Store Count` measure"
 metric_views: [store_metrics]
 synonyms: [number of stores, store footprint]
 state: PUBLISHED

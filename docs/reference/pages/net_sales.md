@@ -4,7 +4,7 @@ type: page
 page: Net Sales
 page_id: c1eea050-a10d-405e-9540-39ca03e90596
 domain: Retail Analytics
-defines: `Extended Sales Price` measure
+defines: "`Extended Sales Price` measure"
 metric_views: [store_sales_metrics, web_sales_metrics, catalog_sales_metrics]
 synonyms: [extended sales price, net revenue]
 state: PUBLISHED

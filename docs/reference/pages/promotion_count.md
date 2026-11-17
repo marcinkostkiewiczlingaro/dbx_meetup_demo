@@ -4,7 +4,7 @@ type: page
 page: Promotion Count
 page_id: 43aabdd8-476d-4476-92c1-41ce0e136014
 domain: Retail Analytics
-defines: `Promotion Count` measure
+defines: "`Promotion Count` measure"
 metric_views: [promotion_metrics]
 synonyms: [number of promotions]
 state: PUBLISHED

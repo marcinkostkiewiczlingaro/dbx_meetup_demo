@@ -4,7 +4,7 @@ type: page
 page: Return Date
 page_id: 69e1de8c-f621-4c25-88d7-8693cada104d
 domain: Retail Analytics
-defines: `Return Date` dimension
+defines: "`Return Date` dimension"
 metric_views: [store_returns_metrics, web_returns_metrics, catalog_returns_metrics]
 synonyms: [returned date]
 state: PUBLISHED

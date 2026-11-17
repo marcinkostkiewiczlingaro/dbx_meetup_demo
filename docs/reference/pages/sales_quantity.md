@@ -4,7 +4,7 @@ type: page
 page: Sales Quantity
 page_id: a0a02ae2-00e1-4e67-8114-dc0ec295a560
 domain: Retail Analytics
-defines: `Sales Quantity` measure
+defines: "`Sales Quantity` measure"
 metric_views: [store_sales_metrics, web_sales_metrics, catalog_sales_metrics]
 synonyms: [quantity sold, units sold]
 state: PUBLISHED

@@ -4,7 +4,7 @@ type: page
 page: Returned Quantity
 page_id: 480f4db3-d4bb-4a63-a3db-1176bfdf5131
 domain: Retail Analytics
-defines: `Returned Quantity` measure (named `Return Quantity` in the web and catalog views)
+defines: "`Returned Quantity` measure (named `Return Quantity` in the web and catalog views)"
 metric_views: [store_returns_metrics, web_returns_metrics, catalog_returns_metrics]
 synonyms: [return quantity, units returned]
 state: PUBLISHED
