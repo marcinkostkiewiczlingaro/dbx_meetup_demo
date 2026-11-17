@@ -13,6 +13,18 @@ type is a gold table; a link is a foreign key in the star schema; the crow's-foo
 the cardinality, and an open circle shows an optional link. Each object's full properties,
 source-column lineage, and links live in its L4 table file below.
 
+The model has seven fact stars, so the ontology is drawn as one **named view per fact**, not a
+single crowded diagram. One view is fully modelled today — **Store Sales** below. The other
+facts (Catalog Sales, Web Sales, the three Returns, and Inventory) are gold tables but are not
+yet business objects: they carry no `object_type` or `## Links` yet, so they have no view. Each
+gets its own named view when it is modelled. The views share the conformed dimensions
+(Customer, Item, Date, Promotion), which is the point of the star schema.
+
+### Store Sales
+
+The store sales-channel star: the `Store-Sales Line` fact and the conformed dimensions it
+links.
+
 ```mermaid
 erDiagram
   CUSTOMER {

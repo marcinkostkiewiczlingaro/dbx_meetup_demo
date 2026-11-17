@@ -141,10 +141,13 @@ Rules:
 - **No `click` directives** — the C4 diagram types reject them and GitHub strips them. Pair
   a diagram that needs navigation with a plain markdown-link table instead.
 
-**Ontology object graph (the `erDiagram` exception).** The one Palantir-style object graph
+**Ontology object graph (the `erDiagram` exception).** The Palantir-style object graph
 lives in `docs/reference/tables/README.md`, at the head of the gold-table (object) index — the
 object types are those gold tables, so the graph sits with them, not in the build-view
-`docs/modules/README.md`. It is the semantic counterpart to the `C4Container` build diagram:
+`docs/modules/README.md`. The model has several fact stars, so the graph is drawn as one
+**named view per fact** (a `### <Fact>` subheading over each `erDiagram`), not one crowded
+diagram; a fact gets a view only once it is modelled as an object (`object_type` and
+`## Links`). Each view is the semantic counterpart to the `C4Container` build diagram:
 object types as boxes with their key properties,
 and links as crow's-foot edges that carry cardinality. One object type per gold business
 object; one edge per foreign key, labelled with the link's business verb; an open circle
