@@ -33,15 +33,24 @@ Inventory is the one non-sales, non-returns fact in TPC-DS. The workspace groups
 shared dimensions (the `Shared Dimensions` subtitle names it), so it is tagged there rather
 than in a subdomain of its own.
 
-## How the subdomain is carried on the table
+## How the subdomain is carried
 
-Each gold table carries its subdomain in its table `COMMENT` as a `domain=<tag_key>` marker —
-the exact Databricks `tag_key`, for example `domain=Retail Analytics/Sales`. The marker is
-written in the `COMMENT` rather than as a Unity Catalog tag because applying UC tags from
-inside a Lakeflow declarative pipeline is not reliable — a pipeline defines a table with
-`CREATE OR REFRESH ... COMMENT`, and `ALTER TABLE ... SET TAGS` is not part of that
-definition. This registry stays the authoritative source; the `COMMENT` marker is the
-on-table copy and must match the `tag_key` named here.
+**On a gold table — a `COMMENT` marker.** Each gold table carries its subdomain in its table
+`COMMENT` as a `domain=<tag_key>` marker — the exact Databricks `tag_key`, for example
+`domain=Retail Analytics/Sales`. The marker is written in the `COMMENT` rather than as a Unity
+Catalog tag because applying UC tags from inside a Lakeflow declarative pipeline is not
+reliable — a pipeline defines a table with `CREATE OR REFRESH ... COMMENT`, and
+`ALTER TABLE ... SET TAGS` is not part of that definition.
+
+**On a Metric View — a real Unity Catalog tag.** A Metric View is a Unity Catalog object, not
+a pipeline table, so the Genie Domain applies its `tag_key` directly as a UC tag on the view
+(the tag name is the `tag_key`, the value is empty). This is the connection you see in the
+workspace: a Metric View belongs to the subdomain whose tag it carries, which is the
+subdomain of the gold fact or dimension it reads. Read it back with
+`SELECT table_name, tag_name FROM workspace.information_schema.table_tags WHERE schema_name='gold' AND table_name LIKE '%_metrics'`.
+
+This registry stays the authoritative source; the on-object copy (the table `COMMENT` marker
+or the Metric View UC tag) must match the `tag_key` named here.
 
 ## Registry
 
@@ -73,3 +82,23 @@ written in each table's `COMMENT` marker.
 | `gold.dim_ship_mode` | catalog_sales | `Retail Analytics/Shared Dimensions` |
 | `gold.dim_reason` | core | `Retail Analytics/Shared Dimensions` |
 | `gold.fct_inventory` | inventory | `Retail Analytics/Shared Dimensions` |
+
+## Metric Views
+
+Each Metric View belongs to the subdomain of the gold fact or dimension it reads, and carries
+that `tag_key` as a Unity Catalog tag on the view object. The `tag_key` here is the exact tag
+name read from `workspace.information_schema.table_tags`.
+
+| Metric View | Reads | Subdomain `tag_key` |
+|---|---|---|
+| `workspace.gold.store_sales_metrics` | `gold.fct_store_sales` | `Retail Analytics/Sales` |
+| `workspace.gold.catalog_sales_metrics` | `gold.fct_catalog_sales` | `Retail Analytics/Sales` |
+| `workspace.gold.web_sales_metrics` | `gold.fct_web_sales` | `Retail Analytics/Sales` |
+| `workspace.gold.store_returns_metrics` | `gold.fct_store_returns` | `Retail Analytics/Returns` |
+| `workspace.gold.catalog_returns_metrics` | `gold.fct_catalog_returns` | `Retail Analytics/Returns` |
+| `workspace.gold.web_returns_metrics` | `gold.fct_web_returns` | `Retail Analytics/Returns` |
+| `workspace.gold.customer_metrics` | `gold.dim_customer` | `Retail Analytics/Shared Dimensions` |
+| `workspace.gold.item_metrics` | `gold.dim_item` | `Retail Analytics/Shared Dimensions` |
+| `workspace.gold.promotion_metrics` | `gold.dim_promotion` | `Retail Analytics/Shared Dimensions` |
+| `workspace.gold.store_metrics` | `gold.dim_store` | `Retail Analytics/Shared Dimensions` |
+| `workspace.gold.inventory_metrics` | `gold.fct_inventory` | `Retail Analytics/Shared Dimensions` |

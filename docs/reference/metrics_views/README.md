@@ -13,16 +13,16 @@ Every view reads the gold `fct_*`/`dim_*` tables directly and joins the dimensio
 surrogate keys with explicit `on:` expressions. No pre-joined copy of the star schema exists
 for a view to drift from.
 
-| Metric View | Source table | Created as |
-|---|---|---|
-| [store_sales_metrics](./store_sales_metrics.md) | [gold.fct_store_sales](../tables/gold.fct_store_sales.md) | `workspace.gold.store_sales_metrics` |
-| [catalog_sales_metrics](./catalog_sales_metrics.md) | [gold.fct_catalog_sales](../tables/gold.fct_catalog_sales.md) | `workspace.gold.catalog_sales_metrics` |
-| [web_sales_metrics](./web_sales_metrics.md) | [gold.fct_web_sales](../tables/gold.fct_web_sales.md) | `workspace.gold.web_sales_metrics` |
-| [store_returns_metrics](./store_returns_metrics.md) | [gold.fct_store_returns](../tables/gold.fct_store_returns.md) | `workspace.gold.store_returns_metrics` |
-| [catalog_returns_metrics](./catalog_returns_metrics.md) | [gold.fct_catalog_returns](../tables/gold.fct_catalog_returns.md) | `workspace.gold.catalog_returns_metrics` |
-| [web_returns_metrics](./web_returns_metrics.md) | [gold.fct_web_returns](../tables/gold.fct_web_returns.md) | `workspace.gold.web_returns_metrics` |
-| [inventory_metrics](./inventory_metrics.md) | [gold.fct_inventory](../tables/gold.fct_inventory.md) | `workspace.gold.inventory_metrics` |
-| [item_metrics](./item_metrics.md) | [gold.dim_item](../tables/gold.dim_item.md) | `workspace.gold.item_metrics` |
-| [promotion_metrics](./promotion_metrics.md) | [gold.dim_promotion](../tables/gold.dim_promotion.md) | `workspace.gold.promotion_metrics` |
-| [store_metrics](./store_metrics.md) | [gold.dim_store](../tables/gold.dim_store.md) | `workspace.gold.store_metrics` |
-| [customer_metrics](./customer_metrics.md) | [gold.dim_customer](../tables/gold.dim_customer.md) | `workspace.gold.customer_metrics` |
+| Metric View | Source table | Created as | Domain |
+|---|---|---|---|
+| [store_sales_metrics](./store_sales_metrics.md) | [gold.fct_store_sales](../tables/gold.fct_store_sales.md) | `workspace.gold.store_sales_metrics` | `Retail Analytics/Sales` |
+| [catalog_sales_metrics](./catalog_sales_metrics.md) | [gold.fct_catalog_sales](../tables/gold.fct_catalog_sales.md) | `workspace.gold.catalog_sales_metrics` | `Retail Analytics/Sales` |
+| [web_sales_metrics](./web_sales_metrics.md) | [gold.fct_web_sales](../tables/gold.fct_web_sales.md) | `workspace.gold.web_sales_metrics` | `Retail Analytics/Sales` |
+| [store_returns_metrics](./store_returns_metrics.md) | [gold.fct_store_returns](../tables/gold.fct_store_returns.md) | `workspace.gold.store_returns_metrics` | `Retail Analytics/Returns` |
+| [catalog_returns_metrics](./catalog_returns_metrics.md) | [gold.fct_catalog_returns](../tables/gold.fct_catalog_returns.md) | `workspace.gold.catalog_returns_metrics` | `Retail Analytics/Returns` |
+| [web_returns_metrics](./web_returns_metrics.md) | [gold.fct_web_returns](../tables/gold.fct_web_returns.md) | `workspace.gold.web_returns_metrics` | `Retail Analytics/Returns` |
+| [inventory_metrics](./inventory_metrics.md) | [gold.fct_inventory](../tables/gold.fct_inventory.md) | `workspace.gold.inventory_metrics` | `Retail Analytics/Shared Dimensions` |
+| [item_metrics](./item_metrics.md) | [gold.dim_item](../tables/gold.dim_item.md) | `workspace.gold.item_metrics` | `Retail Analytics/Shared Dimensions` |
+| [promotion_metrics](./promotion_metrics.md) | [gold.dim_promotion](../tables/gold.dim_promotion.md) | `workspace.gold.promotion_metrics` | `Retail Analytics/Shared Dimensions` |
+| [store_metrics](./store_metrics.md) | [gold.dim_store](../tables/gold.dim_store.md) | `workspace.gold.store_metrics` | `Retail Analytics/Shared Dimensions` |
+| [customer_metrics](./customer_metrics.md) | [gold.dim_customer](../tables/gold.dim_customer.md) | `workspace.gold.customer_metrics` | `Retail Analytics/Shared Dimensions` |

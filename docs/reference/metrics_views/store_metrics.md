@@ -4,6 +4,7 @@ type: metric_view
 metric_view: store_metrics
 source: workspace.gold.dim_store
 created_as: workspace.gold.store_metrics
+domain: Retail Analytics/Shared Dimensions
 component: components/store_sales/metrics.md
 ---
 # Metric View — store_metrics
@@ -12,7 +13,7 @@ component: components/store_sales/metrics.md
 |---|---|---|---|
 | [store_sales](../../modules/store_sales.md) | [metrics](../../components/store_sales/metrics.md) | `workspace.gold.store_metrics` | [gold.dim_store](../tables/gold.dim_store.md) |
 
-> **C4 Level 4 — Metric View.** The governed definition of the store metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
+> **C4 Level 4 — Metric View.** The governed definition of the store metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML. Domain: **Retail Analytics / Shared Dimensions** (see [domains registry](../../domains/README.md)).
 
 The Metric View reads the `gold.dim_store` dimension directly and needs no joins. It counts
 stores and exposes their location attributes for grouping.

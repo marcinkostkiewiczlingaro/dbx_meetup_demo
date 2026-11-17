@@ -4,6 +4,7 @@ type: metric_view
 metric_view: web_sales_metrics
 source: workspace.gold.fct_web_sales
 created_as: workspace.gold.web_sales_metrics
+domain: Retail Analytics/Sales
 component: components/web_sales/metrics.md
 ---
 # Metric View — web_sales_metrics
@@ -12,7 +13,7 @@ component: components/web_sales/metrics.md
 |---|---|---|---|
 | [web_sales](../../modules/web_sales.md) | [metrics](../../components/web_sales/metrics.md) | `workspace.gold.web_sales_metrics` | [gold.fct_web_sales](../tables/gold.fct_web_sales.md) |
 
-> **C4 Level 4 — Metric View.** The governed definition of the web-sales metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
+> **C4 Level 4 — Metric View.** The governed definition of the web-sales metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML. Domain: **Retail Analytics / Sales** (see [domains registry](../../domains/README.md)).
 
 The Metric View reads the `gold.fct_web_sales` fact and joins the gold dimensions on their
 surrogate keys — `dim_customer`, `dim_item`, `dim_promotion`, `dim_web_site`, `dim_web_page`,

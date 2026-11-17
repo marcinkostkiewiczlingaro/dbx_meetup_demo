@@ -29,7 +29,7 @@ sum of these fields across the L4 table files. The star-schema relationship over
 in the L3 gold component's C4 diagram; `## Links` carries the per-table detail.
 
 Supporting views (outside the C4 L-structure):
-- `docs/domains/` — the governance map from every gold table to one business subdomain under the `Retail Analytics` domain (see "Domains and Subdomains").
+- `docs/domains/` — the governance map from every gold table and every Metric View to one business subdomain under the `Retail Analytics` domain (see "Domains and Subdomains").
 - `docs/engineering/` — this standard and any other code standards.
 
 ## File Anatomy
@@ -235,12 +235,21 @@ type: metric_view
 metric_view: store_sales_metrics            # Metric View object name, without catalog/schema
 source: workspace.gold.fct_store_sales      # fact/dimension the Metric View reads; it joins the other dims in its ## Definition
 created_as: workspace.gold.store_sales_metrics # fully-qualified Unity Catalog object it is created as
+domain: Retail Analytics/Sales              # the subdomain tag_key the Genie Domain tags the view with
 component: components/store_sales/metrics.md  # L3 component that owns this metric definition
 ---
 ```
 
 A Metric View is a Unity Catalog object created from a YAML `WITH METRICS` definition — not
-a pipeline table, so it gets its own `type`. **The reference file is the single source of
+a pipeline table, so it gets its own `type`.
+
+**A Metric View carries its `domain`.** The `domain` field is the subdomain `tag_key` from the
+[domains registry](../domains/README.md). Because a Metric View is a Unity Catalog object, the
+Genie Domain applies this `tag_key` directly as a real UC tag on the view (tag name is the
+`tag_key`, value empty) — unlike a gold table, which carries the marker in its `COMMENT`. A
+view's subdomain is the subdomain of the gold fact or dimension it reads. The blockquote names
+it in bold, and the index table ([reference/metrics_views/README.md](../reference/metrics_views/README.md))
+carries a `Domain` column. **The reference file is the single source of
 truth.** It documents every measure and dimension in business terms and embeds the complete,
 authoritative metric-view YAML in a `## Definition` fenced block. The backend deploy reads
 that block to run `CREATE OR REPLACE VIEW {created_as} WITH METRICS LANGUAGE YAML AS $$ … $$`,
@@ -405,8 +414,9 @@ the authoritative definition the backend creates it from. There is no separate Y
 5. Add a `## Measures` table (Measure | Expression | Description) and a `## Dimensions` table (Dimension | Expression | Description) — one business name per row, spelled exactly as the backing table's `object_type` and columns spell it.
 6. Add a `## Definition` section with the complete metric-view YAML in a fenced ```yaml block — the one authoritative copy; never keep a second copy elsewhere.
 7. State the create command and that the backend extracts the `## Definition` block to run it.
-8. Register the file in the owning L3 semantic component and update [`reference/metrics_views/README.md`](../reference/metrics_views/README.md).
-9. If Genie knowledge pages expose this view's measures or dimensions, add a `## Pages` section that links each page under [`reference/pages/`](../reference/pages/README.md).
+8. Add front-matter `domain` — the subdomain `tag_key` of the gold fact or dimension the view reads; name it in bold in the blockquote; and add the view to the `Domain` column of [`reference/metrics_views/README.md`](../reference/metrics_views/README.md) and to the Metric Views section of the [domains registry](../domains/README.md).
+9. Register the file in the owning L3 semantic component and update [`reference/metrics_views/README.md`](../reference/metrics_views/README.md).
+10. If Genie knowledge pages expose this view's measures or dimensions, add a `## Pages` section that links each page under [`reference/pages/`](../reference/pages/README.md).
 
 ## Adding a New Algorithm Reference File
 
@@ -488,7 +498,11 @@ The Databricks workspace is the source of the tree; the registry follows it, not
    `domain` front-matter field of its L4 table file, its `COMMENT` `domain=<tag_key>` marker in
    the pipeline code, and any `Business domain:` mention in its L4 table file and L3 component
    file.
-4. Keep the names identical everywhere — registry, marker, L4/L3 prose, and the workspace Domain.
+4. For any Metric View whose subdomain changed, update the `domain` front-matter field and
+   blockquote of its L4 file, the `Domain` column of the metric-views index, the Metric Views
+   section of the registry, and the UC tag on the view object in the workspace.
+5. Keep the names identical everywhere — registry, table marker, Metric View UC tag, L4/L3
+   prose, and the workspace Domain.
 
 ## AI Navigation Pattern
 

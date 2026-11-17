@@ -4,6 +4,7 @@ type: metric_view
 metric_view: inventory_metrics
 source: workspace.gold.fct_inventory
 created_as: workspace.gold.inventory_metrics
+domain: Retail Analytics/Shared Dimensions
 component: components/inventory/metrics.md
 ---
 # Metric View — inventory_metrics
@@ -12,7 +13,7 @@ component: components/inventory/metrics.md
 |---|---|---|---|
 | [inventory](../../modules/inventory.md) | [metrics](../../components/inventory/metrics.md) | `workspace.gold.inventory_metrics` | [gold.fct_inventory](../tables/gold.fct_inventory.md) |
 
-> **C4 Level 4 — Metric View.** The governed definition of the inventory metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
+> **C4 Level 4 — Metric View.** The governed definition of the inventory metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML. Domain: **Retail Analytics / Shared Dimensions** (see [domains registry](../../domains/README.md)).
 
 The Metric View reads the `gold.fct_inventory` stock-snapshot fact and joins `dim_item`,
 `dim_warehouse`, and `dim_date` on their surrogate keys. Each row is one item × warehouse ×

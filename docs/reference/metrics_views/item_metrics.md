@@ -4,6 +4,7 @@ type: metric_view
 metric_view: item_metrics
 source: workspace.gold.dim_item
 created_as: workspace.gold.item_metrics
+domain: Retail Analytics/Shared Dimensions
 component: components/core/metrics.md
 ---
 # Metric View — item_metrics
@@ -12,7 +13,7 @@ component: components/core/metrics.md
 |---|---|---|---|
 | [core](../../modules/core.md) | [metrics](../../components/core/metrics.md) | `workspace.gold.item_metrics` | [gold.dim_item](../tables/gold.dim_item.md) |
 
-> **C4 Level 4 — Metric View.** The governed definition of the item metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
+> **C4 Level 4 — Metric View.** The governed definition of the item metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML. Domain: **Retail Analytics / Shared Dimensions** (see [domains registry](../../domains/README.md)).
 
 The Metric View reads the `gold.dim_item` dimension directly and needs no joins. It counts
 items and exposes their descriptive attributes for grouping.

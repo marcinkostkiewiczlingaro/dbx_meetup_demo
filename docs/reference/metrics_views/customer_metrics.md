@@ -4,6 +4,7 @@ type: metric_view
 metric_view: customer_metrics
 source: workspace.gold.dim_customer
 created_as: workspace.gold.customer_metrics
+domain: Retail Analytics/Shared Dimensions
 component: components/core/metrics.md
 ---
 # Metric View — customer_metrics
@@ -12,7 +13,7 @@ component: components/core/metrics.md
 |---|---|---|---|
 | [core](../../modules/core.md) | [metrics](../../components/core/metrics.md) | `workspace.gold.customer_metrics` | [gold.dim_customer](../tables/gold.dim_customer.md) |
 
-> **C4 Level 4 — Metric View.** The governed definition of the customer metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
+> **C4 Level 4 — Metric View.** The governed definition of the customer metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML. Domain: **Retail Analytics / Shared Dimensions** (see [domains registry](../../domains/README.md)).
 
 The Metric View reads the `gold.dim_customer` dimension directly and needs no joins. Gold
 carries no demographics or household keys, so gender, marital status, education, and buy

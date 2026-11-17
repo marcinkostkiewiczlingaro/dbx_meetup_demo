@@ -4,6 +4,7 @@ type: metric_view
 metric_view: catalog_returns_metrics
 source: workspace.gold.fct_catalog_returns
 created_as: workspace.gold.catalog_returns_metrics
+domain: Retail Analytics/Returns
 component: components/catalog_sales/metrics.md
 ---
 # Metric View — catalog_returns_metrics
@@ -12,7 +13,7 @@ component: components/catalog_sales/metrics.md
 |---|---|---|---|
 | [catalog_sales](../../modules/catalog_sales.md) | [metrics](../../components/catalog_sales/metrics.md) | `workspace.gold.catalog_returns_metrics` | [gold.fct_catalog_returns](../tables/gold.fct_catalog_returns.md) |
 
-> **C4 Level 4 — Metric View.** The governed definition of the catalog-returns metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
+> **C4 Level 4 — Metric View.** The governed definition of the catalog-returns metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML. Domain: **Retail Analytics / Returns** (see [domains registry](../../domains/README.md)).
 
 The Metric View reads the `gold.fct_catalog_returns` fact and joins `dim_customer`,
 `dim_item`, `dim_call_center`, `dim_catalog_page`, `dim_ship_mode`, and `dim_date` on their

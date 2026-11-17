@@ -4,6 +4,7 @@ type: metric_view
 metric_view: store_returns_metrics
 source: workspace.gold.fct_store_returns
 created_as: workspace.gold.store_returns_metrics
+domain: Retail Analytics/Returns
 component: components/store_sales/metrics.md
 ---
 # Metric View — store_returns_metrics
@@ -12,7 +13,7 @@ component: components/store_sales/metrics.md
 |---|---|---|---|
 | [store_sales](../../modules/store_sales.md) | [metrics](../../components/store_sales/metrics.md) | `workspace.gold.store_returns_metrics` | [gold.fct_store_returns](../tables/gold.fct_store_returns.md) |
 
-> **C4 Level 4 — Metric View.** The governed definition of the store-returns metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
+> **C4 Level 4 — Metric View.** The governed definition of the store-returns metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML. Domain: **Retail Analytics / Returns** (see [domains registry](../../domains/README.md)).
 
 The Metric View reads the `gold.fct_store_returns` fact and joins `dim_customer`, `dim_item`,
 `dim_store`, and `dim_date` on their surrogate keys. Gold carries no return-reason key and no

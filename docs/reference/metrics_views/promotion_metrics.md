@@ -4,6 +4,7 @@ type: metric_view
 metric_view: promotion_metrics
 source: workspace.gold.dim_promotion
 created_as: workspace.gold.promotion_metrics
+domain: Retail Analytics/Shared Dimensions
 component: components/core/metrics.md
 ---
 # Metric View — promotion_metrics
@@ -12,7 +13,7 @@ component: components/core/metrics.md
 |---|---|---|---|
 | [core](../../modules/core.md) | [metrics](../../components/core/metrics.md) | `workspace.gold.promotion_metrics` | [gold.dim_promotion](../tables/gold.dim_promotion.md) |
 
-> **C4 Level 4 — Metric View.** The governed definition of the promotion metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML.
+> **C4 Level 4 — Metric View.** The governed definition of the promotion metrics and the single source the backend creates the view from. The `## Definition` block below is the one authoritative copy of the YAML. Domain: **Retail Analytics / Shared Dimensions** (see [domains registry](../../domains/README.md)).
 
 The Metric View reads the `gold.dim_promotion` dimension directly and needs no joins. Gold
 models the promotion channel as boolean flags (`channel_email`, `channel_tv`) instead of
