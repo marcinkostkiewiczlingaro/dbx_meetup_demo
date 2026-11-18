@@ -38,3 +38,4 @@ data_layer: Gold (dimension)
 ## Links
 
 - **Applies to** many [`gold.fct_store_sales`](./gold.fct_store_sales.md) via `promo_key` (one promotion → many store-sales lines; optional, `promo_key` may be null).
+- **Applies to** many [`gold.fct_catalog_sales`](./gold.fct_catalog_sales.md) via `promo_key` (one promotion → many catalog-sales lines; optional, `promo_key` may be null).

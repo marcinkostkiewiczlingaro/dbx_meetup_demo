@@ -40,4 +40,5 @@ data_layer: Gold (dimension)
 ## Links
 
 - **Is sold in** many [`gold.fct_store_sales`](./gold.fct_store_sales.md) via `item_key` (one item → many store-sales lines).
+- **Is sold in** many [`gold.fct_catalog_sales`](./gold.fct_catalog_sales.md) via `item_key` (one item → many catalog-sales lines).
 - **Is returned in** many [`gold.fct_catalog_returns`](./gold.fct_catalog_returns.md) via `item_key` (one item → many catalog-return lines).

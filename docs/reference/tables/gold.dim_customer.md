@@ -41,4 +41,5 @@ data_layer: Gold (dimension)
 ## Links
 
 - **Makes** many [`gold.fct_store_sales`](./gold.fct_store_sales.md) via `customer_key` (one customer → many store-sales lines).
+- **Makes** many [`gold.fct_catalog_sales`](./gold.fct_catalog_sales.md) via `customer_key` (one customer → many catalog-sales lines).
 - **Returns** many [`gold.fct_catalog_returns`](./gold.fct_catalog_returns.md) via `customer_key` (one customer → many catalog-return lines).
